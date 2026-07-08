@@ -35,7 +35,6 @@ def main(page: ft.Page):
         container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1}", weight="bold", size=18))
         container.controls.append(ft.Text(q["pregunta"], size=16))
 
-        # Imagen
         if "imagen" in q and q["imagen"]:
             ruta_img = os.path.join("img", q["imagen"])
             if os.path.exists(ruta_img):
@@ -44,7 +43,6 @@ def main(page: ft.Page):
         feedback_container = ft.Column()
         tipo = q.get("tipo", "opcion_multiple")
 
-        # --- Lógica de Emparejamiento ---
         if tipo == "emparejamiento":
             dropdowns = []
             for obj in q["objetivos"]:
@@ -59,22 +57,18 @@ def main(page: ft.Page):
                 finalizar(aciertos, q, feedback_container)
             container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
 
-        # --- Lógica Opción Múltiple / Checkbox ---
         else:
-            es_multiple = len(q.get("respuestas_correctas", [])) > 1
-            if es_multiple:
-                cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
-                for cb in cbs: container.controls.append(cb)
-                def verif_multi(e):
-                    sel = [i for i, cb in enumerate(cbs) if cb.value]
-                    finalizar(sorted(sel) == sorted(q["respuestas_correctas"]), q, feedback_container)
-                container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_multi))
-            else:
-                rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
-                container.controls.append(rg)
-                def verif_radio(e):
-                    finalizar(rg.value and int(rg.value) == q.get("respuesta_correcta", 0), q, feedback_container)
-                container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
+            # Lógica mejorada: funciona con lista [X] o entero X
+            rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
+            container.controls.append(rg)
+
+            def verif_radio(e):
+                raw_c = q.get("respuestas_correctas")
+                val_c = raw_c[0] if isinstance(raw_c, list) else raw_c
+                es_correcto = rg.value is not None and int(rg.value) == val_c
+                finalizar(es_correcto, q, feedback_container)
+
+            container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
 
         container.controls.append(feedback_container)
         page.update()
@@ -100,4 +94,6 @@ def main(page: ft.Page):
     mostrar_menu()
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    ft.app(target=main, port=port, view=ft.AppView.WEB_BROWSER)
