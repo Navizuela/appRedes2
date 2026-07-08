@@ -1,0 +1,860 @@
+[
+  {
+    "pregunta": "1. Una la subred con una dirección de host que debería estar incluida dentro de la subred. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "192.168.1.63",
+      "192.168.1.68",
+      "192.168.1.128",
+      "192.168.1.48",
+      "192.168.1.121"
+    ],
+    "objetivos": [
+      "192.168.1.32/27",
+      "192.168.1.64/27",
+      "192.168.1.96/27"
+    ],
+    "respuestas_correctas": {
+      "192.168.1.32/27": "192.168.1.48",
+      "192.168.1.64/27": "192.168.1.68",
+      "192.168.1.96/27": "192.168.1.121"
+    },
+    "explicacion": "La subred 192.168.1.32/27 tendrá un rango de hosts válidos de .33 a .62. La subred 192.168.1.64/27 tendrá un rango de .65 a .94. La subred 192.168.1.96/27 tendrá un rango de .97 a .126.",
+    "imagen": null
+  },
+  {
+    "pregunta": "2. Un administrador desea crear cuatro subredes a partir de la dirección de red 192.168.1.0/24. ¿Cuál es la dirección de red y la máscara de subred de la segunda subred utilizable?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Subred 192.168.1.32 Máscara de subred 255.255.255.240",
+      "Subred 192.168.1.8 Máscara de subred 255.255.255.224",
+      "Subred 192.168.1.128 Máscara de subred 255.255.255.192",
+      "Subred 192.168.1.64 Máscara de subred 255.255.255.192",
+      "Subred 192.168.1.64 Máscara de subred 255.255.255.240"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Al tomar prestados 2 bits, se crean las subredes 192.168.1.0, .64, .128 y .192. La segunda es 192.168.1.64. La máscara /26 equivale a 255.255.255.192.",
+    "imagen": null
+  },
+  {
+    "pregunta": "3. ¿Cuántas direcciones de host se encuentran disponibles en la red 192.168.10.128/26?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "30",
+      "32",
+      "60",
+      "62",
+      "64"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Un prefijo /26 ofrece 6 bits de host, lo que proporciona un total de 64 direcciones. Al restar red y broadcast, quedan 62 utilizables.",
+    "imagen": null
+  },
+  {
+    "pregunta": "4. Existen tres métodos que permiten que IPv6 e IPv4 coexistan. Una cada método con su descripción.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Los paquetes IPv4 e IPv6 coexisten en la misma red",
+      "El paquete IPv6 se transporta dentro de un paquete IPv4",
+      "Los paquetes IPv6 se convierten en paquetes IPv4 y viceversa"
+    ],
+    "objetivos": [
+      "Traducción",
+      "Tunelización",
+      "Dual-stack"
+    ],
+    "respuestas_correctas": {
+      "Traducción": "Los paquetes IPv6 se convierten en paquetes IPv4 y viceversa",
+      "Tunelización": "El paquete IPv6 se transporta dentro de un paquete IPv4",
+      "Dual-stack": "Los paquetes IPv4 e IPv6 coexisten en la misma red"
+    },
+    "explicacion": "El Dual-stack permite la coexistencia. La Tunelización envuelve IPv6 en IPv4. La Traducción convierte paquetes entre versiones.",
+    "imagen": "pregunta_4.jpg"
+  },
+  {
+    "pregunta": "5. ¿Cuántas direcciones de host están disponibles en la red 172.16.128.0 con la máscara de subred 255.255.252.0?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "510",
+      "512",
+      "1022",
+      "1024",
+      "2046",
+      "2048"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Una máscara 255.255.252.0 equivale a /22. Deja 10 bits de host, lo que da (2^10) - 2 = 1022 direcciones IP utilizables.",
+    "imagen": null
+  },
+  {
+    "pregunta": "6. Haga coincidir cada dirección IPv4 con la categoría de dirección adecuada. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "192.168.100.161/25",
+      "203.0.113.100/24",
+      "172.110.12.64/28",
+      "10.10.10.128/25",
+      "10.0.0.159/27",
+      "192.168.1.191/26",
+      "224.10.0.254/24"
+    ],
+    "objetivos": [
+      "Dirección de host (1)",
+      "Dirección de host (2)",
+      "Dirección de red (1)",
+      "Dirección de red (2)",
+      "Dirección broadcast (1)",
+      "Dirección broadcast (2)"
+    ],
+    "respuestas_correctas": {
+      "Dirección de host (1)": "192.168.100.161/25",
+      "Dirección de host (2)": "203.0.113.100/24",
+      "Dirección de red (1)": "172.110.12.64/28",
+      "Dirección de red (2)": "10.10.10.128/25",
+      "Dirección broadcast (1)": "10.0.0.159/27",
+      "Dirección broadcast (2)": "192.168.1.191/26"
+    },
+    "explicacion": "Para determinar si una dirección IPv4 es red, host o broadcast, se determina el espacio basado en la máscara. Una red tiene todos ceros en la porción de host, y un broadcast tiene todos unos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "7. ¿Cuáles son los tres bloques de direcciones definidos por la RFC 1918 para el uso en redes privadas? (Elija tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "239.0.0.0/8",
+      "10.0.0.0/8",
+      "169.254.0.0/16",
+      "172.16.0.0/12",
+      "100.64.0.0/14",
+      "192.168.0.0/16"
+    ],
+    "respuestas_correctas": [1, 3, 5],
+    "explicacion": "La RFC 1918 define los rangos privados: 10.0.0.0/8, 172.16.0.0/12 y 192.168.0.0/16.",
+    "imagen": null
+  },
+  {
+    "pregunta": "8. El administrador de un sitio debe hacer que una red específica del sitio deba admitir 126 hosts. ¿Cuál de las siguientes máscaras de subred tiene la cantidad de bits de host requerida?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.224",
+      "255.255.255.240",
+      "255.255.255.0",
+      "255.255.255.128"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "La máscara 255.255.255.128 da como resultado 7 bits de host, lo que permite (2^7) - 2 = 126 hosts útiles.",
+    "imagen": null
+  },
+  {
+    "pregunta": "9. Consulte la ilustración. Considerando las direcciones ya utilizadas y la indicación de mantenerse dentro del rango de red 10.16.10.0/24 ¿cuál de las siguientes direcciones de subred se podría asignar a la red que tiene 25 hosts?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "10.16.10.128/28",
+      "10.16.10.240/28",
+      "10.16.10.224/26",
+      "10.16.10.160/26",
+      "10.16.10.64/27",
+      "10.16.10.240/27"
+    ],
+    "respuestas_correctas": [4],
+    "explicacion": "Para admitir 25 hosts, se necesitan 5 bits de host (/27). La dirección 10.16.10.64/27 encaja en el espacio libre entre las subredes ya asignadas.",
+    "imagen": "pregunta_9.jpg"
+  },
+  {
+    "pregunta": "10. ¿Cuál es la cantidad de direcciones IP de host disponibles en una red que tiene la máscara /26?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "62",
+      "16",
+      "254",
+      "32",
+      "256",
+      "64"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "La máscara /26 deja 6 bits de host. 2^6 = 64, menos la dirección de red y difusión, quedan 62 direcciones útiles.",
+    "imagen": null
+  },
+  {
+    "pregunta": "11. ¿Qué rango de prefijos de direcciones se reserva para las direcciones IPv4 de multidifusión?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "240.0.0.0 - 254.255.255.255",
+      "169.254.0.0 - 169.254.255.255",
+      "127.0.0.0 - 127.255.255.255",
+      "224.0.0.0 - 239.255.255.255"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Las direcciones IPv4 de multidifusión (Clase D) usan el rango de 224.0.0.0 a 239.255.255.255.",
+    "imagen": null
+  },
+  {
+    "pregunta": "12. Un mensaje se envía a todos los hosts en una red remota. ¿Qué tipo de mensaje es?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Unicast",
+      "Multicast",
+      "Broadcast limitado",
+      "Broadcast dirigido"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Un broadcast dirigido es un mensaje que se envía a todos los hosts de una red específica remota o no local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "13. ¿Qué dirección es una dirección unicast local de enlace IPv6 válida?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FD80::1:1234",
+      "FE0A::100:7788:998F",
+      "FEC8:1::FFFF",
+      "FE80::1:4545:6578:ABC1",
+      "FC90:5678:4251:FFFF"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Las direcciones link-local IPv6 comienzan con FE80::/10.",
+    "imagen": null
+  },
+  {
+    "pregunta": "14. ¿Cuál de estas direcciones es la abreviatura más corta para la dirección IP: 3FFE:1044:0000:0000:00AB:0000:0000:0057?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "3FFE:1044:0:0:00AB::0057",
+      "3FFE:1044::00AB::0057",
+      "3FFE:1044:0000:0000:00AB::57",
+      "3FFE:1044:0:0:AB::57"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Se quitan los ceros a la izquierda, y se reemplaza la cadena de ceros continuos más larga con '::'. El resultado es 3FFE:1044:0:0:AB::57.",
+    "imagen": null
+  },
+  {
+    "pregunta": "15. ¿Qué tipo de dirección IPv6 es FE80::1?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Unidifusión global",
+      "Link-local",
+      "Multidifusión",
+      "Bucle invertido"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Las direcciones link-local comienzan con FE80::/10. Se utilizan para que los dispositivos se comuniquen en el enlace directo que comparten.",
+    "imagen": null
+  },
+  {
+    "pregunta": "16. Consulte la ilustración. Con este esquema, ¿cuál es la cantidad máxima de subredes que se obtiene por subsitio?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "256",
+      "0",
+      "16",
+      "4"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Debido a que se utiliza solamente un carácter hexadecimal para representar la subred, ese carácter puede representar 16 valores diferentes (de 0 a F).",
+    "imagen": "pregunta_16.jpg"
+  },
+  {
+    "pregunta": "17. ¿Qué se utiliza en el proceso EUI-64 para crear una ID de interfaz IPv6 en una interfaz habilitada IPv6?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Una dirección IPv4 configurada en la interfaz",
+      "La dirección MAC de la interfaz habilitada IPv6",
+      "Una dirección IPv6 proporcionada por un servidor DHCPv6",
+      "Una dirección hexadecimal de 64 bits aleatoriamente generada"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El proceso EUI-64 utiliza la dirección MAC de 48 bits de una interfaz y le inserta FF:FE en el medio para crear la ID de 64 bits.",
+    "imagen": null
+  },
+  {
+    "pregunta": "18. ¿Cuál es el prefijo de la dirección de host 2001:DB8:BC15:A:12AB::1/64?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2001:DB8:BC15",
+      "2001:DB8:BC15:A",
+      "2001:DB8:BC15:A:1",
+      "2001:DB8:BC15:A:12"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "La longitud de prefijo /64 indica que los primeros 64 bits (4 hextetos) son la porción de red. Por tanto, el prefijo es 2001:DB8:BC15:A.",
+    "imagen": null
+  },
+  {
+    "pregunta": "19. Una la dirección IPv6 con el tipo de dirección IPv6 correspondiente.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "2001:DB8:BAF:3F57:FE94",
+      "FF02::1",
+      "::1",
+      "FF02::1:FFAE:F85F"
+    ],
+    "objetivos": [
+      "Dirección de multidifusión de nodo solicitado",
+      "Unidifusión global",
+      "Dirección de multidifusión de todos los nodos",
+      "Bucle invertido"
+    ],
+    "respuestas_correctas": {
+      "Dirección de multidifusión de nodo solicitado": "FF02::1:FFAE:F85F",
+      "Unidifusión global": "2001:DB8:BAF:3F57:FE94",
+      "Dirección de multidifusión de todos los nodos": "FF02::1",
+      "Bucle invertido": "::1"
+    },
+    "explicacion": "FF02::1:FFAE:F85F es multidifusión de nodo solicitado. 2001:DB8:: es unidifusión global. FF02::1 llega a todos los nodos IPv6 del enlace local. ::1 es bucle invertido (loopback).",
+    "imagen": null
+  },
+  {
+    "pregunta": "20. ¿Qué prefijo IPv6 se reserva para la comunicación entre dispositivos en el mismo enlace?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FDFF::/7",
+      "2001::/32",
+      "FC00::/7",
+      "FE80::/10"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Las direcciones de unidifusión locales de enlace IPv6 (Link-local) se encuentran en el rango FE80::/10 y solo se usan en el mismo enlace.",
+    "imagen": null
+  },
+  {
+    "pregunta": "21. ¿Qué tipo de dirección IPv6 hace referencia a cualquier dirección de unidifusión asignada a varios hosts?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Anycast",
+      "Local única",
+      "Unidifusión global",
+      "Link-local"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "Una dirección Anycast es una dirección IPv6 de unidifusión que se asigna a múltiples dispositivos (generalmente routers que ofrecen el mismo servicio).",
+    "imagen": null
+  },
+  {
+    "pregunta": "22. ¿Cuáles de los siguientes son dos tipos de direcciones IPv6 unicast? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Anycast",
+      "Multicast",
+      "Link-local",
+      "Loopback",
+      "Broadcast"
+    ],
+    "respuestas_correctas": [2, 3],
+    "explicacion": "Loopback y Link-local son tipos específicos de direcciones de unidifusión (unicast).",
+    "imagen": null
+  },
+  {
+    "pregunta": "23. ¿Qué servicio proporciona direccionamiento IPv6 dinámico global a las terminales sin utilizar un servidor que registre las direcciones IPv6 disponibles?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DHCPv6 sin información de estado",
+      "Direccionamiento IPv6 estático",
+      "SLAAC",
+      "DHCPv6 con información de estado"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Mediante SLAAC (configuración automática de dirección independiente del estado), la PC genera su propia dirección IPv6 a partir del prefijo recibido del router.",
+    "imagen": null
+  },
+  {
+    "pregunta": "24. Un técnico utiliza el comando ping 127.0.0.1. ¿Qué está probando el técnico?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La conectividad entre dos PC en la misma red",
+      "La conectividad entre dos dispositivos Cisco adyacentes",
+      "La conectividad entre una PC y el gateway predeterminado",
+      "La conectividad física de una PC determinada y la red",
+      "El stack de TCP/IP en un host de red"
+    ],
+    "respuestas_correctas": [4],
+    "explicacion": "127.0.0.1 es la dirección de loopback local. Hacerle ping verifica que la pila del protocolo TCP/IP de ese dispositivo funciona correctamente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "25. Consulte la ilustración. Un administrador intenta resolver problemas de conectividad entre la PC1 y la PC2 utilizando el comando tracert en la PC1. Sobre la base del resultado que se muestra, ¿por dónde debería comenzar a resolver el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "PC2",
+      "SW2",
+      "R2",
+      "SW1",
+      "R1"
+    ],
+    "respuestas_correctas": [4],
+    "explicacion": "El único salto exitoso fue 192.168.1.254, que es el gateway en R1. A partir del segundo salto (que debe salir de R1) hay error de tiempo agotado. El problema inicia en R1.",
+    "imagen": "pregunta_25.jpg"
+  },
+  {
+    "pregunta": "26. ¿Qué protocolo utiliza el comando traceroute para enviar y recibir solicitudes y respuestas de eco?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "TCP",
+      "SNMP",
+      "Telnet",
+      "ICMP"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Traceroute emplea ICMP (Protocolo de mensajería de control de Internet) para estas funciones.",
+    "imagen": null
+  },
+  {
+    "pregunta": "27. Una cada descripción con una dirección IP adecuada. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "64.102.90.23",
+      "169.254.1.5",
+      "192.0.2.123",
+      "240.2.6.255",
+      "172.19.20.5",
+      "127.0.0.1"
+    ],
+    "objetivos": [
+      "Una dirección privada",
+      "Una dirección de loopback",
+      "Una dirección experimental",
+      "Una dirección TEST-NET",
+      "Una dirección link-local"
+    ],
+    "respuestas_correctas": {
+      "Una dirección privada": "172.19.20.5",
+      "Una dirección de loopback": "127.0.0.1",
+      "Una dirección experimental": "240.2.6.255",
+      "Una dirección TEST-NET": "192.0.2.123",
+      "Una dirección link-local": "169.254.1.5"
+    },
+    "explicacion": "El bloque 169.254.0.0/16 es link-local. 172.16 a 172.31 es privado. 192.0.2.0/24 es TEST-NET. 240.0.0.0 en adelante es experimental. 127.0.0.0/8 es loopback.",
+    "imagen": null
+  },
+  {
+    "pregunta": "28. ¿Cuál de las siguientes es la notación de duración de prefijo para la máscara de subred 255.255.255.224?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "/26",
+      "/28",
+      "/27",
+      "/25"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El valor 224 al final indica 3 bits encendidos en el cuarto octeto (8+8+8+3 = 27). La duración del prefijo es /27.",
+    "imagen": null
+  },
+  {
+    "pregunta": "29. ¿Cuál de las siguientes subredes incluiría la dirección 192.168.1.96 como dirección de host utilizable?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.1.64/29",
+      "192.168.1.32/28",
+      "192.168.1.64/26",
+      "192.168.1.32/27"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La subred 192.168.1.64/26 abarca desde la .64 hasta la .127. El rango de host utilizable es .65 a .126, por lo que incluye la .96.",
+    "imagen": null
+  },
+  {
+    "pregunta": "30. Un host está transmitiendo un multicast. ¿Qué host o hosts lo recibirán?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un grupo de hosts especialmente definido",
+      "Dispositivos de red directamente conectados",
+      "Un host específico",
+      "El vecino más cercano de la misma red"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El multicast optimiza el ancho de banda enviando el tráfico únicamente a los miembros interesados que se hayan suscrito al grupo multicast.",
+    "imagen": null
+  },
+  {
+    "pregunta": "31. ¿Cuál es el formato comprimido de la dirección IPv6 2002:0420:00c4:1008:0025:0190:0000:0990?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2002:42:10:c400::909",
+      "2002:420:c4:1008:25:190::990",
+      "2002:4200::25:1090:0:99",
+      "2002:42:25:1090:0:99"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Se eliminan los ceros a la izquierda y se reemplaza el hexteto 0000 con '::'. Queda: 2002:420:c4:1008:25:190::990.",
+    "imagen": null
+  },
+  {
+    "pregunta": "32. Un usuario emite un comando ping fe80:65ab:dcc1::100 y recibe una respuesta que incluye un código 4. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Protocolo inalcanzable",
+      "Host fuera de alcance",
+      "Red inalcanzable",
+      "Puerto inalcanzable"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "En los mensajes ICMPv6 de 'Destino inalcanzable' (Tipo 1), el Código 4 indica específicamente un 'Puerto inalcanzable'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "33. ¿Cuántos bits se deben tomar prestados de la porción de host de una dirección para admitir un router con cinco redes conectadas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dos",
+      "Cuatro",
+      "Cinco",
+      "Tres"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Para admitir 5 redes, se requiere tomar 3 bits prestados (2^3 = 8). Tomar solo 2 bits solo daría 4 subredes, que no alcanzan.",
+    "imagen": null
+  },
+  {
+    "pregunta": "34. ¿Qué tres direcciones son direcciones públicas válidas? (Escoja tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "10.15.250.5",
+      "198.133.219.17",
+      "172.31.1.25",
+      "128.107.12.117",
+      "192.168.1.245",
+      "64.104.78.227"
+    ],
+    "respuestas_correctas": [1, 3, 5],
+    "explicacion": "10.x.x.x, 172.16-31.x.x y 192.168.x.x son privadas. Las otras tres son públicas enrutables.",
+    "imagen": null
+  },
+  {
+    "pregunta": "35. Observe la ilustración. Haga coincidir la red con la dirección IP y el prefijo correctos que satisfagan los requisitos de direccionamiento de host utilizables para cada red.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "192.168.0.96 /27",
+      "192.168.0.128 /25",
+      "192.168.0.80 /30",
+      "192.168.0.0 /26"
+    ],
+    "objetivos": [
+      "Red A (100 Hosts)",
+      "Red B (50 Hosts)",
+      "Red C (25 Hosts)",
+      "Red D (2 Hosts)"
+    ],
+    "respuestas_correctas": {
+      "Red A (100 Hosts)": "192.168.0.128 /25",
+      "Red B (50 Hosts)": "192.168.0.0 /26",
+      "Red C (25 Hosts)": "192.168.0.96 /27",
+      "Red D (2 Hosts)": "192.168.0.80 /30"
+    },
+    "explicacion": "La Red A (100 hosts) necesita una /25 (128 direcciones). La Red B (50 hosts) necesita una /26 (64 direcciones). La Red C (25 hosts) requiere una /27 (32 direcciones). La Red D (2 hosts WAN) solo necesita una /30 (4 direcciones).",
+    "imagen": "pregunta_35.jpg"
+  },
+  {
+    "pregunta": "36. Una compañía tiene la dirección de red 192.168.1.64 con la máscara de subred 255.255.255.192. La compañía desea crear dos subredes que contengan 10 hosts y 18 hosts. ¿Cuáles son las dos redes con las que se lograría eso? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.1.64/27",
+      "192.168.1.96/28",
+      "192.168.1.16/28",
+      "192.168.1.192/28",
+      "192.168.1.128/27"
+    ],
+    "respuestas_correctas": [0, 1],
+    "explicacion": "La subred /27 admite hasta 30 hosts (para los 18 hosts), y la /28 admite hasta 14 hosts (para los 10 hosts). Las únicas que caen dentro del bloque original son 192.168.1.64/27 y 192.168.1.96/28.",
+    "imagen": null
+  },
+  {
+    "pregunta": "37. Un administrador de red recibió el prefijo IPv6 2001:DB8::/48 para realizar la división en subredes. Suponiendo que no realiza la división en la porción de ID de interfaz, ¿cuántas subredes puede crear a partir del prefijo /48?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "4096",
+      "65 536",
+      "256",
+      "16"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El espacio desde el bit 48 hasta el bit 64 deja 16 bits para subredes. 2^16 es igual a 65 536 subredes posibles.",
+    "imagen": null
+  },
+  {
+    "pregunta": "38. Dado el prefijo de dirección IPv6 2001:db8::/48, ¿cuál es la última subred que se crea si se cambia el prefijo de subred a /52?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2001:db8:0:8000::/52",
+      "2001:db8:0:f000::/52",
+      "2001:db8:0:f::/52",
+      "2001:db8:0:f00::/52"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Se mueven cuatro bits hacia la derecha creando 16 subredes. La última subred usa los 4 bits en '1' (valor F), siendo 2001:db8:0:f000::/52.",
+    "imagen": null
+  },
+  {
+    "pregunta": "39. Un dispositivo con IPv6 habilitado envía un paquete de datos con la dirección de destino FF02::1 ¿Cuál es el destino de este paquete?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Todos los dispositivos con IPv6 habilitado en el enlace local o en la red",
+      "El único dispositivo IPv6 en el enlace que se configuró únicamente con esta dirección",
+      "Solo los routers configurados con IPv6",
+      "Solo los servidores DHCP IPv6"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "FF02::1 es la dirección de multidifusión 'Todos los Nodos', que llega a todos los dispositivos IPv6 en el enlace local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "40. ¿Qué protocolo admite la configuración automática de dirección sin estado (SLAAC) para permitir la asignación dinámica de direcciones IPv6 a un host?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "UDP",
+      "ICMPv6",
+      "DHCPv6",
+      "ARPv6"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "SLAAC usa mensajes de ICMPv6 (como Router Solicitation y Router Advertisement) para asignar direcciones de forma dinámica.",
+    "imagen": null
+  },
+  {
+    "pregunta": "41. ¿Qué mensaje ICMPv6 se envía cuando el campo de límite de saltos IPv6 de un paquete se reduce a cero y el paquete no se puede reenviar?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Red inalcanzable",
+      "Tiempo excedido",
+      "Puerto inalcanzable",
+      "Protocolo inalcanzable"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Si el campo límite de salto alcanza cero, el router descarta el paquete y envía un mensaje ICMPv6 de 'Tiempo excedido'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "42. ¿Cuál es el formato comprimido de la dirección IPv6 2001:0db8:0000:0000:0000:a0b0:0008:0001?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2001:db8:1::ab8:0:1",
+      "2001:db8:0:1::8:1",
+      "2001:db8::a0b0:8:1",
+      "2001:db8::ab8:1:0:1000"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Omitiendo ceros a la izquierda y reemplazando la cadena continua de hextetos de ceros con '::', el resultado es 2001:db8::a0b0:8:1.",
+    "imagen": null
+  },
+  {
+    "pregunta": "43. Consulte la ilustración. Un administrador debe enviar un mensaje a todos los integrantes de la red del router A. ¿Cuál de las siguientes es la dirección de difusión para la red 172.16.16.0/22?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "172.16.255.255",
+      "172.16.23.255",
+      "172.16.19.255",
+      "172.16.16.255",
+      "172.16.20.255"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La red 172.16.16.0/22 abarca hasta la 172.16.19.255. Las direcciones de host terminan en .19.254, haciendo que .19.255 sea la dirección de difusión.",
+    "imagen": "pregunta_44.jpg"
+  },
+  {
+    "pregunta": "44. Una escuela secundaria usa videoconferencia hacia otra escuela. El administrador configura el terminal con IP 209.165.201.10, y el terminal de destino responde que usa la 192.168.25.10. El administrador sabe de inmediato que no funcionará a través de Internet. ¿Por qué?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Es una dirección IP privada.",
+      "Existe un conflicto de direcciones IP.",
+      "Es una dirección link-local.",
+      "Es una dirección de loopback."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "La dirección 192.168.25.10 es privada y no es enrutable a través de Internet sin el uso de NAT o VPN.",
+    "imagen": null
+  },
+  {
+    "pregunta": "45. Un host está transmitiendo un broadcast. ¿Qué host o hosts lo recibirán?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un host específico",
+      "El vecino más cercano de la misma red",
+      "Todos los hosts de la misma subred",
+      "Dispositivos de red directamente conectados"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Se entrega un broadcast a cada host que tenga una dirección IP dentro de la misma subred local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "46. Un usuario emite un comando ping 10.10.14.67 y recibe una respuesta que incluye un código 0. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Host fuera de alcance",
+      "Red inalcanzable",
+      "Protocolo inalcanzable",
+      "Puerto inalcanzable"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "En los mensajes ICMP de Tipo 3, el Código 0 significa 'Red inalcanzable' (el router no tiene ruta para llegar).",
+    "imagen": null
+  },
+  {
+    "pregunta": "47. ¿Cuál es el formato comprimido de la dirección IPv6 fe80:0000:0000:0000:0220:0b3f:f0e0:0029?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "fe80:9ea0::2020:0:bf:e0:9290",
+      "fe80:9ea:0:2200::fe0:290",
+      "fe80:9ea0::2020::bf:e0:9290",
+      "fe80::220:b3f:f0e0:29"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Reemplazando los bloques de ceros por '::' y omitiendo los ceros a la izquierda, la dirección se reduce a fe80::220:b3f:f0e0:29.",
+    "imagen": null
+  },
+  {
+    "pregunta": "48. ¿Cuál es el propósito de los mensajes de ICMP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Asegurar el envío de un paquete IP.",
+      "Proporcionar comentarios acerca de las transmisiones de paquetes IP.",
+      "Informar a los routers sobre cambios en la topología de la red.",
+      "Controlar el proceso de resolución de nombre de dominio a dirección IP."
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "ICMP proporciona diagnósticos y comentarios sobre problemas relacionados con el procesamiento de paquetes IP.",
+    "imagen": null
+  },
+  {
+    "pregunta": "49. ¿Cuál es el formato comprimido de la dirección IPv6 fe80:09ea:0000:2200:0000:0000:0fe0:0290?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "fe80:9:20::b000:290",
+      "fe80:9ea0::2020:0:bf:e0:9290",
+      "fe80:9ea:0:2200::fe0:290",
+      "fe80:9ea0::2020::bf:e0:9290"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El bloque '0000:0000' se reemplaza con '::', logrando la compresión correcta: fe80:9ea:0:2200::fe0:290.",
+    "imagen": null
+  },
+  {
+    "pregunta": "50. Un host está transmitiendo un unicast. ¿Qué host o hosts lo recibirán?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un grupo de hosts especialmente definido",
+      "Todos los hosts en Internet",
+      "Un host específico",
+      "El vecino más cercano de la misma red"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Una transmisión de unidifusión (unicast) es una comunicación punto a punto enviada hacia una única dirección IP de destino específica.",
+    "imagen": null
+  },
+  {
+    "pregunta": "51. Un usuario ejecuta un traceroute a través de IPv6. ¿En qué momento dejaría de reenviar el paquete un router que se encuentra en la ruta hacia el dispositivo de destino?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Cuando el host responde con un mensaje de respuesta de eco ICMP",
+      "Cuando el valor del campo Límite de saltos alcanza cero",
+      "Cuando el valor del campo Límite de saltos alcanza 255",
+      "Cuando el router recibe un mensaje de ICMP de tiempo excedido"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Una vez que el campo Límite de saltos (Hop Limit) alcanza el valor cero, el paquete caduca y no puede ser reenviado.",
+    "imagen": null
+  },
+  {
+    "pregunta": "52. Un usuario emite un comando ping fe80:65ab:dcc1::100 y recibe una respuesta que incluye un código 3. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "No se puede alcanzar la dirección",
+      "Más allá del alcance de la dirección de origen",
+      "Comunicación con el destino prohibida administrativamente",
+      "No hay ruta para el destino"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "En los mensajes de 'Destino inalcanzable' (Tipo 1) de ICMPv6, el Código 3 indica que no se puede alcanzar la dirección física en el enlace local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "53. ¿Cuál es el formato comprimido de la dirección IPv6 2002:0042:0010:c400:0000:0000:0000:0909?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2002:4200::25:1090:0:99",
+      "2002:420:c4:1008:25:190::990",
+      "2002:42:10:c400::909",
+      "2002:42::25:1090:0:99"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Se reemplaza el grupo más grande de ceros y se remueven los ceros a la izquierda. Resultado: 2002:42:10:c400::909.",
+    "imagen": null
+  },
+  {
+    "pregunta": "54. Un usuario emite un comando ping 2001:db8:face:39::10 y recibe una respuesta que incluye un código 2. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Comunicación con el destino prohibida administrativamente",
+      "No hay ruta para el destino",
+      "Más allá del alcance de la dirección de origen",
+      "No se puede alcanzar la dirección"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "En ICMPv6 (Tipo 1), el Código 2 indica 'Más allá del alcance de la dirección de origen'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "55. ¿Cuál es la dirección IP de origen que utiliza un router de forma predeterminada cuando emite el comando traceroute?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La dirección IP más baja que se configuró en el router",
+      "Una dirección IP de loopback",
+      "La dirección IP más alta que se configuró en el router",
+      "La dirección IP de la interfaz saliente"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "De forma predeterminada, el router utilizará la dirección IP de su interfaz de salida como origen del paquete.",
+    "imagen": null
+  },
+  {
+    "pregunta": "56. Un usuario emite un comando ping 192.135.250.103 y recibe una respuesta que incluye un código 1. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Host fuera de alcance",
+      "Protocolo inalcanzable",
+      "Red inalcanzable",
+      "Puerto inalcanzable"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "En mensajes ICMPv4 Tipo 3, el Código 1 indica 'Host fuera de alcance'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "57. ¿Cuál es el formato comprimido de la dirección IPv6 2001:0db8:0000:0000:0ab8:0001:0000:1000?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2001:db8:0:1::8:1",
+      "2001:db8:1::ab8:0:1",
+      "2001:db8::a0b0:8:1",
+      "2001:db8::ab8:1:0:1000"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "El resultado final tras quitar ceros a la izquierda y reducir la mayor cantidad de ceros continuos con '::' es 2001:db8::ab8:1:0:1000.",
+    "imagen": null
+  },
+  {
+    "pregunta": "58. Un usuario emite un comando ping 2001:db8:face:39::10 y recibe una respuesta que incluye un código 3. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "No se puede alcanzar la dirección",
+      "Protocolo inalcanzable",
+      "Red inalcanzable",
+      "Host fuera de alcance"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "En ICMPv6, un Código 3 significa 'No se puede alcanzar la dirección' (falla en resolución de enlace local).",
+    "imagen": null
+  },
+  {
+    "pregunta": "59. Un usuario emite un comando ping 2001:db8:3040:114::88 y recibe una respuesta que incluye un código 4. ¿Qué representa este código?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Host fuera de alcance",
+      "Puerto inalcanzable",
+      "Protocolo inalcanzable",
+      "Red inalcanzable"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El Código 4 en ICMPv6 (Tipo 1) indica específicamente un 'Puerto inalcanzable' en el host de destino.",
+    "imagen": null
+  }
+]

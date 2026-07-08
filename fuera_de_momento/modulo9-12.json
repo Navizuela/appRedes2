@@ -1,0 +1,727 @@
+[
+  {
+    "pregunta": "¿Cuál es la ventaja de implementar marcado de QoS de capa 3 en una red empresarial?",
+    "opciones": [
+      "El marcado de capa 3 se puede transportar en los campos 802.1Q.",
+      "El marcado de capa 3 se puede usar para transportar tráfico que no es IP.",
+      "El marcado de capa 3 puede llevar la información de QoS de extremo a extremo.",
+      "El marcado de capa 3 puede transportar la información de QoS en switches que no tienen reconocimiento de IP."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El marcado de Capa 3 llevará la información de QoS de extremo a extremo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál es la función de un límite de confianza de QoS?",
+    "opciones": [
+      "El límite de confianza identifica la ubicación donde el tráfico no se puede marcar.",
+      "El límite de confianza solo permite el ingreso del tráfico que se ha marcado anteriormente.",
+      "El límite de confianza identifica qué dispositivos confían en las marcas de los paquetes que ingresan a una red.",
+      "El límite de confianza solo permite el ingreso a la red del tráfico de terminales confiables."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El límite de confianza es la ubicación donde las marcas de QoS de un paquete son confiables cuando ingresa a la red empresarial.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuáles son dos de los enfoques para evitar la pérdida de paquetes debido a la congestión en una interfaz? (Elija dos opciones.)",
+    "opciones": [
+      "Deshabilitar mecanismos de formación de colas.",
+      "Disminuir el espacio en búfer.",
+      "Prevenir las ráfagas de tráfico.",
+      "Descartar los paquetes de baja prioridad.",
+      "Aumentar la capacidad de enlace."
+    ],
+    "respuestas_correctas": [3, 4],
+    "explicacion": "Aumenta la capacidad de enlace para facilitar o evitar la congestión, y descartar paquetes de prioridad más baja antes de que se produzca.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué escenario de configuración ofrecería la mayor protección para recibir y establecer mensajes SNMP?",
+    "opciones": [
+      "SNMPv2 para administración en banda con cadenas de comunidad de lectura y escritura",
+      "SNMPv1 con administración fuera de banda en una subred privada",
+      "SNMPv3 configurado con el nivel de seguridad de autenticación",
+      "Identificaciones de comunidad SNMP"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "SNMPv3 admite la autenticación y el cifrado con los niveles de seguridad de autenticación y priv.",
+    "imagen": null
+  },
+  {
+    "pregunta": "El administrador de redes introduce el comando 'copy running-config tftp'. El router solicita una dirección o un nombre de host remoto. ¿Cuál de estas direcciones IP debe escribir el administrador?",
+    "opciones": [
+      "192.168.10.1",
+      "192.168.11.254",
+      "192.168.9.254",
+      "192.168.11.252"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "La dirección solicitada es la dirección del servidor TFTP. En la topología, la Aplicación TFTP es 192.168.11.252.",
+    "imagen": "pregunta_5.jpg"
+  },
+  {
+    "pregunta": "El comando 'ntp server 10.1.1.1' se emite en un router. ¿Qué efecto tiene este comando?",
+    "opciones": [
+      "Sincroniza el reloj del sistema con el origen de hora con la dirección IP 10.1.1.1.",
+      "Determina a qué servidor se deben enviar los archivos de registro del sistema.",
+      "Asegura que toda la información de registro tenga una marca de tiempo asociada.",
+      "Identifica el servidor en el que se deben almacenar las configuraciones de respaldo."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El comando de configuración global configurar el servidor NTP de los dispositivos IOS.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Como administrador de red, le solicitan que implemente EtherChannel en la red empresarial. ¿De qué consta esta configuración?",
+    "opciones": [
+      "Proporciona enlaces redundantes que bloquean o reenvían el tráfico de forma dinámica.",
+      "Agrupa dos dispositivos para compartir una dirección IP virtual.",
+      "Agrupa varios puertos físicos para aumentar el ancho de banda entre dos switches.",
+      "Proporciona dispositivos redundantes para permitir que el tráfico fluya en caso de que falle el dispositivo."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "EtherChannel se utiliza en una red para mejorar las capacidades de velocidad al agrupar varios puertos físicos en un enlace EtherChannel lógico.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál es la definición de un diseño de red LAN de dos niveles?",
+    "opciones": [
+      "Las capas de acceso y distribución se contraen en un nivel, y la capa principal, en otro nivel.",
+      "Las capas de acceso, distribución y principal se contraen en un nivel, con otra capa de red troncal.",
+      "Las capas de distribución y principal se contraen en un nivel, y la capa de acceso, en otro nivel.",
+      "Las capas de acceso y principal se contraen en un nivel, y la capa de distribución, en otro nivel."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El diseño de dos niveles puede contraer las capas de núcleo y distribución en una capa para satisfacer las necesidades de una pequeña ubicación.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuáles de las siguientes son dos razones para crear una línea de base de red? (Elija dos).",
+    "opciones": [
+      "Determinar qué tipo de equipo implementar.",
+      "Seleccionar un protocolo de routing.",
+      "Diseñar una red según un modelo correcto.",
+      "Determinar si la red puede cumplir con las políticas requeridas.",
+      "Identificar un futuro comportamiento anormal de la red.",
+      "Evaluar las vulnerabilidades de seguridad en la red."
+    ],
+    "respuestas_correctas": [3, 4],
+    "explicacion": "Una línea de base de red se crea para proporcionar un punto de comparación entre el funcionamiento óptimo de la red y cualquier cambio. Permite controlar el comportamiento de la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Una PC puede tener acceso a los dispositivos en la misma red, pero no puede tener acceso a los dispositivos en otras redes. ¿Cuál es la causa probable de este problema?",
+    "opciones": [
+      "La dirección IP de la PC no es válida.",
+      "La PC tiene una máscara de subred incorrecta.",
+      "El cable no está conectado correctamente a la NIC.",
+      "La dirección de gateway predeterminado de la PC no es válida."
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Si falta el gateway predeterminado o este es incorrecto, el host no se puede comunicar fuera de la red local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿En qué paso de la recolección de síntomas el ingeniero de red determina si el problema está en la capa de núcleo, de distribución o de acceso de la red?",
+    "opciones": [
+      "Recopilar información.",
+      "Determinar la propiedad.",
+      "Registrar los síntomas.",
+      "Determinar los síntomas.",
+      "Reducir el ámbito."
+    ],
+    "respuestas_correctas": [4],
+    "explicacion": "En el paso de 'reducir el ámbito' un ingeniero de red determina la capa afectada para poder identificar qué partes del equipo son la causa probable.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador de redes está implementando QoS con la capacidad de proporcionar una cola especial para el tráfico de voz, para reenviar el tráfico de voz antes del tráfico de red en otras colas. ¿Qué método de formación de colas seria la mejor opción?",
+    "opciones": [
+      "CBWFQ",
+      "WFQ",
+      "LLQ",
+      "FIFO"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La puesta en cola de baja latencia (LLQ) permite que los datos sensibles a las demoras se definan en una cola de prioridad (PQ) estricta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuáles son dos de las características del modelo de QoS de mejor esfuerzo? (Elija dos opciones.)",
+    "opciones": [
+      "Permite que los hosts terminales informen de sus necesidades de QoS a la red.",
+      "No proporciona una garantía de entrega de paquetes.",
+      "Trata a todos los paquetes de red de la misma manera.",
+      "Proporciona un trato preferencial a los paquetes de voz.",
+      "Utiliza un enfoque orientado a la conexión con QoS."
+    ],
+    "respuestas_correctas": [1, 2],
+    "explicacion": "El modelo de QoS de mejor esfuerzo no brinda ninguna garantía, se suele usar en Internet y trata a todos los paquetes de la misma manera.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico de red no puede administrarse con herramientas de prevención de congestión?",
+    "opciones": [
+      "TCP",
+      "ICMP",
+      "IP",
+      "UDP"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "No hay prevención de congestión para el tráfico basado en el protocolo de datagrama de usuario (UDP).",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Por qué QoS es un tema importante en una red convergente que combina comunicaciones de voz, video y datos?",
+    "opciones": [
+      "Las comunicaciones de voz y video son más sensibles a la latencia.",
+      "Los equipos heredados no pueden transmitir voz y video sin QoS.",
+      "Las comunicaciones de datos son sensibles a la fluctuación.",
+      "Las comunicaciones de datos deben tener la primera prioridad."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "Sin mecanismos de QoS implementados, los paquetes sensibles al tiempo, como la voz y el video, se descartarán con la misma frecuencia que el tráfico general.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea reemplazar el archivo de configuración en un router Cisco cargando un nuevo archivo de configuración de un servidor TFTP. ¿Cuáles son las dos cosas que debe conocer el administrador antes de realizar esta tarea? (Elija dos).",
+    "opciones": [
+      "El nombre del archivo de configuración que se encuentra almacenado actualmente en el servidor TFTP.",
+      "La dirección IP del servidor TFTP.",
+      "El nombre del archivo de configuración que se encuentra almacenado actualmente en el router.",
+      "Valor de registro de configuración.",
+      "La dirección IP del router."
+    ],
+    "respuestas_correctas": [0, 1],
+    "explicacion": "Para identificar la ubicación exacta del archivo, la dirección IP del servidor TFTP y el nombre del archivo de configuración son datos fundamentales.",
+    "imagen": null
+  },
+  {
+    "pregunta": "En base al comando 'dir flash:', ¿cómo selecciona el router qué imagen de IOS cargar?",
+    "opciones": [
+      "El router selecciona la tercera imagen porque contiene la imagen advipservicesk9.",
+      "El router selecciona una imagen dependiendo del valor del registro de configuración.",
+      "El router selecciona la tercera imagen porque es la imagen del IOS más reciente.",
+      "El router selecciona una imagen en función del comando boot system en la configuración."
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "El comando boot system se utiliza para seleccionar qué imagen se utiliza para arrancar el dispositivo Cisco.",
+    "imagen": "pregunta_18.jpg"
+  },
+  {
+    "pregunta": "¿Cuáles son las tres funciones proporcionadas por el servicio de syslog? (Elija tres opciones.)",
+    "opciones": [
+      "Recopilar información de registro para el control y la solución de problemas.",
+      "Especificar los destinos de los mensajes capturados.",
+      "Sondear de forma periódica a los agentes para obtener datos.",
+      "Proporcionar estadísticas sobre los paquetes que recorren un dispositivo Cisco.",
+      "Seleccionar el tipo de información de registro que se captura.",
+      "Ofrecer análisis de tráfico."
+    ],
+    "respuestas_correctas": [0, 1, 4],
+    "explicacion": "Proporciona tres funciones principales: recopilación de la información, selección del tipo de información y selección del destino.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál es la función del elemento de MIB como parte de un sistema de administración de redes?",
+    "opciones": [
+      "Recopilar datos de los agentes SNMP.",
+      "Cambiar las configuraciones de los agentes SNMP.",
+      "Almacenar datos de un dispositivo.",
+      "Enviar y recuperar información de administración de redes."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La base de información de administración (MIB) reside en un dispositivo de red y almacena datos operativos del dispositivo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador de redes emite el comando 'show lldp neighbors' en un switch. Dev1 (Port ID: Fa0/4, Local Intf: Fa0/5) y Dev2 (Port ID: Gi0/1, Local Intf: Fa0/4, Capability: B). ¿Qué dos conclusiones se puede obtener? (Elija dos opciones).",
+    "opciones": [
+      "Dev1 está conectado a una interfaz Fa0/4 de Dev2.",
+      "S1 solo tiene dos interfaces.",
+      "Dev2 es un switch.",
+      "Dev1 es un switch con tipos de interfaces combinados.",
+      "Dev1 está conectado a una interfaz Fa0/5 de S1."
+    ],
+    "respuestas_correctas": [2, 4],
+    "explicacion": "Capability 'B' representa un puente/switch. La interfaz local en S1 para Dev1 es Fa0/5.",
+    "imagen": "pregunta_21.jpg"
+  },
+  {
+    "pregunta": "¿Cuáles son las tres capas del modelo de diseño jerárquico del switch? (Elija tres).",
+    "opciones": [
+      "Empresa",
+      "Núcleo",
+      "Acceso de red",
+      "Capa de enlace de datos",
+      "De acceso",
+      "Distribución"
+    ],
+    "respuestas_correctas": [1, 4, 5],
+    "explicacion": "Las tres capas son Núcleo, Distribución y De acceso.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué diseño de red tendría el alcance de las interrupciones de una red en caso de falla?",
+    "opciones": [
+      "La implementación de switches de capa de distribución en pares y la partición de conexiones de switches de capa de acceso entre ellos.",
+      "La configuración de todos los dispositivos de la capa de acceso para compartir un solo gateway.",
+      "La instalación solo de equipos empresariales en toda la red.",
+      "La reducción de la cantidad de dispositivos redundantes y las conexiones en el núcleo de la red."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "Implementar redundancia creando un bloque de switch contiene el impacto de las fallas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuáles de las siguientes son dos ventajas de ampliar la conectividad de la capa de acceso a los usuarios a través de un medio inalámbrico? (Elija dos opciones).",
+    "opciones": [
+      "Reducción de costos",
+      "Mayor flexibilidad",
+      "Mayor disponibilidad de ancho de banda",
+      "Menor cantidad de puntos de error críticos",
+      "Mayor cantidad de opciones de administración de red"
+    ],
+    "respuestas_correctas": [0, 1],
+    "explicacion": "La conectividad inalámbrica proporciona mayor flexibilidad, menores costos y la capacidad de crecer y adaptarse.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál es una de las funciones básicas de la capa de acceso de la arquitectura Cisco Borderless?",
+    "opciones": [
+      "Agrega dominios de difusión de capa 2.",
+      "Proporciona acceso al usuario.",
+      "Proporciona aislamiento de fallas.",
+      "Agrega límites de routing de capa 3."
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Una función de capa de acceso es proporcionar acceso a la red a los usuarios.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál es la característica que más influiría en un ingeniero de diseño de red para que elija un switch multicapa en lugar de un switch de capa 2?",
+    "opciones": [
+      "La capacidad de contar con varias rutas de reenvío a través de la red conmutada según los números de VLAN.",
+      "La capacidad de agregación de varios puertos para lograr el máximo rendimiento de datos.",
+      "La capacidad de proporcionar alimentación a los dispositivos conectados directamente.",
+      "La capacidad de armar una tabla de routing."
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Los switches multicapa o de Capa 3 pueden enrutar y desarrollar una tabla de routing, lo cual es necesario en redes de varias VLAN.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Los routers R1 (con network 192.168.10.0 0.0.0.3 area 1) y R2 (con network 192.168.10.0 0.0.0.3 area 0) no son capaces de establecer una adyacencia OSPF. ¿Por qué?",
+    "opciones": [
+      "Los valores de ID del router no son los mismos en ambos routers.",
+      "Los números de proceso no son los mismos en ambos routers.",
+      "Las interfaces seriales no están en la misma área.",
+      "Un router troncal no puede establecer una adyacencia con un router ABR."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "En R1, la red 192.168.10.0/30 se define en el área 1, pero debe definirse en el área 0 para establecer adyacencia con R2.",
+    "imagen": "pregunta_28.jpg"
+  },
+  {
+    "pregunta": "¿Cuál es el momento más adecuado para medir las operaciones de red a fin de establecer una línea de base de rendimiento de la red?",
+    "opciones": [
+      "Cada vez que se detecte un uso elevado de la red.",
+      "De manera aleatoria durante un período de 10 semanas.",
+      "Todos los días a la misma hora durante un período establecido de días laborales promedio.",
+      "Durante períodos de vacaciones tranquilos."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Se debe medir durante el uso normal o promedio para establecer patrones de tráfico típicos y poder detectar anomalías.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un usuario configura IP 192.168.1.1, Máscara 255.255.255.0, Gateway 192.168.1.1 en su PC pero no puede acceder a Internet. ¿Cuál es el problema?",
+    "opciones": [
+      "La dirección del gateway predeterminado es incorrecta.",
+      "La configuración no se validó al salir.",
+      "La dirección DNS preferida es incorrecta.",
+      "No debe haber un servidor DNS alternativo."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "La dirección del gateway predeterminado no puede ser la misma que la dirección IP del propio equipo.",
+    "imagen": "pregunta_30.jpg"
+  },
+  {
+    "pregunta": "¿Qué herramienta de resolución de problemas usaría un administrador de red para revisar el encabezado de capa 2 de las tramas que salen de un host específico?",
+    "opciones": [
+      "CiscoView",
+      "Herramienta de línea de base",
+      "Analizador de protocolo",
+      "Base de conocimientos"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Un analizador de protocolos como Wireshark puede mostrar los encabezados de datos en cualquiera de las capas del modelo OSI.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un ingeniero configuró una ACL para impedir Telnet y HTTP. Después de aplicarla, nadie puede acceder a los servidores. ¿Cuál es el problema?",
+    "opciones": [
+      "Las ACL entrantes deben enrutarse antes de procesarlas.",
+      "La ACL está negando implícitamente el acceso a todos los servidores.",
+      "Las ACL con nombre requieren el uso de números de puerto.",
+      "La ACL se aplica a la interfaz usando la dirección incorrecta."
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Tanto las ACL con nombre como las numeradas tienen una ACE de denegación implícita al final de la lista que bloquea todo el tráfico restante.",
+    "imagen": "pregunta_32.jpg"
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como no resistente a la pérdida?",
+    "opciones": [
+      "Video",
+      "Datos",
+      "Voz"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El tráfico de video es no resistente a la pérdida porque la pérdida de paquetes daña significativamente la fidelidad de la imagen.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea agregar una hora para registrar los mensajes de syslog. ¿Qué comando debe usar en un router Cisco?",
+    "opciones": [
+      "service timestamps log datetime",
+      "copy running-config tftp",
+      "show cdp interface",
+      "servidor ntp 10.10.14.9"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El comando service timestamps log datetime obliga al sistema a incluir la fecha y la hora exacta en cada mensaje generado.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Los paquetes de voz se reciben en transmisión constante, pero debido a la congestión de red, la demora varía y causa interrupciones. ¿Qué término describe la causa?",
+    "opciones": [
+      "Fluctuación de fase",
+      "Configuración de colas",
+      "Latencia",
+      "Almacenamiento"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "La fluctuación (jitter) es la variación en los valores de latencia o demora de los paquetes recibidos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Según la salida de 'show cdp neighbors', R1 está conectado a plataformas C2811 y 2960. ¿Qué dos tipos de dispositivos están conectados a R1?",
+    "opciones": [
+      "Repetidor",
+      "Hub",
+      "Switch",
+      "Puente con enrutamiento de origen",
+      "Router"
+    ],
+    "respuestas_correctas": [2, 4],
+    "explicacion": "Las plataformas C2811 y C1941 son routers, y el 2960 es un switch de Cisco.",
+    "imagen": "pregunta_36.jpg"
+  },
+  {
+    "pregunta": "Observando la topología, ¿qué dispositivos existen en el dominio de fallas cuando el switch S3 deja de recibir alimentación?",
+    "opciones": [
+      "PC_3 y PC_2",
+      "S4 y PC_2",
+      "PC_3 y AP_2",
+      "S1 y S4"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El dominio de fallas es el área afectada. Los dispositivos conectados a S3 son el AP_2 y la PC_3.",
+    "imagen": "pregunta_37.jpg"
+  },
+  {
+    "pregunta": "¿Cuál es la principal ventaja de implementar un bloque de switches?",
+    "opciones": [
+      "La falla de un bloque de switches no afecta a todos los usuarios finales.",
+      "Es una característica de seguridad en switches Catalyst nuevos.",
+      "Se trata de software de aplicación de red que evita la falla de un único dispositivo.",
+      "Un único router principal proporciona todo el routing entre las VLAN."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "Proporciona redundancia; la falla de un bloque tiene un efecto limitado y no desactiva la red completa.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué principio se aplica cuando se resuelve una falla mediante el método divide y vencerás?",
+    "opciones": [
+      "Las pruebas se realizan desde afuera hacia el centro de la pila.",
+      "Una vez que se verificó que los componentes en una capa funcionan, se supone que los de capas inferiores también.",
+      "Se realizan pruebas en todas las capas hasta encontrar un componente que no funciona.",
+      "Una vez que se verifica que un componente en una capa funciona, se pueden realizar pruebas en cualquier otra capa."
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Si una capa funciona correctamente, se asume que todas las capas por debajo de ella también lo hacen (porque dependen de ellas).",
+    "imagen": null
+  },
+  {
+    "pregunta": "El R1 y el R3 están conectados a través de Serial0/0/0. R3 tiene network 192.168.10.12 0.0.0.3 y R1 tiene network 192.168.10.8 0.0.0.3. ¿Por qué no forman adyacencia?",
+    "opciones": [
+      "Las interfaces de conexión se configuran como pasivo.",
+      "Tienen diferentes ID de router OSPF.",
+      "Tienen varios procesos de ruteo.",
+      "Están en subredes/VLAN diferentes."
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "Los routers deben estar en la misma subred para formar una adyacencia (las IPs pertenecen a subredes /30 distintas).",
+    "imagen": "pregunta_40.jpg"
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como un tráfico que requiere una prioridad más alta si es interactivo?",
+    "opciones": [
+      "Voz",
+      "Datos",
+      "Video"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El tráfico de datos es evaluado. Si es interactivo y crítico, se le debe asignar prioridad más alta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea que el dispositivo ignore el archivo de configuración de inicio durante el arranque. ¿Qué comando debe usar en un router Cisco?",
+    "opciones": [
+      "config-register 0x2102",
+      "copy running-config tftp",
+      "copy usbflash0: /R1-Config",
+      "confreg 0x2142"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "El comando confreg 0x2142 en ROMMON hace que el router ignore el startup-config almacenado en la NVRAM (útil en recuperación de contraseñas).",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un usuario no puede acceder al sitio web escribiendo http://www.cisco.com, pero puede llegar escribiendo http://72.163.4.161. ¿Cuál es el problema?",
+    "opciones": [
+      "Gateway predeterminado",
+      "Pila del protocolo TCP/IP",
+      "DNS",
+      "DHCP"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El servicio de DNS es el encargado de traducir la dirección web a una dirección IP. Si la IP funciona, el DNS falla.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como tener un alto volumen de datos por paquete?",
+    "opciones": [
+      "Datos",
+      "Video",
+      "Voz"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El tráfico de video tiene un alto volumen de datos por paquete a diferencia de la voz.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuáles son dos de las características del tráfico de voz? (Elija dos opciones).",
+    "opciones": [
+      "El tráfico de voz consume muchos recursos de red.",
+      "El tráfico de voz requiere al menos 384 Kbps de ancho de banda.",
+      "Los paquetes de voz descartados no se retransmiten.",
+      "El tráfico de voz es impredecible e irregular.",
+      "La latencia del tráfico de voz no debe superar los 150 ms."
+    ],
+    "respuestas_correctas": [2, 4],
+    "explicacion": "Es sensible a demoras (<150ms) y los paquetes descartados no se retransmiten. Es constante, no consume muchos recursos y es predecible.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué algoritmo de formación de colas tiene una sola cola y trata a todos los paquetes por igual?",
+    "opciones": [
+      "WFQ",
+      "LLQ",
+      "CBWFQ",
+      "FIFO"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "La cola FIFO (First In, First Out) no toma decisión sobre prioridad y trata a todos los paquetes igual.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Cuál de estas afirmaciones describe el funcionamiento de SNMP?",
+    "opciones": [
+      "NMS sondea periódicamente a los agentes SNMP que residen en los dispositivos administrados...",
+      "Un agente SNMP recopila información y la almacena de manera remota en NMS.",
+      "NMS usa una solicitud set para cambiar variables en el dispositivo del agente.",
+      "El agente SNMP usa una solicitud get para solicitar datos al dispositivo."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El NMS sondea periódicamente a los agentes SNMP alojados en los equipos mediante solicitudes GET.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Se configuran los comandos 'boot system tftp://...' y 'boot system rom'. ¿Cuál es el efecto de la secuencia?",
+    "opciones": [
+      "El router cargará el IOS del servidor TFTP. Si falla, cargará la imagen de ROM.",
+      "El router buscará y cargará una imagen IOS válida en la secuencia de flash, TFTP y ROM.",
+      "El router copiará la imagen IOS del servidor TFTP y reiniciará.",
+      "En el siguiente reinicio, el router cargará la imagen IOS de ROM."
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El router intentará iniciar desde TFTP. Si no puede cargarla, utilizará la imagen de ROMMON ubicada en la ROM.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea configurar el router para que cargue una nueva imagen desde flash durante el arranque. ¿Qué comando debe usar?",
+    "opciones": [
+      "copy tftp startup-config",
+      "copy flash: tftp:",
+      "reloj 14:25:00",
+      "boot system"
+    ],
+    "respuestas_correctas": [3],
+    "explicacion": "El comando boot system especifica manualmente la ruta de la imagen que el router debe cargar desde flash.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como tendente a ser impredecible, inconsistente y estallado?",
+    "opciones": [
+      "Datos",
+      "Voz",
+      "Video"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "El video genera ráfagas intensas y su comportamiento es variable según el movimiento de la imagen.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué medida debería tomarse al planificar la redundancia en un diseño de red jerárquico?",
+    "opciones": [
+      "Reemplazar de inmediato un módulo, un servicio o un dispositivo que no funcione.",
+      "Implementar portfast STP entre los switches de la red.",
+      "Agregar rutas físicas alternativas para que los datos atraviesen la red.",
+      "Adquirir continuamente equipos de respaldo para la red."
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La redundancia se implementa instalando rutas físicas alternativas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como capaz de tolerar una cierta cantidad de latencia, fluctuación y pérdida sin ningún efecto notable?",
+    "opciones": [
+      "Video",
+      "Datos",
+      "Voz"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La voz tolera latencia hasta 150ms, fluctuación de 30ms y pérdida del 1% sin efecto notable en la calidad.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador de red desea ver la cantidad de memoria disponible y libre, el tipo de sistema de archivos y sus permisos. ¿Qué comando debe usar?",
+    "opciones": [
+      "ntp server 10.10.14.9",
+      "show file systems",
+      "lldp enable",
+      "clock timezone PST -7"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Proporciona información del tamaño total, libre y tipo de sistema de archivos (NVRAM, flash, etc).",
+    "imagen": null
+  },
+  {
+    "pregunta": "Al solucionar problemas de implementación de OSPFv2, ¿qué debe hacer primero el administrador?",
+    "opciones": [
+      "Desconectar el enlace serial y desactivar OSPFv2.",
+      "Probar la conectividad de capa 3 entre los routers conectados directamente.",
+      "Implementar el comando network 192.168.255.0."
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Un requisito previo para relaciones de vecinos OSPF es la conectividad de capa 3 mediante comandos como ping.",
+    "imagen": "pregunta_54.jpg"
+  },
+  {
+    "pregunta": "Cuando se implementa QoS en una red convergente, ¿cuáles son los dos factores que se pueden controlar para mejorar el rendimiento del tráfico en tiempo real?",
+    "opciones": [
+      "direccionamiento de paquetes",
+      "enrutamiento de paquetes",
+      "fluctuación de fase",
+      "velocidad de enlace",
+      "retardo"
+    ],
+    "respuestas_correctas": [2, 4],
+    "explicacion": "Es necesario controlar la demora (retardo) y las fluctuaciones de fase (jitter) para admitir voz y video.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como tráfico que requiere al menos 30 Kbps de ancho de banda?",
+    "opciones": [
+      "Datos",
+      "Voz",
+      "Video"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El tráfico de voz requiere una cantidad de ancho de banda relativamente baja pero garantizada (ej. 30 Kbps para ciertos códecs).",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como predecible y fluido?",
+    "opciones": [
+      "Video",
+      "Datos",
+      "Voz"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "La voz envía paquetes pequeños de tamaño idéntico a intervalos regulares, haciéndolo constante y fluido.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea realizar una copia de seguridad de la configuración en ejecución en un servidor de archivos. ¿Qué comando debe usar?",
+    "opciones": [
+      "show file systems",
+      "cd usbflash0:",
+      "copy running-config tftp",
+      "dir"
+    ],
+    "respuestas_correctas": [2],
+    "explicacion": "Copia la configuración actual (running-config) y la envía hacia un servidor externo usando TFTP.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico se describe como requiere latencia no superior a 400 milisegundos (ms)?",
+    "opciones": [
+      "Datos",
+      "Video",
+      "Voz"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El tráfico de video exige una latencia unidireccional no superior a 400ms para mantener una reproducción fluida.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador desea determinar el tamaño del archivo de imagen Cisco IOS en el dispositivo de red. ¿Qué comando debe usar?",
+    "opciones": [
+      "show flash:0",
+      "copy flash: tftp:",
+      "config-register 0x2102",
+      "confreg 0x2142"
+    ],
+    "respuestas_correctas": [0],
+    "explicacion": "El comando show flash:0 muestra el contenido detallado de la flash, incluyendo el tamaño en bytes de los archivos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "Un administrador quiere enumerar el contenido de flash. ¿Qué comando debe usar?",
+    "opciones": [
+      "show file systems",
+      "dir",
+      "lldp enable",
+      "service timestamps log datetime"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "El comando dir (directory) enumera todo el contenido del sistema de archivos actual detalladamente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "¿Qué tipo de tráfico obtiene una prioridad más baja si no es de misión crítica?",
+    "opciones": [
+      "Voz",
+      "Datos",
+      "Video"
+    ],
+    "respuestas_correctas": [1],
+    "explicacion": "Si el tráfico de datos no es de misión crítica (como descarga de archivos o navegación), se le asigna la prioridad más baja.",
+    "imagen": null
+  }
+]
