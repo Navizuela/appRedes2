@@ -10,12 +10,13 @@ def main(page: ft.Page):
     container = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True)
     page.add(container)
 
-    # 1. Definimos las funciones internas antes de llamarlas
     def finalizar(es_correcto, q, fb_container):
-        if es_correcto: state["puntaje"] += 1
+        if es_correcto:
+            state["puntaje"] += 1
         fb_container.controls.clear()
         fb_container.controls.append(ft.Text("✔️ ¡Correcto!" if es_correcto else "❌ Incorrecto", color="green" if es_correcto else "red", weight="bold"))
-        if "explicacion" in q: fb_container.controls.append(ft.Text(f"💡 {q['explicacion']}", italic=True))
+        if "explicacion" in q and q["explicacion"]:
+            fb_container.controls.append(ft.Text(f"💡 {q['explicacion']}", italic=True))
         fb_container.controls.append(ft.Button(content=ft.Text("Siguiente"), on_click=lambda e: siguiente()))
         page.update()
 
@@ -25,7 +26,7 @@ def main(page: ft.Page):
             mostrar_pregunta()
         else:
             container.controls.clear()
-            container.controls.append(ft.Text(f"Examen Finalizado", size=24, weight="bold"))
+            container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
             container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
             container.controls.append(ft.Button(content=ft.Text("Volver al Menú"), on_click=lambda e: mostrar_menu()))
             page.update()
@@ -46,10 +47,20 @@ def main(page: ft.Page):
         resp_correctas = q.get("respuestas_correctas")
 
         if tipo == "emparejamiento":
-            # ... (tu lógica de emparejamiento)
-            pass 
+            dropdowns = []
+            for obj in q["objetivos"]:
+                dd = ft.Dropdown(label=obj, options=[ft.dropdown.Option(o) for o in q["opciones"]])
+                dropdowns.append(dd)
+                container.controls.append(dd)
+            
+            def verificar_emp(e):
+                respuestas = {obj: dd.value for obj, dd in zip(q["objetivos"], dropdowns)}
+                if any(v is None for v in respuestas.values()): return
+                aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
+                finalizar(aciertos, q, feedback_container)
+            container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
+
         else:
-            # Lógica inteligente para múltiple vs única
             es_multiple = isinstance(resp_correctas, list) and len(resp_correctas) > 1
             if es_multiple:
                 cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
@@ -70,11 +81,15 @@ def main(page: ft.Page):
         page.update()
 
     def cargar_examen(ruta):
-        with open(ruta, 'r', encoding='utf-8') as f:
-            state["preguntas"] = json.load(f)
-        state["indice"] = 0
-        state["puntaje"] = 0
-        mostrar_pregunta()
+        try:
+            with open(ruta, 'r', encoding='utf-8') as f:
+                state["preguntas"] = json.load(f)
+            state["indice"] = 0
+            state["puntaje"] = 0
+            mostrar_pregunta()
+        except Exception as e:
+            container.controls.append(ft.Text(f"Error al cargar archivo: {e}", color="red"))
+            page.update()
 
     def mostrar_menu():
         container.controls.clear()
@@ -84,12 +99,12 @@ def main(page: ft.Page):
                 btn = ft.Button(content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
                                 on_click=lambda e, r=os.path.join("json", archivo): cargar_examen(r))
                 container.controls.append(btn)
+        else:
+            container.controls.append(ft.Text("Carpeta 'json' no encontrada.", color="red"))
         page.update()
 
-    # 2. Llamada inicial al menú
     mostrar_menu()
 
-# 3. Lanzamiento de la app
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     ft.app(target=main, port=port, view=ft.AppView.WEB_BROWSER)
