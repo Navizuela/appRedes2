@@ -17,18 +17,6 @@ def main(page: ft.Page):
         state["puntaje"] = 0
         mostrar_pregunta()
 
-    def mostrar_menu():
-        container.controls.clear()
-        container.controls.append(ft.Text("Selecciona el módulo:", size=24, weight="bold"))
-        if os.path.exists("json"):
-            for archivo in [f for f in os.listdir("json") if f.endswith('.json')]:
-                btn = ft.Button(
-                    content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
-                    on_click=lambda e, r=os.path.join("json", archivo): cargar_examen(r)
-                )
-                container.controls.append(btn)
-        page.update()
-
     def mostrar_pregunta():
         container.controls.clear()
         q = state["preguntas"][state["indice"]]
@@ -58,21 +46,32 @@ def main(page: ft.Page):
             container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
 
         else:
-            # Lógica mejorada: funciona con lista [X] o entero X
-            rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
-            container.controls.append(rg)
+            # --- Lógica inteligente: ¿Múltiple o Única? ---
+            resp_correctas = q.get("respuestas_correctas")
+            es_multiple = isinstance(resp_correctas, list) and len(resp_correctas) > 1
 
-            def verif_radio(e):
-                raw_c = q.get("respuestas_correctas")
-                val_c = raw_c[0] if isinstance(raw_c, list) else raw_c
-                es_correcto = rg.value is not None and int(rg.value) == val_c
-                finalizar(es_correcto, q, feedback_container)
-
-            container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
+            if es_multiple:
+                cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
+                for cb in cbs: container.controls.append(cb)
+                def verif_multi(e):
+                    seleccionados = [i for i, cb in enumerate(cbs) if cb.value]
+                    # Compara listas ordenadas
+                    es_correcto = sorted(seleccionados) == sorted(resp_correctas)
+                    finalizar(es_correcto, q, feedback_container)
+                container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_multi))
+            else:
+                rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
+                container.controls.append(rg)
+                def verif_radio(e):
+                    val_c = resp_correctas[0] if isinstance(resp_correctas, list) else resp_correctas
+                    es_correcto = rg.value is not None and int(rg.value) == val_c
+                    finalizar(es_correcto, q, feedback_container)
+                container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
 
         container.controls.append(feedback_container)
         page.update()
 
+    # ... (Funciones finalizar y siguiente se mantienen igual)
     def finalizar(es_correcto, q, fb_container):
         if es_correcto: state["puntaje"] += 1
         fb_container.controls.clear()
