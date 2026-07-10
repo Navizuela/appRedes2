@@ -1,43 +1,526 @@
-import flet as ft
+import asyncio
+import inspect
 import json
 import os
 
-def main(page: ft.Page):
+import flet as ft
+
+
+STORAGE_KEY = "ccna_exam_progress_v1"
+THEME_STORAGE_KEY = "ccna_exam_theme_v1"
+
+
+async def main(page: ft.Page):
     page.title = "Examen CCNA - Cisco"
-    page.theme_mode = ft.ThemeMode.LIGHT
-    
-    state = {"preguntas": [], "indice": 0, "puntaje": 0}
+    page.theme_mode = ft.ThemeMode.DARK
+
+    state = {
+        "preguntas": [],
+        "ruta": None,
+        "indice": 0,
+        "puntaje": 0,
+        "resultados": [],
+        "respuestas_usuario": [],
+        "respondida": False,
+        "ultima_correcta": None,
+        "finalizado": False,
+        "tema": "dark",
+        "tiempo_segundos": 0,
+    }
     container = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True)
+    timer_ref = {"control": None}
     page.add(container)
 
-    def finalizar(es_correcto, q, fb_container):
-        if es_correcto:
-            state["puntaje"] += 1
-        fb_container.controls.clear()
-        fb_container.controls.append(ft.Text("✔️ ¡Correcto!" if es_correcto else "❌ Incorrecto", color="green" if es_correcto else "red", weight="bold"))
-        if "explicacion" in q and q["explicacion"]:
-            fb_container.controls.append(ft.Text(f"💡 {q['explicacion']}", italic=True))
-        fb_container.controls.append(ft.Button(content=ft.Text("Siguiente"), on_click=lambda e: siguiente()))
+    async def resolver_si_es_async(resultado):
+        if not inspect.isawaitable(resultado):
+            return resultado
+        return await resultado
+
+    def obtener_storage():
+        return getattr(page, "shared_preferences", None) or getattr(page, "client_storage", None)
+
+    async def obtener_estado_guardado():
+        storage = obtener_storage()
+        if storage is None:
+            return None
+        try:
+            data = await resolver_si_es_async(storage.get(STORAGE_KEY))
+        except Exception:
+            return None
+        if not data:
+            return None
+        if isinstance(data, dict):
+            return data
+        try:
+            return json.loads(data)
+        except (TypeError, json.JSONDecodeError):
+            return None
+
+    async def guardar_estado():
+        storage = obtener_storage()
+        if storage is None or not state["ruta"]:
+            return
+        data = {
+            "ruta": state["ruta"],
+            "indice": state["indice"],
+            "puntaje": state["puntaje"],
+            "resultados": state["resultados"],
+            "respuestas_usuario": state["respuestas_usuario"],
+            "respondida": state["respondida"],
+            "ultima_correcta": state["ultima_correcta"],
+            "finalizado": state["finalizado"],
+            "tiempo_segundos": state["tiempo_segundos"],
+        }
+        try:
+            await resolver_si_es_async(storage.set(STORAGE_KEY, json.dumps(data)))
+        except Exception:
+            pass
+
+    async def borrar_estado_guardado():
+        storage = obtener_storage()
+        if storage is None:
+            return
+        try:
+            await resolver_si_es_async(storage.remove(STORAGE_KEY))
+        except Exception:
+            pass
+
+    async def obtener_tema_guardado():
+        storage = obtener_storage()
+        if storage is None:
+            return None
+        try:
+            return await resolver_si_es_async(storage.get(THEME_STORAGE_KEY))
+        except Exception:
+            return None
+
+    async def guardar_tema():
+        storage = obtener_storage()
+        if storage is None:
+            return
+        try:
+            await resolver_si_es_async(storage.set(THEME_STORAGE_KEY, state["tema"]))
+        except Exception:
+            pass
+
+    def entero_seguro(valor, default=0):
+        try:
+            return int(valor)
+        except (TypeError, ValueError):
+            return default
+
+    def reiniciar_state():
+        state["preguntas"] = []
+        state["ruta"] = None
+        state["indice"] = 0
+        state["puntaje"] = 0
+        state["resultados"] = []
+        state["respuestas_usuario"] = []
+        state["respondida"] = False
+        state["ultima_correcta"] = None
+        state["finalizado"] = False
+        state["tiempo_segundos"] = 0
+
+    def preparar_resultados(total):
+        resultados = state.get("resultados") or []
+        respuestas_usuario = state.get("respuestas_usuario") or []
+        state["resultados"] = (resultados + [None] * total)[:total]
+        state["respuestas_usuario"] = (respuestas_usuario + [None] * total)[:total]
+
+    def pregunta_respondida(indice=None):
+        indice = state["indice"] if indice is None else indice
+        return state["resultados"][indice] is not None
+
+    def resultado_actual():
+        return state["resultados"][state["indice"]]
+
+    def sincronizar_estado_pregunta():
+        resultado = resultado_actual() if state["resultados"] else None
+        state["respondida"] = resultado is not None
+        state["ultima_correcta"] = resultado
+
+    def recalcular_puntaje():
+        state["puntaje"] = sum(1 for resultado in state["resultados"] if resultado is True)
+
+    def formatear_tiempo():
+        segundos = max(entero_seguro(state.get("tiempo_segundos")), 0)
+        minutos = segundos // 60
+        resto = segundos % 60
+        return f"{minutos:02d}:{resto:02d}"
+
+    def color_tiempo():
+        if state.get("tiempo_segundos", 0) >= 3600:
+            return "#ef4444"
+        return "#e5e7eb" if state["tema"] == "dark" else "#111827"
+
+    def actualizar_texto_tiempo():
+        control = timer_ref.get("control")
+        if control is None:
+            return
+        control.value = f"Tiempo {formatear_tiempo()}"
+        control.color = color_tiempo()
+
+    async def contador_tiempo():
+        while True:
+            await asyncio.sleep(1)
+            if not state["preguntas"] or state["finalizado"]:
+                continue
+            state["tiempo_segundos"] += 1
+            actualizar_texto_tiempo()
+            if state["tiempo_segundos"] % 10 == 0:
+                await guardar_estado()
+            try:
+                page.update()
+            except Exception:
+                pass
+
+    def aplicar_tema():
+        page.theme_mode = ft.ThemeMode.DARK if state["tema"] == "dark" else ft.ThemeMode.LIGHT
+        actualizar_texto_tiempo()
+
+    def texto_boton_tema():
+        return "Modo claro" if state["tema"] == "dark" else "Modo oscuro"
+
+    async def cambiar_tema():
+        state["tema"] = "light" if state["tema"] == "dark" else "dark"
+        aplicar_tema()
+        await guardar_tema()
+        await refrescar_vista_actual()
+
+    async def click_cambiar_tema(e):
+        await cambiar_tema()
+
+    def crear_boton_tema():
+        return ft.Button(content=ft.Text(texto_boton_tema()), on_click=click_cambiar_tema)
+
+    async def refrescar_vista_actual():
+        if state["preguntas"]:
+            if state["finalizado"]:
+                mostrar_resultado()
+            else:
+                mostrar_pregunta()
+        else:
+            await mostrar_menu()
+
+    async def volver_al_menu():
+        await borrar_estado_guardado()
+        reiniciar_state()
+        actualizar_boton_reintentar()
+        await mostrar_menu()
+
+    async def click_volver_al_menu(e):
+        await volver_al_menu()
+
+    def actualizar_boton_reintentar():
+        if state["preguntas"]:
+            page.floating_action_button = ft.FloatingActionButton(
+                content=ft.Container(
+                    width=105,
+                    content=ft.Row(
+                        [ft.Text("Reintentar")],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    ),
+                ),
+                on_click=click_reintentar,
+            )
+        else:
+            page.floating_action_button = None
+
+    def mostrar_resultado():
+        container.controls.clear()
+        actualizar_boton_reintentar()
+        container.controls.append(crear_boton_tema())
+        container.controls.append(crear_barra_examen())
+        container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
+        container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
+        container.controls.append(ft.Button(content=ft.Text("Volver al Menu"), on_click=click_volver_al_menu))
         page.update()
 
-    def siguiente():
-        state["indice"] += 1
-        if state["indice"] < len(state["preguntas"]):
-            mostrar_pregunta()
+    def mostrar_feedback(q, fb_container):
+        es_correcto = bool(resultado_actual())
+        fb_container.controls.clear()
+        fb_container.controls.append(
+            ft.Text(
+                "Correcto" if es_correcto else "Incorrecto",
+                color="green" if es_correcto else "red",
+                weight="bold",
+            )
+        )
+        if q.get("explicacion"):
+            fb_container.controls.append(ft.Text(q["explicacion"], italic=True))
+        if state["indice"] < len(state["preguntas"]) - 1:
+            fb_container.controls.append(ft.Button(content=ft.Text("Siguiente"), on_click=click_siguiente))
         else:
-            container.controls.clear()
-            container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
-            container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
-            container.controls.append(ft.Button(content=ft.Text("Volver al Menú"), on_click=lambda e: mostrar_menu()))
+            fb_container.controls.append(ft.Button(content=ft.Text("Finalizar"), on_click=click_siguiente))
+
+    def resumen_respuesta(q):
+        respuesta = state["respuestas_usuario"][state["indice"]]
+        if respuesta is None:
+            return None
+        if isinstance(respuesta, dict):
+            partes = [f"{clave}: {valor}" for clave, valor in respuesta.items()]
+            return "Tu respuesta: " + "; ".join(partes)
+        if isinstance(respuesta, list):
+            opciones = q.get("opciones", [])
+            elegidas = [opciones[i] for i in respuesta if isinstance(i, int) and 0 <= i < len(opciones)]
+            return "Tu respuesta: " + ", ".join(elegidas)
+        return f"Tu respuesta: {respuesta}"
+
+    def colores_revision():
+        es_oscuro = state["tema"] == "dark"
+        return {
+            "neutral_bg": "#111827" if es_oscuro else "#f8fafc",
+            "neutral_border": "#374151" if es_oscuro else "#d5dce6",
+            "neutral_text": "#e5e7eb" if es_oscuro else "#111827",
+            "muted_text": "#9ca3af" if es_oscuro else "#4b5563",
+            "correct_bg": "#064e3b" if es_oscuro else "#d9f2e4",
+            "correct_border": "#10b981" if es_oscuro else "#7bc99a",
+            "correct_text": "#bbf7d0" if es_oscuro else "#136c3a",
+            "wrong_bg": "#7f1d1d" if es_oscuro else "#fde2e2",
+            "wrong_border": "#ef4444" if es_oscuro else "#e38b8b",
+            "wrong_text": "#fecaca" if es_oscuro else "#9f1f1f",
+        }
+
+    def crear_tarjeta_revision(texto_principal, etiqueta=None, estado="neutral"):
+        colores = colores_revision()
+        if estado == "correct":
+            bgcolor = colores["correct_bg"]
+            border_color = colores["correct_border"]
+            text_color = colores["correct_text"]
+        elif estado == "wrong":
+            bgcolor = colores["wrong_bg"]
+            border_color = colores["wrong_border"]
+            text_color = colores["wrong_text"]
+        else:
+            bgcolor = colores["neutral_bg"]
+            border_color = colores["neutral_border"]
+            text_color = colores["neutral_text"]
+
+        textos = [ft.Text(texto_principal, color=text_color)]
+        if etiqueta:
+            textos.append(ft.Text(etiqueta, color=text_color, weight="bold", size=12))
+
+        return ft.Container(
+            bgcolor=bgcolor,
+            border=ft.Border(
+                left=ft.BorderSide(1, border_color),
+                top=ft.BorderSide(1, border_color),
+                right=ft.BorderSide(1, border_color),
+                bottom=ft.BorderSide(1, border_color),
+            ),
+            border_radius=4,
+            padding=ft.Padding(left=10, top=8, right=10, bottom=8),
+            content=ft.Column(textos, spacing=3),
+        )
+
+    def mostrar_alternativas_revisadas(q):
+        tipo = q.get("tipo", "opcion_multiple")
+        respuesta = state["respuestas_usuario"][state["indice"]]
+
+        if tipo == "emparejamiento":
+            if q.get("opciones"):
+                container.controls.append(ft.Text("Alternativas disponibles: " + ", ".join(q["opciones"])))
+
+            respuestas_usuario = respuesta if isinstance(respuesta, dict) else {}
+            correctas = q.get("respuestas_correctas", {})
+            for obj in q.get("objetivos", []):
+                seleccion = respuestas_usuario.get(obj)
+                correcta = correctas.get(obj)
+                estado = "correct" if seleccion == correcta else "wrong"
+                textos = [
+                    f"{obj}",
+                    f"Tu respuesta: {seleccion if seleccion else 'Sin respuesta'}",
+                    f"Correcta: {correcta}",
+                ]
+                container.controls.append(crear_tarjeta_revision("\n".join(textos), estado=estado))
+            return
+
+        opciones = q.get("opciones", [])
+        correctas = q.get("respuestas_correctas", [])
+        if not isinstance(correctas, list):
+            correctas = [correctas]
+        seleccionadas = respuesta if isinstance(respuesta, list) else []
+        letras = ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+        for i, opcion in enumerate(opciones):
+            es_correcta = i in correctas
+            fue_seleccionada = i in seleccionadas
+            if es_correcta and fue_seleccionada:
+                estado = "correct"
+                etiqueta = "Correcta - tu respuesta"
+            elif es_correcta:
+                estado = "correct"
+                etiqueta = "Correcta"
+            elif fue_seleccionada:
+                estado = "wrong"
+                etiqueta = "Tu respuesta - incorrecta"
+            else:
+                estado = "neutral"
+                etiqueta = None
+
+            letra = letras[i] if i < len(letras) else str(i + 1)
+            container.controls.append(crear_tarjeta_revision(f"{letra}. {opcion}", etiqueta, estado))
+
+    async def finalizar(es_correcto, q, fb_container, respuesta_usuario=None):
+        if pregunta_respondida():
+            mostrar_feedback(q, fb_container)
             page.update()
+            return
+
+        state["resultados"][state["indice"]] = bool(es_correcto)
+        state["respuestas_usuario"][state["indice"]] = respuesta_usuario
+        sincronizar_estado_pregunta()
+        recalcular_puntaje()
+        await guardar_estado()
+        mostrar_pregunta()
+
+    async def navegar_a(indice):
+        if indice < 0 or indice >= len(state["preguntas"]):
+            return
+        if not state["finalizado"] and indice > state["indice"] and not pregunta_respondida(state["indice"]):
+            return
+        state["indice"] = indice
+        sincronizar_estado_pregunta()
+        await guardar_estado()
+        mostrar_pregunta()
+
+    def crear_click_navegar(indice):
+        async def click_navegar(e):
+            await navegar_a(indice)
+
+        return click_navegar
+
+    def crear_barra_examen():
+        total = len(state["preguntas"])
+        es_oscuro = state["tema"] == "dark"
+        barra_bg = "#111827" if es_oscuro else "#f5f7fa"
+        barra_borde = "#374151" if es_oscuro else "#d5dce6"
+        titulo_color = "#60a5fa" if es_oscuro else "#0b5cab"
+        texto_info_color = "#e5e7eb" if es_oscuro else "#111827"
+        activo_bg = "#2563eb" if es_oscuro else "#0b5cab"
+        activo_borde = "#60a5fa" if es_oscuro else "#0b5cab"
+        correcta_bg = "#064e3b" if es_oscuro else "#d9f2e4"
+        correcta_color = "#bbf7d0" if es_oscuro else "#136c3a"
+        incorrecta_bg = "#7f1d1d" if es_oscuro else "#fde2e2"
+        incorrecta_color = "#fecaca" if es_oscuro else "#9f1f1f"
+        pendiente_bg = "#1f2937" if es_oscuro else "#eef2f7"
+        pendiente_color = "#9ca3af" if es_oscuro else "#4b5563"
+        item_borde = "#4b5563" if es_oscuro else "#b8c4d4"
+        timer_ref["control"] = ft.Text(f"Tiempo {formatear_tiempo()}", color=color_tiempo())
+        controles = []
+        for i in range(total):
+            resultado = state["resultados"][i] if i < len(state["resultados"]) else None
+            if i == state["indice"]:
+                bgcolor = activo_bg
+                color = "white"
+            elif resultado is True:
+                bgcolor = correcta_bg
+                color = correcta_color
+            elif resultado is False:
+                bgcolor = incorrecta_bg
+                color = incorrecta_color
+            else:
+                bgcolor = pendiente_bg
+                color = pendiente_color
+
+            puede_navegar = state["finalizado"] or i <= state["indice"] or resultado is not None
+            border_color = item_borde if i != state["indice"] else activo_borde
+            controles.append(
+                ft.Container(
+                    content=ft.Row(
+                        [ft.Text(str(i + 1), color=color, weight="bold")],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    ),
+                    width=36,
+                    height=30,
+                    bgcolor=bgcolor,
+                    border_radius=4,
+                    border=ft.Border(
+                        left=ft.BorderSide(1, border_color),
+                        top=ft.BorderSide(1, border_color),
+                        right=ft.BorderSide(1, border_color),
+                        bottom=ft.BorderSide(1, border_color),
+                    ),
+                    on_click=crear_click_navegar(i) if puede_navegar else None,
+                    opacity=1 if puede_navegar else 0.45,
+                )
+            )
+
+        return ft.Container(
+            bgcolor=barra_bg,
+            border=ft.Border(bottom=ft.BorderSide(1, barra_borde)),
+            padding=ft.Padding(left=10, top=8, right=10, bottom=8),
+            content=ft.Column(
+                [
+                    ft.Row(
+                        [
+                            ft.Text("Cisco Academy", weight="bold", color=titulo_color),
+                            ft.Text(f"Pregunta {state['indice'] + 1} de {total}", color=texto_info_color),
+                            timer_ref["control"],
+                            ft.Text(f"Puntaje {state['puntaje']} / {total}", color=texto_info_color),
+                        ],
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    ),
+                    ft.Row(controles, scroll=ft.ScrollMode.AUTO, spacing=4),
+                ],
+                spacing=8,
+            ),
+        )
+
+    async def reintentar_examen():
+        state["indice"] = 0
+        state["puntaje"] = 0
+        state["resultados"] = [None] * len(state["preguntas"])
+        state["respuestas_usuario"] = [None] * len(state["preguntas"])
+        state["respondida"] = False
+        state["ultima_correcta"] = None
+        state["finalizado"] = False
+        state["tiempo_segundos"] = 0
+        await guardar_estado()
+        mostrar_pregunta()
+
+    async def click_reintentar(e):
+        await reintentar_examen()
+
+    async def finalizar_desde_ultima():
+        state["finalizado"] = True
+        await guardar_estado()
+        mostrar_resultado()
+
+    async def siguiente():
+        if state["indice"] >= len(state["preguntas"]) - 1:
+            await finalizar_desde_ultima()
+            return
+
+        state["indice"] += 1
+        sincronizar_estado_pregunta()
+        await guardar_estado()
+        mostrar_pregunta()
+
+    async def click_siguiente(e):
+        await siguiente()
 
     def mostrar_pregunta():
         container.controls.clear()
+        actualizar_boton_reintentar()
+        if not state["preguntas"]:
+            container.controls.append(ft.Text("No hay preguntas cargadas.", color="red"))
+            page.update()
+            return
+
         q = state["preguntas"][state["indice"]]
-        container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1}", weight="bold", size=18))
+        sincronizar_estado_pregunta()
+        container.controls.append(crear_boton_tema())
+        container.controls.append(crear_barra_examen())
+        container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1} de {len(state['preguntas'])}", weight="bold", size=18))
+        container.controls.append(ft.Button(content=ft.Text("Salir al Menu"), on_click=click_volver_al_menu))
+        if state["finalizado"]:
+            container.controls.append(ft.Button(content=ft.Text("Ver resultado"), on_click=lambda e: mostrar_resultado()))
         container.controls.append(ft.Text(q["pregunta"], size=16))
 
-        if "imagen" in q and q["imagen"]:
+        if q.get("imagen"):
             ruta_img = os.path.join("img", q["imagen"])
             if os.path.exists(ruta_img):
                 container.controls.append(ft.Image(src=ruta_img, width=400))
@@ -46,64 +529,153 @@ def main(page: ft.Page):
         tipo = q.get("tipo", "opcion_multiple")
         resp_correctas = q.get("respuestas_correctas")
 
-        if tipo == "emparejamiento":
+        if state["respondida"]:
+            mostrar_alternativas_revisadas(q)
+            mostrar_feedback(q, feedback_container)
+        elif tipo == "emparejamiento":
             dropdowns = []
             for obj in q["objetivos"]:
                 dd = ft.Dropdown(label=obj, options=[ft.dropdown.Option(o) for o in q["opciones"]])
                 dropdowns.append(dd)
                 container.controls.append(dd)
-            
-            def verificar_emp(e):
-                respuestas = {obj: dd.value for obj, dd in zip(q["objetivos"], dropdowns)}
-                if any(v is None for v in respuestas.values()): return
-                aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
-                finalizar(aciertos, q, feedback_container)
-            container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
 
+            async def verificar_emp(e):
+                respuestas = {obj: dd.value for obj, dd in zip(q["objetivos"], dropdowns)}
+                if any(v is None for v in respuestas.values()):
+                    return
+                aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
+                await finalizar(aciertos, q, feedback_container, respuestas)
+
+            container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
         else:
             es_multiple = isinstance(resp_correctas, list) and len(resp_correctas) > 1
             if es_multiple:
                 cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
-                for cb in cbs: container.controls.append(cb)
-                def verif_multi(e):
+                for cb in cbs:
+                    container.controls.append(cb)
+
+                async def verif_multi(e):
                     seleccionados = [i for i, cb in enumerate(cbs) if cb.value]
-                    finalizar(sorted(seleccionados) == sorted(resp_correctas), q, feedback_container)
+                    await finalizar(sorted(seleccionados) == sorted(resp_correctas), q, feedback_container, seleccionados)
+
                 container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_multi))
             else:
                 rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
                 container.controls.append(rg)
-                def verif_radio(e):
+
+                async def verif_radio(e):
                     val_c = resp_correctas[0] if isinstance(resp_correctas, list) else resp_correctas
-                    finalizar(rg.value is not None and int(rg.value) == val_c, q, feedback_container)
+                    seleccion = [int(rg.value)] if rg.value is not None else []
+                    await finalizar(rg.value is not None and int(rg.value) == val_c, q, feedback_container, seleccion)
+
                 container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
 
         container.controls.append(feedback_container)
         page.update()
 
-    def cargar_examen(ruta):
+    async def cargar_examen(ruta, progreso=None):
         try:
-            with open(ruta, 'r', encoding='utf-8') as f:
-                state["preguntas"] = json.load(f)
+            with open(ruta, "r", encoding="utf-8") as f:
+                preguntas = json.load(f)
+
+            if not preguntas:
+                raise ValueError("El archivo no tiene preguntas.")
+
+            state["preguntas"] = preguntas
+            state["ruta"] = ruta
             state["indice"] = 0
             state["puntaje"] = 0
-            mostrar_pregunta()
+            state["resultados"] = []
+            state["respuestas_usuario"] = []
+            state["respondida"] = False
+            state["ultima_correcta"] = None
+            state["finalizado"] = False
+            state["tiempo_segundos"] = 0
+
+            if progreso:
+                ultimo_indice = max(len(state["preguntas"]) - 1, 0)
+                state["indice"] = min(max(entero_seguro(progreso.get("indice")), 0), ultimo_indice)
+                state["puntaje"] = max(entero_seguro(progreso.get("puntaje")), 0)
+                if isinstance(progreso.get("resultados"), list):
+                    state["resultados"] = progreso["resultados"]
+                if isinstance(progreso.get("respuestas_usuario"), list):
+                    state["respuestas_usuario"] = progreso["respuestas_usuario"]
+                state["respondida"] = bool(progreso.get("respondida", False))
+                state["ultima_correcta"] = progreso.get("ultima_correcta")
+                state["finalizado"] = bool(progreso.get("finalizado", False))
+                state["tiempo_segundos"] = max(entero_seguro(progreso.get("tiempo_segundos")), 0)
+
+            preparar_resultados(len(state["preguntas"]))
+            if progreso and "resultados" not in progreso and state["respondida"]:
+                state["resultados"][state["indice"]] = bool(state["ultima_correcta"])
+            sincronizar_estado_pregunta()
+            recalcular_puntaje()
+            await guardar_estado()
+            if state["finalizado"]:
+                mostrar_resultado()
+            else:
+                mostrar_pregunta()
         except Exception as e:
             container.controls.append(ft.Text(f"Error al cargar archivo: {e}", color="red"))
             page.update()
 
-    def mostrar_menu():
+    async def restaurar_estado_guardado():
+        progreso = await obtener_estado_guardado()
+        if not progreso:
+            return False
+
+        ruta = progreso.get("ruta")
+        if not ruta or not os.path.exists(ruta):
+            await borrar_estado_guardado()
+            return False
+
+        await cargar_examen(ruta, progreso)
+        return True
+
+    async def click_continuar(e):
+        await restaurar_estado_guardado()
+
+    async def click_borrar_progreso(e):
+        await volver_al_menu()
+
+    def crear_click_cargar(ruta):
+        async def click_cargar(e):
+            await cargar_examen(ruta)
+
+        return click_cargar
+
+    async def mostrar_menu():
         container.controls.clear()
-        container.controls.append(ft.Text("Selecciona el módulo:", size=24, weight="bold"))
+        actualizar_boton_reintentar()
+        container.controls.append(crear_boton_tema())
+        container.controls.append(ft.Text("Selecciona el modulo:", size=24, weight="bold"))
+
+        progreso = await obtener_estado_guardado()
+        if progreso and progreso.get("ruta") and os.path.exists(progreso["ruta"]):
+            container.controls.append(ft.Button(content=ft.Text("Continuar examen guardado"), on_click=click_continuar))
+            container.controls.append(ft.Button(content=ft.Text("Borrar progreso guardado"), on_click=click_borrar_progreso))
+
         if os.path.exists("json"):
-            for archivo in [f for f in os.listdir("json") if f.endswith('.json')]:
-                btn = ft.Button(content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
-                                on_click=lambda e, r=os.path.join("json", archivo): cargar_examen(r))
+            for archivo in [f for f in os.listdir("json") if f.endswith(".json")]:
+                ruta = os.path.join("json", archivo)
+                btn = ft.Button(
+                    content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
+                    on_click=crear_click_cargar(ruta),
+                )
                 container.controls.append(btn)
         else:
             container.controls.append(ft.Text("Carpeta 'json' no encontrada.", color="red"))
         page.update()
 
-    mostrar_menu()
+    tema_guardado = await obtener_tema_guardado()
+    if tema_guardado in ("dark", "light"):
+        state["tema"] = tema_guardado
+    aplicar_tema()
+    asyncio.create_task(contador_tiempo())
+
+    if not await restaurar_estado_guardado():
+        await mostrar_menu()
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
