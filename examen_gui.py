@@ -13,6 +13,9 @@ THEME_STORAGE_KEY = "ccna_exam_theme_v1"
 async def main(page: ft.Page):
     page.title = "Examen CCNA - Cisco"
     page.theme_mode = ft.ThemeMode.DARK
+    page.padding = 0
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.scroll = ft.ScrollMode.HIDDEN
 
     state = {
         "preguntas": [],
@@ -27,9 +30,29 @@ async def main(page: ft.Page):
         "tema": "dark",
         "tiempo_segundos": 0,
     }
-    container = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True)
+    container = ft.Column(
+        scroll=ft.ScrollMode.AUTO,
+        expand=True,
+        spacing=12,
+        horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
+    )
+    content = ft.Container(
+        content=container,
+        expand=True,
+        padding=ft.Padding(left=16, top=16, right=16, bottom=88),
+    )
     timer_ref = {"control": None}
-    page.add(container)
+    page.add(content)
+
+    def es_movil():
+        return bool(page.width and page.width < 600)
+
+    def ancho_disponible(maximo=None):
+        ancho = max((page.width or 400) - 32, 240)
+        return min(ancho, maximo) if maximo else ancho
+
+    def ancho_boton():
+        return ancho_disponible() if es_movil() else None
 
     async def resolver_si_es_async(resultado):
         if not inspect.isawaitable(resultado):
@@ -191,7 +214,11 @@ async def main(page: ft.Page):
         await cambiar_tema()
 
     def crear_boton_tema():
-        return ft.Button(content=ft.Text(texto_boton_tema()), on_click=click_cambiar_tema)
+        return ft.Button(
+            content=ft.Text(texto_boton_tema()),
+            on_click=click_cambiar_tema,
+            width=ancho_boton(),
+        )
 
     async def refrescar_vista_actual():
         if state["preguntas"]:
@@ -234,7 +261,7 @@ async def main(page: ft.Page):
         container.controls.append(crear_barra_examen())
         container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
         container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
-        container.controls.append(ft.Button(content=ft.Text("Volver al Menu"), on_click=click_volver_al_menu))
+        container.controls.append(ft.Button(content=ft.Text("Volver al Menu"), on_click=click_volver_al_menu, width=ancho_boton()))
         page.update()
 
     def mostrar_feedback(q, fb_container):
@@ -311,6 +338,7 @@ async def main(page: ft.Page):
             ),
             border_radius=4,
             padding=ft.Padding(left=10, top=8, right=10, bottom=8),
+            width=ancho_disponible(),
             content=ft.Column(textos, spacing=3),
         )
 
@@ -462,6 +490,9 @@ async def main(page: ft.Page):
                             ft.Text(f"Puntaje {state['puntaje']} / {total}", color=texto_info_color),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        wrap=True,
+                        spacing=12,
+                        run_spacing=6,
                     ),
                     ft.Row(controles, scroll=ft.ScrollMode.AUTO, spacing=4),
                 ],
@@ -515,7 +546,7 @@ async def main(page: ft.Page):
         container.controls.append(crear_boton_tema())
         container.controls.append(crear_barra_examen())
         container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1} de {len(state['preguntas'])}", weight="bold", size=18))
-        container.controls.append(ft.Button(content=ft.Text("Salir al Menu"), on_click=click_volver_al_menu))
+        container.controls.append(ft.Button(content=ft.Text("Salir al Menu"), on_click=click_volver_al_menu, width=ancho_boton()))
         if state["finalizado"]:
             container.controls.append(ft.Button(content=ft.Text("Ver resultado"), on_click=lambda e: mostrar_resultado()))
         container.controls.append(ft.Text(q["pregunta"], size=16))
@@ -523,7 +554,13 @@ async def main(page: ft.Page):
         if q.get("imagen"):
             ruta_img = os.path.join("img", q["imagen"])
             if os.path.exists(ruta_img):
-                container.controls.append(ft.Image(src=ruta_img, width=400))
+                container.controls.append(
+                    ft.Image(
+                        src=ruta_img,
+                        width=ancho_disponible(400),
+                        fit=ft.BoxFit.CONTAIN,
+                    )
+                )
 
         feedback_container = ft.Column()
         tipo = q.get("tipo", "opcion_multiple")
@@ -535,7 +572,11 @@ async def main(page: ft.Page):
         elif tipo == "emparejamiento":
             dropdowns = []
             for obj in q["objetivos"]:
-                dd = ft.Dropdown(label=obj, options=[ft.dropdown.Option(o) for o in q["opciones"]])
+                dd = ft.Dropdown(
+                    label=obj,
+                    options=[ft.dropdown.Option(o) for o in q["opciones"]],
+                    width=ancho_disponible(),
+                )
                 dropdowns.append(dd)
                 container.controls.append(dd)
 
@@ -652,8 +693,8 @@ async def main(page: ft.Page):
 
         progreso = await obtener_estado_guardado()
         if progreso and progreso.get("ruta") and os.path.exists(progreso["ruta"]):
-            container.controls.append(ft.Button(content=ft.Text("Continuar examen guardado"), on_click=click_continuar))
-            container.controls.append(ft.Button(content=ft.Text("Borrar progreso guardado"), on_click=click_borrar_progreso))
+            container.controls.append(ft.Button(content=ft.Text("Continuar examen guardado"), on_click=click_continuar, width=ancho_boton()))
+            container.controls.append(ft.Button(content=ft.Text("Borrar progreso guardado"), on_click=click_borrar_progreso, width=ancho_boton()))
 
         if os.path.exists("json"):
             for archivo in [f for f in os.listdir("json") if f.endswith(".json")]:
@@ -661,6 +702,7 @@ async def main(page: ft.Page):
                 btn = ft.Button(
                     content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
                     on_click=crear_click_cargar(ruta),
+                    width=ancho_boton(),
                 )
                 container.controls.append(btn)
         else:
