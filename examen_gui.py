@@ -287,11 +287,36 @@ async def main(page: ft.Page):
     async def click_cambiar_tema(e):
         await cambiar_tema()
 
-    def crear_boton_tema():
+    def crear_boton_tema(ancho_adaptable=True, expandir=False):
         return ft.Button(
-            content=ft.Text(texto_boton_tema()),
+            content=ft.Text(
+                texto_boton_tema(),
+                size=11 if es_movil() and expandir else None,
+                text_align=ft.TextAlign.CENTER,
+            ),
             on_click=click_cambiar_tema,
-            width=ancho_boton(),
+            width=ancho_boton() if ancho_adaptable else None,
+            expand=expandir,
+        )
+
+    def crear_barra_acciones_examen():
+        return ft.Row(
+            [
+                crear_boton_tema(ancho_adaptable=False, expandir=True),
+                ft.Button(
+                    content=ft.Text("Volver al menú", size=11 if es_movil() else None, text_align=ft.TextAlign.CENTER),
+                    on_click=click_volver_al_menu,
+                    expand=True,
+                ),
+                ft.Button(
+                    content=ft.Text("Reintentar", size=11 if es_movil() else None, text_align=ft.TextAlign.CENTER),
+                    on_click=click_reintentar,
+                    expand=True,
+                ),
+            ],
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=8,
         )
 
     async def refrescar_vista_actual():
@@ -309,33 +334,43 @@ async def main(page: ft.Page):
         actualizar_boton_reintentar()
         await mostrar_menu()
 
-    async def click_volver_al_menu(e):
+    def cerrar_confirmacion(e=None):
+        page.pop_dialog()
+
+    async def confirmar_volver_al_menu(e):
+        page.pop_dialog()
         await volver_al_menu()
 
+    async def click_volver_al_menu(e):
+        if not state["preguntas"]:
+            await volver_al_menu()
+            return
+
+        dialogo = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("¿Volver al menú?"),
+            content=ft.Text(
+                "El progreso de este examen no será guardado y se eliminarán "
+                "las respuestas registradas."
+            ),
+            actions=[
+                ft.TextButton(content=ft.Text("Cancelar"), on_click=cerrar_confirmacion),
+                ft.Button(content=ft.Text("Volver al menú"), on_click=confirmar_volver_al_menu),
+            ],
+            actions_alignment=ft.MainAxisAlignment.END,
+        )
+        page.show_dialog(dialogo)
+
     def actualizar_boton_reintentar():
-        if state["preguntas"]:
-            page.floating_action_button = ft.FloatingActionButton(
-                content=ft.Container(
-                    width=105,
-                    content=ft.Row(
-                        [ft.Text("Reintentar")],
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    ),
-                ),
-                on_click=click_reintentar,
-            )
-        else:
-            page.floating_action_button = None
+        page.floating_action_button = None
 
     def mostrar_resultado():
         container.controls.clear()
         actualizar_boton_reintentar()
-        container.controls.append(crear_boton_tema())
+        container.controls.append(crear_barra_acciones_examen())
         container.controls.append(crear_barra_examen())
         container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
         container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
-        container.controls.append(ft.Button(content=ft.Text("Volver al Menu"), on_click=click_volver_al_menu, width=ancho_boton()))
         page.update()
 
     def mostrar_feedback(q, fb_container):
@@ -633,10 +668,9 @@ async def main(page: ft.Page):
         q = state["preguntas"][state["indice"]]
         sincronizar_estado_pregunta()
         precargar_siguiente_imagen()
-        container.controls.append(crear_boton_tema())
+        container.controls.append(crear_barra_acciones_examen())
         container.controls.append(crear_barra_examen())
         container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1} de {len(state['preguntas'])}", weight="bold", size=18))
-        container.controls.append(ft.Button(content=ft.Text("Salir al Menu"), on_click=click_volver_al_menu, width=ancho_boton()))
         if state["finalizado"]:
             container.controls.append(ft.Button(content=ft.Text("Ver resultado"), on_click=lambda e: mostrar_resultado()))
         container.controls.append(ft.Text(q["pregunta"], size=16))
