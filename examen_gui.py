@@ -56,6 +56,24 @@ async def main(page: ft.Page):
     def ancho_boton():
         return ancho_disponible() if es_movil() else None
 
+    async def mostrar_indicador_boton(e, texto="Registrando..."):
+        """Confirma visualmente el clic mientras se procesa la acción."""
+        boton = getattr(e, "control", None)
+        if boton is not None:
+            boton.disabled = True
+            boton.content = ft.Row(
+                [
+                    ft.ProgressRing(width=18, height=18, stroke_width=2),
+                    ft.Text(texto),
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=10,
+                tight=True,
+            )
+            page.update()
+            # Cede el control para enviar el cambio visual antes de continuar.
+            await asyncio.sleep(0)
+
     def obtener_ruta_imagen(nombre_imagen):
         """Devuelve la URL pública y la ruta local de una imagen del examen."""
         if not nombre_imagen or not state.get("ruta"):
@@ -545,6 +563,10 @@ async def main(page: ft.Page):
         mostrar_pregunta()
 
     async def click_siguiente(e):
+        await mostrar_indicador_boton(
+            e,
+            "Finalizando..." if state["indice"] >= len(state["preguntas"]) - 1 else "Cargando...",
+        )
         await siguiente()
 
     def mostrar_pregunta():
@@ -611,6 +633,7 @@ async def main(page: ft.Page):
                 respuestas = {obj: dd.value for obj, dd in zip(q["objetivos"], dropdowns)}
                 if any(v is None for v in respuestas.values()):
                     return
+                await mostrar_indicador_boton(e)
                 aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
                 await finalizar(aciertos, q, feedback_container, respuestas)
 
@@ -624,6 +647,7 @@ async def main(page: ft.Page):
 
                 async def verif_multi(e):
                     seleccionados = [i for i, cb in enumerate(cbs) if cb.value]
+                    await mostrar_indicador_boton(e)
                     await finalizar(sorted(seleccionados) == sorted(resp_correctas), q, feedback_container, seleccionados)
 
                 container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_multi))
@@ -634,6 +658,9 @@ async def main(page: ft.Page):
                 async def verif_radio(e):
                     val_c = resp_correctas[0] if isinstance(resp_correctas, list) else resp_correctas
                     seleccion = [int(rg.value)] if rg.value is not None else []
+                    if rg.value is None:
+                        return
+                    await mostrar_indicador_boton(e)
                     await finalizar(rg.value is not None and int(rg.value) == val_c, q, feedback_container, seleccion)
 
                 container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_radio))
