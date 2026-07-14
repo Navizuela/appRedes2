@@ -8,6 +8,8 @@ import flet as ft
 
 STORAGE_KEY = "ccna_exam_progress_v1"
 THEME_STORAGE_KEY = "ccna_exam_theme_v1"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGES_DIR = os.path.join(BASE_DIR, "img")
 
 
 async def main(page: ft.Page):
@@ -53,6 +55,18 @@ async def main(page: ft.Page):
 
     def ancho_boton():
         return ancho_disponible() if es_movil() else None
+
+    def obtener_ruta_imagen(nombre_imagen):
+        """Devuelve la URL pública y la ruta local de una imagen del examen."""
+        if not nombre_imagen or not state.get("ruta"):
+            return None, None
+
+        nombre_examen = os.path.splitext(os.path.basename(state["ruta"]))[0]
+        nombre_seguro = os.path.basename(nombre_imagen)
+        ruta_relativa = os.path.join(nombre_examen, nombre_seguro)
+        ruta_local = os.path.join(IMAGES_DIR, ruta_relativa)
+        ruta_publica = "/" + ruta_relativa.replace(os.sep, "/")
+        return ruta_publica, ruta_local
 
     async def resolver_si_es_async(resultado):
         if not inspect.isawaitable(resultado):
@@ -552,13 +566,26 @@ async def main(page: ft.Page):
         container.controls.append(ft.Text(q["pregunta"], size=16))
 
         if q.get("imagen"):
-            ruta_img = os.path.join("img", q["imagen"])
-            if os.path.exists(ruta_img):
+            src_img, ruta_img = obtener_ruta_imagen(q["imagen"])
+            if ruta_img and os.path.isfile(ruta_img):
                 container.controls.append(
-                    ft.Image(
-                        src=ruta_img,
-                        width=ancho_disponible(400),
-                        fit=ft.BoxFit.CONTAIN,
+                    ft.Container(
+                        content=ft.Image(
+                            src=src_img,
+                            width=ancho_disponible(640),
+                            fit=ft.BoxFit.CONTAIN,
+                            border_radius=8,
+                        ),
+                        alignment=ft.Alignment.CENTER,
+                        width=ancho_disponible(),
+                    )
+                )
+            else:
+                container.controls.append(
+                    ft.Text(
+                        f"Imagen no disponible: {q['imagen']}",
+                        color="#f59e0b",
+                        italic=True,
                     )
                 )
 
@@ -721,4 +748,4 @@ async def main(page: ft.Page):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    ft.app(target=main, port=port, view=ft.AppView.WEB_BROWSER)
+    ft.app(target=main, port=port, view=ft.AppView.WEB_BROWSER, assets_dir=IMAGES_DIR)

@@ -1,0 +1,2756 @@
+[
+  {
+    "pregunta": "1. Un administrador de red esté diseñando la disposición de una nueva red inalámbrica. ¿Cuáles son las tres áreas de importancia que se deben tener en cuenta al crear una red inalámbrica? (Elija tres).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Seguridad",
+      "Cableado extenso",
+      "Interferencia",
+      "Opciones de movilidad",
+      "Colisión de paquetes",
+      "Área de cobertura"
+    ],
+    "respuestas_correctas": [
+      0,
+      2,
+      5
+    ],
+    "explicacion": "Tema 4.6.1 Al diseñar una red inalámbrica (WLAN), se utiliza el aire como medio de transmisión, lo que presenta desafíos físicos y de privacidad únicos. Por lo tanto, un administrador debe centrarse en tres áreas críticas: Área de cobertura: Garantizar que la señal de radiofrecuencia tenga la potencia suficiente para llegar a todos los usuarios y espacios físicos previstos. Interferencia: Identificar y mitigar obstáculos físicos u otros dispositivos (como microondas, teléfonos inalámbricos u otras redes) que puedan distorsionar o degradar la señal. Seguridad: Como el medio es abierto, es fundamental implementar un cifrado fuerte y controles de acceso para evitar que usuarios no autorizados intercepten los datos o se conecten a la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "2. ¿Cuáles son los tres estándares comúnmente seguidos para construir e instalar cableado? (Escoja tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "longitudes de cable",
+      "clavijas",
+      "resistencia a la tracción del aislante de plástico",
+      "color del conector",
+      "costo por metro (pie)",
+      "Tipos de conector"
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      5
+    ],
+    "explicacion": "Tema 4.4.2 Los estándares de cableado estructurado (como TIA/EIA-568) regulan el diseño e instalación de las redes para garantizar la compatibilidad y un rendimiento óptimo. Estos estándares definen específicamente: Tipos de conector: Especifican exactamente qué conectores físicos se deben utilizar (como el RJ-45 para los cables UTP). Longitudes de cable: Determinan las distancias máximas permitidas para que la señal se transmita sin degradación (por ejemplo, el límite de 100 metros para el cableado de cobre). Clavijas (Pinouts): Definen la distribución exacta y el orden de los hilos de colores dentro del conector (como los esquemas T568A y T568B) para asegurar que los datos se transmitan correctamente. El costo por metro, el color estético del conector o la resistencia a la tracción del plástico no son parámetros técnicos regulados por estos estándares de red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "3. ¿Qué tecnología inalámbrica tiene requisitos de baja potencia y de velocidad de transmisión de datos que la convierte en popular para las aplicaciones de automatización doméstica?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "ZigBee",
+      "5G",
+      "LoRaWAN",
+      "Wi-Fi"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 4.6.2 ZigBee es un estándar de comunicación inalámbrica diseñado específicamente para redes de área personal inalámbricas de baja tasa de datos (WPAN) bajo la norma IEEE 802.15.4. Sus características principales son: Baja potencia: Está diseñado para optimizar el consumo de energía, lo que permite que los dispositivos de domótica (como sensores o bombillas inteligentes) funcionen durante años con baterías pequeñas. Baja velocidad de transmisión de datos: Ideal para el hogar inteligente, ya que este tipo de aplicaciones solo requiere transmitir paquetes de datos muy pequeños y sencillos (como comandos de encendido/apagado o lecturas de temperatura).",
+    "imagen": null
+  },
+  {
+    "pregunta": "4. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 21. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FTP",
+      "DHCP",
+      "SSH",
+      "TFTP"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 14.4.3 El número de puerto de destino 21 se asigna de forma estática para el protocolo FTP (File Transfer Protocol – Protocolo de Transferencia de Archivos). Se utiliza específicamente para abrir el canal de control, el cual permite enviar comandos y autenticar al usuario entre el cliente y el servidor. Las otras opciones utilizan los siguientes puertos predeterminados: DHCP: Utiliza los puertos UDP 67 y 68. SSH: Utiliza el puerto TCP 22. TFTP: Utiliza el puerto UDP 69.",
+    "imagen": null
+  },
+  {
+    "pregunta": "5. ¿Cuáles son los dos protocolos que operan en la capa superior del modelo TCP/IP? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Ethernet",
+      "DNS",
+      "TCP",
+      "IP",
+      "UDP",
+      "POP"
+    ],
+    "respuestas_correctas": [
+      1,
+      5
+    ],
+    "explicacion": "Tema 3.3.4 La capa superior del modelo TCP/IP là tầng Aplicación (Capa de Aplicación). Esta capa proporciona la interfaz entre las aplicaciones que utilizamos para comunicarnos y la red subyacente. DNS (Domain Name System) y POP (Post Office Protocol) son protocolos que operan exclusivamente en esta capa para brindar servicios finales al usuario (resolución de nombres de dominio y descarga de correos electrónicos, respectivamente). Los otros protocolos pertenecen a capas inferiores: TCP y UDP operan en la capa de Transporte. IP opera en la capa de Internet. Ethernet opera en la capa de Acceso a la Red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "6. Consulte la ilustración. Si la PC1 envía un paquete a la PC2 y se configuró el routing entre los dos routers, ¿qué hará el R1 con el encabezado de la trama de Ethernet conectado por la PC1?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Abrir el encabezado y utilizarlo para determinar si los datos se deben enviar a través de S0/0/0.",
+      "Abrir el encabezado y reemplazar la dirección MAC de destino por una nueva.",
+      "Eliminar el encabezado de Ethernet y configurar un nuevo encabezado de capa 2 antes de enviarlo a través de S0/0/0.",
+      "Nada, dado que el router tiene una ruta hacia la red de destino."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 6.1.3 Cuando un router recibe una trama Ethernet en una de sus interfaces, el proceso de enrutamiento sigue estos pasos fundamentales: 1. Desencapsulación: El router R1 recibe la trama, verifica la dirección MAC de destino y, al confirmar que es para él, elimina el encabezado de la trama Ethernet (Capa 2) para extraer el paquete IP (Capa 3). 2. Decisión de enrutamiento: El router examina la dirección IP de destino del paquete en su tabla de enrutamiento para determinar la interfaz de salida (en este caso, la interfaz serial S0/0/0). 3. Reencapsulación: Como la interfaz de salida (S0/0/0) utiliza un protocolo diferente a Ethernet (típicamente HDLC o PPP en enlaces seriales), el router debe crear un nuevo encabezado de Capa 2 adecuado para el medio de transmisión antes de enviar el paquete hacia el siguiente salto. En resumen: el router siempre «despoja» la información de Capa 2 original y la reemplaza por una nueva según la tecnología del enlace de salida.",
+    "imagen": "pregunta_6.jpg"
+  },
+  {
+    "pregunta": "7. Un empleado de una gran corporación inicia sesión de forma remota en la empresa utilizando el nombre de usuario y la contraseña apropiados. El empleado está asistiendo a una importante videoconferencia con un cliente sobre una gran venta. Es importante que la calidad del video sea excelente durante la reunión. El empleado no sabe que después de un inicio de sesión exitoso, la conexión con el ISP de la empresa falló. La conexión secundaria, sin embargo, se activa en cuestión de segundos. La interrupción no fue notada por el empleado u otros empleados. ¿ Qué tres características de red se describen en este escenario? (Elija tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Integridad",
+      "Redes por línea eléctrica",
+      "Seguridad",
+      "Escalabilidad",
+      "Calidad de servicio",
+      "Tolerancia a fallas"
+    ],
+    "respuestas_correctas": [
+      2,
+      4,
+      5
+    ],
+    "explicacion": "Tema 1.6.1 Los nombres de usuario y las contraseñas se relacionan con la seguridad de la red. Vídeo de buena calidad, para soportar videoconferencias, se refiere a priorizar el tráfico de vídeo con calidad de servicio (QoS). El hecho de que una conexión a un ISP falle y luego se restableció, pero pasó desapercibido por los empleados se relaciona con el diseño tolerante a fallos de la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "8. ¿Cuál es la consecuencia de configurar un router con el comando de configuración global ipv6 unicast- routing ?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Las interfaces de router habilitadas para IPv6 comienzan a enviar mensajes RA de ICMPv6.",
+      "Cada interfaz de router generará una dirección local de vínculo IPv6.",
+      "Todas las interfaces del router se activarán automáticamente.",
+      "Estáticamente crea una dirección de unicast global en este router."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 12.5.1 El comando ipv6 unicast-routing es el comando fundamental requerido en los routers Cisco para habilitar el reenvío (routing) de paquetes IPv6. Sus efectos son: Habilitación del Routing: Permite que el router procese y reenvíe tráfico IPv6 entre sus interfaces. Mensajes RA: Una vez habilitado el enrutamiento, las interfaces configuradas con direcciones IPv6 comienzan automáticamente a enviar mensajes de Anuncio de Router (Router Advertisement – RA) a través de ICMPv6. Estos mensajes informan a los dispositivos de la red local sobre la existencia del router y les proporcionan información de prefijo para que puedan configurar sus propias direcciones IPv6 (mediante SLAAC).",
+    "imagen": null
+  },
+  {
+    "pregunta": "9. ¿Cuál de las siguientes subredes incluiría la dirección 192.168.1.96 como dirección de host utilizable?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.1.64/29",
+      "192.168.1.32/27",
+      "192.168.1.32/28",
+      "192.168.1.64/26"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 11.5.2 Para la subred 192.168.1.64/26, hay 6 bits para las direcciones de host, lo que genera 64 direcciones posibles. Sin embargo, la primera y la última subred son las direcciones de red y difusión de esta subred. Por lo tanto, el rango de direcciones de host para esta subred es 192.168.1.65 a 192.168.1.126. Las otras subredes no contienen la dirección 192.168.1.96 como una dirección de host válida.",
+    "imagen": null
+  },
+  {
+    "pregunta": "10. Consulte la ilustración.El host B en la subred Teachers transmite un paquete al host D en la subred Students. ¿Qué direcciones de Capa 2 y Capa 3 están contenidas en las PDU que se transmiten desde el host B al router?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dirección de destino de capa 2 = 00-00-0c-94-36-ab Dirección de origen de capa 2 = 00-00-0c-94-36-bb Dirección de destino de capa 3 = 172.16.20.200 Dirección de origen de capa 3 = 172.16.100.200",
+      "Dirección de destino de capa 2 = 00-00-0c-94-36-ab Dirección de origen de capa 2 = 00-00-0c-94-36-bb Dirección de destino de capa 3 = 172.16.20.200 Dirección de origen de capa 3 = 172.16.10.200",
+      "Dirección de destino de capa 2 = 00-00-0c-94-36-dd Dirección de origen de capa 2 = 00-00-0c-94-36-bb Dirección de destino de capa 3 = 172.16.20.200 Dirección de origen de capa 3 = 172.16.10.200",
+      "Dirección de destino de capa 2 = 00-00-0c-94-36-cd Dirección de origen de capa 2 = 00-00-0c-94-36-bb Dirección de destino de capa 3 = 172.16.20.99 Dirección de origen de capa 3 = 172.16.10.200"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 9.1.2 Para que el paquete llegue a una red diferente (la subred Students), el Host B debe enviarlo primero a su puerta de enlace predeterminada (el router): 1. Capa 3 (IP): Las direcciones IP de origen y destino nunca cambian durante el trayecto, ya que indican el emisor y el receptor final. 2. Capa 2 (MAC): Estas direcciones cambian en cada salto. El Host B coloca la dirección MAC del router como destino para que la trama sea aceptada por este, en lugar de intentar enviarla directamente al Host D, que se encuentra en otra red.",
+    "imagen": "pregunta_10.jpg"
+  },
+  {
+    "pregunta": "11. ¿Cuáles son las tres capas del modelo OSI que se asignan a la capa de aplicación del modelo TCP/IP? (Elija tres opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Transporte",
+      "Aplicación",
+      "Presentación",
+      "Enlace de datos",
+      "Red",
+      "Sesión"
+    ],
+    "respuestas_correctas": [
+      1,
+      2,
+      5
+    ],
+    "explicacion": "Tema 15.1.1 El modelo TCP / IP consta de cuatro capas: aplicación, transporte, Internet y acceso a la red. El modelo OSI consta de siete capas: aplicación, presentación, sesión, transporte, red, enlace de datos y físico. Las tres capas superiores del modelo OSI: aplicación, presentación y sesión se asignan a la capa de aplicación del modelo TCP / IP.",
+    "imagen": null
+  },
+  {
+    "pregunta": "12. ¿Cuáles de las siguientes son dos características de IP? (Elija dos opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Garantiza la distribución de los paquetes.",
+      "No requiere una conexión completa exclusiva.",
+      "Rearma los paquetes desordenados en el orden correcto en el lado del receptor.",
+      "Vuelve a transmitir los paquetes si se producen errores.",
+      "Opera independientemente de los medios de red."
+    ],
+    "respuestas_correctas": [
+      1,
+      4
+    ],
+    "explicacion": "Tema 8.1.3 El Protocolo de Internet (IP) es un protocolo de mejor esfuerzo sin conexión. Esto significa que IP no requiere una conexión de un extremo a otro ni garantiza la entrega de paquetes. IP también es independiente de los medios, lo que significa que funciona independientemente de los medios de red que transportan los paquetes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "13. ¿Cuáles de las siguientes son dos características de ARP? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Cuando un host encapsula un paquete en una trama, consulta la tabla de direcciones MAC para determinar la asignación de direcciones IP a direcciones MAC.",
+      "Se envía una solicitud de ARP a todos los dispositivos en la LAN Ethernet que contiene la dirección IP del host de destino y su dirección MAC multicast.",
+      "Si hay un dispositivo que recibe una solicitud de ARP y tiene la dirección IPv4 de destino, responde con una respuesta de ARP.",
+      "Si un host está listo para enviar un paquete a un dispositivo de destino local y tiene la dirección IP pero no la dirección MAC de destino, este genera un broadcast de ARP.",
+      "Si ningún dispositivo responde a la solicitud de ARP, entonces el nodo de origen transmite el paquete de datos a todos los dispositivos en el segmento de red."
+    ],
+    "respuestas_correctas": [
+      2,
+      3
+    ],
+    "explicacion": "Tema 9.2.2 Cuando un nodo encapsula un paquete de datos en una trama, necesita la dirección MAC de destino. Primero determina si el dispositivo de destino está en la red local o en una red remota. Luego verifica la tabla ARP (no la tabla MAC) para ver si existe un par de dirección IP y dirección MAC para la dirección IP de destino (si el host de destino está en la red local) o la dirección IP de la puerta de enlace predeterminada (si la host de destino está en una red remota). Si la coincidencia no existe, genera una transmisión ARP para buscar la dirección IP para la resolución de la dirección MAC. Debido a que se desconoce la dirección MAC de destino, la solicitud ARP se transmite con la dirección MAC FFFF.FFFF.FFFF. El dispositivo de destino o la puerta de enlace predeterminada responderán con su dirección MAC, lo que permite que el nodo de envío ensamble la trama. Si ningún dispositivo responde a la solicitud ARP, el nodo de origen descartará el paquete porque no se puede crear una trama.",
+    "imagen": null
+  },
+  {
+    "pregunta": "14. ¿Cuáles son los tres requisitos definidos por los protocolos utilizados en las comunicaciones de red para permitir la transmisión de mensajes a través de la red? (Elija tres opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Tamaño del mensaje",
+      "Codificación del mensaje",
+      "Especificaciones de los conectores",
+      "Instalación del terminal",
+      "Selección de medios",
+      "Opciones de entrega"
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      5
+    ],
+    "explicacion": "Tema 3.1.5 Para que la comunicación a través de una red sea exitosa, los protocolos deben definir reglas estrictas que aseguren que el mensaje llegue correctamente. Los tres requisitos fundamentales son: Codificación del mensaje: Define el formato o proceso mediante el cual los mensajes se convierten en señales (bits) que pueden ser transmitidos por el medio. Tamaño del mensaje: Establece las reglas sobre cómo se deben fragmentar los datos grandes en partes más pequeñas (tramas o paquetes) para evitar la saturación del canal y facilitar la retransmisión en caso de error. Opciones de entrega: Determina cómo se envía el mensaje (Unicast, Multicast o Broadcast) y asegura que el emisor y el receptor coincidan en el método de envío para que la comunicación sea efectiva. Las otras opciones (especificaciones de conectores o instalación del terminal) se refieren a aspectos físicos o de hardware, los cuales no son funciones de los protocolos de comunicación en sí mismos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "15. ¿Cuál de estas situaciones describe una función proporcionada por la capa de transporte?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un estudiante reproduce una película corta con sonido basada en Web. La película y el sonido están codificados dentro del encabezado de la capa de transporte.",
+      "Un alumno utiliza un teléfono VoIP del aula para llamar a su casa. El identificador único grabado en el teléfono es una dirección de capa de transporte utilizada para establecer contacto con otro dispositivo de red en la misma red.",
+      "Un trabajador de una empresa accede a un servidor Web ubicado en una red corporativa. La capa de transporte da formato a la pantalla para que la página Web se visualice de manera adecuada, independientemente del dispositivo que se utilice para ver el sitio Web.",
+      "Un alumno tiene dos ventanas de explorador Web abiertas a fin de acceder a dos sitios Web. La capa de transporte garantiza que se entregue la página Web correcta a la ventana de explorador adecuada."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 14.1.2 Los números de puerto de origen y destino se utilizan para identificar la aplicación y la ventana correctas dentro de esa aplicación.",
+    "imagen": null
+  },
+  {
+    "pregunta": "16. Consulte la ilustración. Un administrador intenta configurar el switch pero recibe el mensaje de error que se muestra en la ilustración. ¿Cuál es el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El administrador ya se encuentra en el modo de configuración global.",
+      "Se debe utilizar el comando completo configure terminal .",
+      "El administrador se debe conectar a través del puerto de consola para acceder al modo de configuración global.",
+      "El administrador primero debe ingresar al modo EXEC privilegiado antes de emitir el comando."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 2.2.4 Para ingresar al modo de configuración global, se debe ingresar el comando configure terminal, o una versión abreviada como config t, desde el modo EXEC privilegiado. En este escenario, el administrador está en modo EXEC de usuario, como lo indica el símbolo> después del nombre de host. El administrador necesitaría usar el comando enable para pasar al modo EXEC privilegiado antes de ingresar el comando configure terminal.",
+    "imagen": "pregunta_16.jpg"
+  },
+  {
+    "pregunta": "17. Una compañía tiene un servidor de archivos que comparte una carpeta con el nombre Pública. La política de seguridad de la red especifica que, en relación con la carpeta Pública, se asignen derechos de solo lectura a cualquier persona que puede iniciar sesión en el servidor y derechos de edición solo al grupo de administradores de la red. ¿Qué componente se aborda en la estructura de servicios de red de AAA?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Autenticación",
+      "Autorización",
+      "Automatización",
+      "Registro"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 16.3.4 Después de que un usuario se autentica con éxito (inicia sesión en el servidor), la autorización es el proceso de determinar a qué recursos de red puede acceder el usuario y qué operaciones (como leer o editar) puede realizar el usuario.",
+    "imagen": null
+  },
+  {
+    "pregunta": "18. ¿Qué sucede si se configura de forma incorrecta la dirección de gateway predeterminado en un host?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El host no puede comunicarse con otros hosts en la red local.",
+      "El switch no reenvía paquetes iniciados por el host.",
+      "El host debe utilizar el protocolo ARP para determinar la dirección de gateway predeterminado correcta.",
+      "El host no puede comunicarse con hosts en otras redes.",
+      "Un ping del host a 127.0.0.1 no se realizaría en forma correcta."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 10.3.1 El Default Gateway (puerta de enlace predeterminada) es la dirección IP del router que permite a un dispositivo salir de su red local para comunicarse con redes externas (como Internet). Si la configuración es incorrecta: El host puede comunicarse perfectamente con otros dispositivos dentro de su misma subred (usando ARP), pero no podrá enviar paquetes fuera de ella porque no sabrá a qué router enviarlos para que lleguen a su destino. Las otras opciones son incorrectas porque el Gateway no interfiere con la comunicación local (LAN) ni afecta a la dirección de loopback (127.0.0.1), que es interna del propio dispositivo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "19. ¿Cuáles son dos causas comunes de degradación de la señal cuando se utiliza el cableado UTP? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "terminación incorrecta",
+      "instalación de cables en el conducto",
+      "pérdida de luz en largas distancias",
+      "cable o conectores de baja calidad",
+      "blindaje de baja calidad en el cable"
+    ],
+    "respuestas_correctas": [
+      0,
+      3
+    ],
+    "explicacion": "Tema 4.4.2 La degradación de la señal en cables de cobre UTP (Unshielded Twisted Pair) suele ocurrir por fallos físicos o de fabricación que afectan la integridad de la señal eléctrica: Terminación incorrecta: Si los pares trenzados se destrenzan demasiado al instalar los conectores o si el contacto eléctrico es pobre, se genera diafonía (crosstalk) e interferencia, lo que degrada la señal. Cable o conectores de baja calidad: Los materiales de fabricación deficientes no cumplen con los estándares eléctricos (como el ruido o la atenuación permitida), provocando que la señal se debilite drásticamente a lo largo del cable. Nota: La «pérdida de luz» solo aplica a la fibra óptica; la «instalación en conductos» es una práctica recomendada, no una causa de degradación; y el UTP, por definición, no utiliza blindaje, por lo que esa opción no es relevante.",
+    "imagen": null
+  },
+  {
+    "pregunta": "20. Una cada descripción con una dirección IP adecuada. (No se utilizan todas las opciones.)",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "169.254.1.5",
+      "127.0.0.1",
+      "240.2.6.255",
+      "198.133.219.2"
+    ],
+    "objetivos": [
+      "Una dirección link-local",
+      "Una dirección de bucle invertido",
+      "Una dirección experimental",
+      "Una dirección pública"
+    ],
+    "respuestas_correctas": {
+      "Una dirección link-local": "169.254.1.5",
+      "Una dirección de bucle invertido": "127.0.0.1",
+      "Una dirección experimental": "240.2.6.255",
+      "Una dirección pública": "198.133.219.2"
+    },
+    "explicacion": "Tema 11.3.4",
+    "imagen": null
+  },
+  {
+    "pregunta": "21. ¿Qué significa el término “atenuación” en la comunicación de datos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "tiempo para que una señal llegue a su destino",
+      "fuga de señales de un par de cables a otro",
+      "fortalecimiento de una señal mediante un dispositivo de red",
+      "pérdida de intensidad de la señal a medida que aumenta la distancia"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 4.3.1 La atenuación es un fenómeno físico inevitable en cualquier medio de transmisión (cobre, fibra óptica o aire). Se refiere a la disminución gradual de la potencia o intensidad de la señal a medida que esta viaja a través del medio, debido principalmente a la resistencia del cable o a la dispersión de la energía.",
+    "imagen": null
+  },
+  {
+    "pregunta": "22. ¿Cuáles son las dos afirmaciones que describen cómo evaluar los patrones de flujo de tráfico y los tipos de tráfico de red mediante un analizador de protocolos? (Elija dos opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Capturar solamente tráfico WAN dado que el tráfico a la Web es responsable de la mayor cantidad de tráfico en una red.",
+      "Realizar la captura en diferentes segmentos de la red.",
+      "Capturar tráfico solamente en las áreas de la red que reciben el mayor tráfico, como el centro de datos.",
+      "Capturar tráfico en horas de uso pico para obtener una buena representación de los diferentes tipos de tráfico.",
+      "Capturar tráfico los fines de semana, cuando la mayoría de los empleados no está trabajando."
+    ],
+    "respuestas_correctas": [
+      1,
+      3
+    ],
+    "explicacion": "Tema 17.3.2 Los patrones de flujo de tráfico deben recopilarse durante las horas pico de utilización para obtener una buena representación de los diferentes tipos de tráfico. La captura también debe realizarse en diferentes segmentos de red porque parte del tráfico será local para un segmento en particular.",
+    "imagen": null
+  },
+  {
+    "pregunta": "23. Los usuarios informan que el acceso a la red es lento. Después de preguntar a los empleados, el administrador de red descubrió que un empleado descargó un programa de análisis de terceros para la impresora. ¿Qué tipo de malware puede introducirse, que provoque el rendimiento lento de la red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Gusano",
+      "Virus",
+      "Suplantación de identidad",
+      "Correo no deseado"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 16.2.1 Un gusano es un software malicioso que puede propagarse por la red y ejecutarse sin la participación del usuario. Los gusanos, por lo general, ralentizan las redes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "24. Consulte la ilustración. Según el resultado, ¿cuáles son las dos afirmaciones correctas sobre la conectividad de red? Elija dos opciones.",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Hay conectividad entre este dispositivo y el que se encuentra en 192.168.100.1.",
+      "El tiempo de transmisión promedio entre estos dos hosts es de 2 milisegundos.",
+      "La conectividad entre estos dos hosts admite llamadas de videoconferencia.",
+      "Hay cuatro saltos entre este dispositivo y el que se encuentra en 192.168.100.1.",
+      "Este host no tiene configurado un gateway predeterminado."
+    ],
+    "respuestas_correctas": [
+      0,
+      3
+    ],
+    "explicacion": "Tema 17.4.3 Para analizar el resultado del comando tracert 192.168.100.1 que se muestra en la ilustración: 1. Conectividad: El comando completó la ruta exitosamente («Trace complete»), lo que confirma que existe una ruta y conectividad activa entre el origen y el destino (192.168.100.1). 2. Número de saltos (hops): El resultado muestra una lista numerada del 1 al 5. El número 5 corresponde a la dirección IP de destino (192.168.100.1). Esto significa que para llegar al destino, el paquete tuvo que pasar por 4 routers intermedios (saltos). Por lo tanto, hay 4 saltos de red entre el dispositivo de origen y el de destino.",
+    "imagen": "pregunta_24.jpg"
+  },
+  {
+    "pregunta": "25. Los usuarios informan retrasos más prolongados en la autenticación y en el acceso a los recursos de red durante determinados períodos de la semana. ¿Qué tipo de información deben revisar los ingenieros de red para descubrir si esta situación forma parte del comportamiento normal de la red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Los registros y mensajes de syslog",
+      "Los archivos de configuración de la red",
+      "La línea de base de rendimiento de la red",
+      "El resultado de debug y las capturas de paquetes"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 17.4.5 Para determinar si un comportamiento de la red es «normal» o si indica un problema, los ingenieros necesitan un punto de comparación: La línea de base de rendimiento de la red: Es una recopilación de datos históricos que documentan el desempeño habitual de la red en diferentes momentos (días, horas, cargas de trabajo). Al comparar los retrasos actuales con esta línea de base, se puede identificar fácilmente si la lentitud es un patrón recurrente esperado o una anomalía que requiere intervención. Las otras opciones son herramientas útiles para el diagnóstico puntual de fallas, pero no sirven por sí solas para determinar el comportamiento normal del sistema a lo largo del tiempo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "26. ¿Qué dos tipos de tráfico utilizan el Protocolo de transporte en tiempo real (RTP)? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Video",
+      "transferencia de archivos Web",
+      "Voz",
+      "Peer-to-Peer"
+    ],
+    "respuestas_correctas": [
+      0,
+      2
+    ],
+    "explicacion": "Tema 14.3.4 El Protocolo de transporte en tiempo real (RTP) está diseñado específicamente para transportar datos que requieren una entrega rápida y secuencial, donde los retrasos (latencia) son más críticos que la pérdida ocasional de algún paquete: Voz (VoIP): La comunicación telefónica sobre IP utiliza RTP para enviar los paquetes de audio de forma fluida. Video: Las transmisiones de video en vivo o conferencias requieren RTP para sincronizar y reproducir los fotogramas en tiempo real. Las otras opciones (transferencia de archivos, navegación Web o tráfico Peer-to-Peer) suelen utilizar protocolos como TCP, ya que requieren una transferencia de datos precisa y sin errores donde no es tan crítico el factor del tiempo real.",
+    "imagen": null
+  },
+  {
+    "pregunta": "27. Un empleado descontento está usando algunas herramientas de red inalámbrica gratuitas para determinar información sobre las redes inalámbricas de la empresa. Esta persona está planeando usar esta información para hackear la red inalámbrica. ¿Qué tipo de ataque es este?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Reconocimiento",
+      "Caballo de Troya",
+      "DoS",
+      "Acceso"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 16.2.2 Un ataque de reconocimiento es el descubrimiento y documentación no autorizados de varias redes informáticas, sistemas de red, recursos, aplicaciones, servicios o vulnerabilidades.",
+    "imagen": null
+  },
+  {
+    "pregunta": "28. ¿Cuáles son los dos métodos más eficaces para defenderse del malware? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Implementar una RAID.",
+      "Actualizar el sistema operativo y otro software de la aplicación.",
+      "Implementar una VPN.",
+      "Implementar firewalls de red.",
+      "Instalar y actualizar el software antivirus.",
+      "Implementar contraseñas seguras."
+    ],
+    "respuestas_correctas": [
+      1,
+      4
+    ],
+    "explicacion": "Tema 16.3.3 Un especialista en ciberseguridad debe conocer las tecnologías y medidas que se utilizan como contramedidas para proteger a la organización de amenazas y vulnerabilidades.",
+    "imagen": null
+  },
+  {
+    "pregunta": "29. El comando de configuración global ip default-gateway 172.16.100.1 se aplica a un switch. ¿Cuál es el efecto de este comando?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El switch puede comunicarse con otros hosts de la red 172.16.100.0.",
+      "El switch se puede administrar de forma remota desde un host en otra red.",
+      "El switch está limitado a enviar y recibir tramas desde y hacia la puerta de enlace 172.16.100.1.",
+      "El switch tendrá una interfaz de administración con la dirección 172.16.100.1."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 10.3.2 Por lo general, se configura una dirección de gateway predeterminado en todos los dispositivos para permitirles comunicarse más allá de su red local. En un switch, esto se logra mediante el comando ip default-gateway <dirección ip> .",
+    "imagen": null
+  },
+  {
+    "pregunta": "30. ¿Qué sucede cuando se ingresa el comando transport input ssh en las líneas vty del switch?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El cliente SSH en el switch está habilitado.",
+      "El switch requiere una combinación de nombre de usuario/contraseña para el acceso remoto.",
+      "El switch requiere conexiones remotas a través de un software cliente propietario.",
+      "La comunicación entre el switch y los usuarios remotos está cifrada."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 16.4.4 El comando transport input ssh cuando se ingresa en el switch vty (líneas de terminal virtual) cifrará todas las conexiones telnet controladas de entrada.",
+    "imagen": null
+  },
+  {
+    "pregunta": "31. ¿Qué tipo de servidor se basa en tipos de registro como A, NS, AAAA y MX para proporcionar servicios?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DNS",
+      "Correo electrónico",
+      "Web archivo"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 15.4.2 Un servidor DNS almacena registros que se utilizan para resolver direcciones IP en nombres de host. Algunos tipos de registros DNS incluyen los siguientes: A: una dirección IPv4 del dispositivo final NS: un servidor de nombres autorizado AAAA: una dirección IPv6 de dispositivo final MX: un registro de intercambio de correo",
+    "imagen": null
+  },
+  {
+    "pregunta": "32. ¿Cuál de las siguientes es una ventaja de adoptar IMAP en lugar de POP para organizaciones pequeñas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "IMAP envía y recupera correo electrónico, pero POP solamente lo recupera.",
+      "Cuando el usuario se conecta a un servidor POP, se mantienen copias de los mensajes en el servidor de correo durante un tiempo breve, pero IMAP los mantiene durante un tiempo prolongado.",
+      "Los mensajes se mantienen en los servidores de correo electrónico hasta que se eliminan manualmente del cliente de correo electrónico.",
+      "POP solo permite que el cliente almacene mensajes de manera centralizada, mientras que IMAP permite el almacenamiento distribuido."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.3.4 IMAP y POP son protocolos que se utilizan para recuperar mensajes de correo electrónico. La ventaja de utilizar IMAP en lugar de POP es que cuando el usuario se conecta a un servidor compatible con IMAP, se descargan copias de los mensajes en la aplicación cliente. Luego, IMAP almacena los mensajes de correo electrónico en el servidor hasta que el usuario los elimina manualmente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "33. ¿Qué dos funciones se realizan en la subcapa LLC de la capa de enlace de datos OSI para facilitar la comunicación Ethernet? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "integra flujos de Capa 2 entre 10 Gigabit Ethernet sobre fibra y 1 Gigabit Ethernet sobre cobre",
+      "agrega información en la trama Ethernet que identifica cual protocolo de la capa de red esta siendo encapsulado en la trama.",
+      "implementa un trailer con secuencia de verificación de trama para la detección de errores",
+      "permite que IPv4 e IPv6 utilicen el mismo medio físico",
+      "aplica direcciones MAC de origen y destino a la trama Ethernet"
+    ],
+    "respuestas_correctas": [
+      1,
+      3
+    ],
+    "explicacion": "Tema 6.1.2 La capa de enlace de datos se divide en dos subcapas: + Control de enlace lógico (LLC): esta subcapa superior define los procesos de software que brindan servicios a los protocolos de la capa de red. Coloca información en la trama que identifica qué protocolo de capa de red se está utilizando para la trama. Esta información permite que varios protocolos de capa 3, como IPv4 e IPv6, utilicen la misma interfaz de red y medios. + Control de acceso a los medios (MAC): esta subcapa inferior define los procesos de acceso a los medios que realiza el hardware. Proporciona direccionamiento de la capa de enlace de datos y delimitación de datos de acuerdo con los requisitos de señalización física del medio y el tipo de protocolo de la capa de enlace de datos en uso.",
+    "imagen": null
+  },
+  {
+    "pregunta": "34. Consulte la ilustración. Una la red con la dirección IP y el prefijo correctos que cumplan con los requisitos de direccionamiento de host utilizable para cada red. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "192.168.0.0/24",
+      "192.168.0.192/27",
+      "192.168.0.228/32",
+      "192.168.0.0/25",
+      "192.168.0.224/30",
+      "192.168.0.128/26"
+    ],
+    "objetivos": [
+      "Red A",
+      "Red B",
+      "Red C",
+      "Red D"
+    ],
+    "respuestas_correctas": {
+      "Red A": "192.168.0.0/25",
+      "Red B": "192.168.0.128/26",
+      "Red C": "192.168.0.192/27",
+      "Red D": "192.168.0.224/30"
+    },
+    "explicacion": "Tema 11.7.2",
+    "imagen": "pregunta_34.jpg"
+  },
+  {
+    "pregunta": "35. ¿Qué máscara de subred se necesita si una red IPv4 tiene 40 dispositivos que necesitan direcciones IP y si no se debe desperdiciar espacio de direcciones?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.192",
+      "255.255.255.224",
+      "255.255.255.128",
+      "255.255.255.240",
+      "255.255.255.0"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 11.5.2 Para determinar la máscara de subred adecuada, debemos encontrar una potencia de 2 que sea igual o superior a 40 (los dispositivos necesarios) más 2 (la dirección de red y la dirección de broadcast). 1. Cálculo: Necesitamos al menos 42 direcciones IP. 1. 25 = 32 (insuficiente). 2. 26 = 64 (suficiente). 2. Bits de host: Necesitamos 6 bits para los hosts. 3. Bits de red: En una dirección IPv4 (32 bits), si reservamos 6 bits para hosts, nos quedan 32 – 6 = 26 bits para la red (prefijo /26). 4. Máscara: Una máscara de 26 bits se representa como: 1. 255.255.255.11000000 (en binario) 2. 255.255.255.192 (en decimal) Esta máscara proporciona 64 direcciones totales (62 utilizables), lo cual es el ajuste más eficiente para cubrir 40 dispositivos sin desperdiciar demasiado espacio (las otras opciones o son muy pequeñas, o demasiado grandes como la /24 que da 254 direcciones).",
+    "imagen": null
+  },
+  {
+    "pregunta": "36. Consulte la ilustración. El administrador de red ha asignado a la LAN de LBMISS un rango de direcciones de 192.168.10.0. Este intervalo de direcciones se ha segregado utilizando un prefijo /29. Para acomodar un nuevo edificio, el técnico ha decidido utilizar la quinta subred para configurar la nueva red (la subred cero es la primera subred). Según las directivas de la empresa, a la interfaz del router siempre se le asigna la primera dirección de host utilizable y al servidor del grupo de trabajo se le asigna la última dirección de host utilizable. ¿Qué configuración se debe introducir en las propiedades del servidor de grupo de trabajo para permitir la conectividad a Internet?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dirección IP: 192.168.10.41 máscara de subred: 255.255.255.248, puerta de enlace predeterminada: 192.168.10.46",
+      "Dirección IP: 192.168.10.254 máscara de subred: 255.255.255.0, puerta de enlace predeterminada: 192.168.10.1",
+      "Dirección IP: 192.168.10.65 máscara de subred: 255.255.255.240, puerta de enlace predeterminada: 192.168.10.76",
+      "Dirección IP: 192.168.10.38 máscara de subred: 255.255.255.240, puerta de enlace predeterminada: 192.168.10.33",
+      "Dirección IP: 192.168.10.38 máscara de subred: 255.255.255.248, puerta de enlace predeterminada: 192.168.10.33"
+    ],
+    "respuestas_correctas": [
+      4
+    ],
+    "explicacion": "Tema 11.5.2 El uso de un prefijo / 29 en la subred 192.168.10.0 da como resultado subredes que se incrementan en 8: 192.168.10.0 (1) 192.168.10.8 (2) 192.168.10.16 (3) 192.168.10.24 (4) 192.168.10.32 (5)",
+    "imagen": "pregunta_36.jpg"
+  },
+  {
+    "pregunta": "37. ¿Cuáles son dos mensajes ICMPv6 que no están presentes en ICMP para IPv4? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Solicitud de vecino",
+      "Destino inalcanzable",
+      "Anuncio de router",
+      "Confirmación de host",
+      "Redirección de ruta",
+      "Tiempo excedido"
+    ],
+    "respuestas_correctas": [
+      0,
+      2
+    ],
+    "explicacion": "Tema 13.1.5 ICMPv6 incluye 4 tipos de mensajes nuevos anuncio de vecino, solicitud de enrutador, anuncio de enrutador y solicitud de vecino.",
+    "imagen": null
+  },
+  {
+    "pregunta": "38. ¿Qué característica describe el software antivirus?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un protocolo de túnel que proporciona a los usuarios remotos acceso seguro a la red de una organización",
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "aplicaciones que protegen a los dispositivos finales de infectarse con software malintencionado",
+      "software en un router que filtra el tráfico basado en direcciones IP o aplicaciones"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 1.8.2 El software antivirus es una herramienta de seguridad instalada en dispositivos finales (como PCs o servidores) diseñada para detectar, bloquear y eliminar programas maliciosos (malware), previniendo daños al sistema y robo de información. A diferencia de las otras opciones, no es un dispositivo de red ni un protocolo de túnel (como una VPN), sino un software especializado en la protección activa del equipo contra amenazas como virus, gusanos o troyanos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "39. Un usuario está ejecutando el comando tracert a un dispositivo remoto. ¿En qué momento dejaría de reenviar el paquete un router que se encuentra en la ruta hacia el dispositivo de destino?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Cuando los valores de los mensajes de solicitud de eco y de respuesta de eco llegan a cero",
+      "Cuando el valor de RTT llega a cero",
+      "Cuando el host responde con un mensaje de respuesta de eco ICMP",
+      "Cuando el valor en el campo TTL llega a cero",
+      "Cuando el router recibe un mensaje de ICMP de tiempo superado"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 13.1.4 Cuando un router recibe un paquete de traceroute, el valor en el campo TTL se reduce en 1. Cuando el valor en el campo llega a cero, el enrutador receptor no reenviará el paquete y enviará un mensaje ICMP Tiempo excedido a la fuente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "40. ¿Qué servicio proporciona DNS?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Permite la transferencia de datos entre un cliente y un servidor.",
+      "Utiliza el cifrado para asegurar el intercambio de texto, imágenes gráficas, sonido y vídeo en la web.",
+      "Traduce los nombres de dominio tales como cisco.com a direcciones IP",
+      "Un Conjunto de reglas para intercambiar texto, imágenes gráficas, sonido, video y otros archivos multimedia en la World Wide Web."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.4.1 El DNS (Domain Name System) es el servicio encargado de realizar la «traducción» o resolución de nombres. Como los dispositivos en una red se comunican a través de direcciones IP (números), pero los humanos recordamos mejor los nombres de dominio (como cisco.com), el DNS actúa como una libreta de contactos que convierte ese nombre legible en la dirección IP numérica necesaria para establecer la conexión.",
+    "imagen": null
+  },
+  {
+    "pregunta": "41. ¿Por qué un switch de capa 2 necesitaría una dirección IP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Para habilitar el switch para que envíe tramas de broadcast a las PC conectadas.",
+      "Para habilitar el switch de modo que se administre de forma remota.",
+      "Para habilitar el switch para que funcione como un gateway predeterminado.",
+      "Para habilitar el switch para que reciba tramas de las PC conectadas."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 10.3.2 Un switch, como dispositivo de capa 2, no necesita una dirección IP para transmitir tramas a los dispositivos conectados. Sin embargo, cuando se accede a un switch de forma remota a través de la red, debe tener una dirección de Capa 3. La dirección IP debe aplicarse a una interfaz virtual en lugar de a una interfaz física. Los enrutadores, no los switches, funcionan como pasarelas predeterminadas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "42. ¿Cuál de estos comandos se puede utilizar en un equipo Windows para ver la configuración IP de esa PC?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "show ip interface brief",
+      "ipconfig",
+      "ping",
+      "show interfaces"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 17.5.1 El comando ipconfig (Internet Protocol Configuration) es la utilidad estándar en sistemas operativos Windows para mostrar los valores actuales de configuración de red TCP/IP, incluyendo la dirección IP, la máscara de subred y la puerta de enlace predeterminada.",
+    "imagen": null
+  },
+  {
+    "pregunta": "43. ¿Qué atributo de una NIC lo colocaría en la capa de enlace de datos del modelo OSI?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dirección MAC",
+      "Pila del protocolo TCP/IP",
+      "Puerto RJ-45",
+      "Conectar el cable de Ethernet.",
+      "Dirección IP"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 7.2.2 La dirección MAC (Media Access Control) es un identificador único asignado físicamente a la NIC (Tarjeta de Interfaz de Red). Dado que la capa de Enlace de Datos del modelo OSI (Capa 2) se encarga de la comunicación física entre dispositivos dentro de la misma red local (LAN), utiliza las direcciones MAC para direccionar y entregar las tramas de datos de forma precisa.",
+    "imagen": null
+  },
+  {
+    "pregunta": "44. ¿Cual campo/sección de una trama es creado por un nodo de origen y utilizado por un nodo de destino para garantizar que una señal de datos transmitida no se ha alterado por interferencia, distorsión o pérdida de señal?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "campo de verificación de errores de la capa de transporte",
+      "campo de proceso de corrección de errores",
+      "campo Protocolo de datagrama de usuario (UDP)",
+      "campo Secuencia de Verificación de la Trama (FCS)",
+      "campo de control de flujo"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 6.3.2 El campo FCS (Frame Check Sequence) se encuentra al final de la trama Ethernet. Es generado por el nodo de origen utilizando un algoritmo matemático (CRC) sobre los datos de la trama y es verificado por el nodo de destino. Si el valor calculado por el receptor no coincide con el valor en el campo FCS, se determina que la trama ha sido alterada o dañada durante la transmisión y se descarta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "45. ¿Qué método se utiliza para administrar el acceso por contienda en una red inalámbrica?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Orden de prioridades",
+      "Paso de tokens",
+      "CSMA/CD",
+      "CSMA/CA"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 6.2.8 El acceso múltiple de detección de operador con prevención de colisión (CSMA / CA) se utiliza con tecnología de red inalámbrica para mediar en la contención de medios. El accemove toso múltiple por detección de portadora y detección de colisiones (CSMA/CD) se utiliza con la tecnología Ethernet por cable para mediar la contienda de medios. El orden de prioridad y el paso de tokens no se utilizan (o no son un método) para el control de acceso a medios.",
+    "imagen": null
+  },
+  {
+    "pregunta": "46. ¿Cuál es la ventaja de utilizar un protocolo definido por un estándar abierto?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un protocolo de estándar abierto no está controlado ni regulado por las organizaciones de estandarización.",
+      "Fomenta la competencia y promueve las opciones.",
+      "El protocolo solamente se puede ejecutar en equipos de un proveedor específico.",
+      "Una empresa puede monopolizar el mercado."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 3.4.1 Un monopolio de una empresa no es una buena idea desde el punto de vista del usuario. Si un protocolo solo se puede ejecutar en una marca, es difícil tener equipos mixtos en una red. Un protocolo propietario no es de uso gratuito. En general, una amplia gama de proveedores implementará un protocolo estándar abierto.",
+    "imagen": null
+  },
+  {
+    "pregunta": "47. Una cada descripción con el término correspondiente. No se utilizan todas las opciones.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Codificación del mensaje",
+      "Encapsulamiento del mensaje",
+      "Estimación de tamaño del mensaje"
+    ],
+    "objetivos": [
+      "Proceso de convertir la información de un formato a otro aceptable para la transmisión",
+      "Proceso de colocar un formato de mensaje dentro de otro",
+      "Proceso de dividir un mensaje largo en partes individuales antes de enviarlo por la red"
+    ],
+    "respuestas_correctas": {
+      "Proceso de convertir la información de un formato a otro aceptable para la transmisión": "Codificación del mensaje",
+      "Proceso de colocar un formato de mensaje dentro de otro": "Encapsulamiento del mensaje",
+      "Proceso de dividir un mensaje largo en partes individuales antes de enviarlo por la red": "Estimación de tamaño del mensaje"
+    },
+    "explicacion": "Tema 3.1.5 Proceso de convertir la información de un formato a otro aceptable Codificación del mensajeg para la transmisión Encapsulamiento del mensaje Proceso de colocar un formato de mensaje dentro de otro Estimación de tamaño del Proceso de dividir un mensaje largo en partes individuales antes de mensaje enviarlo por la red",
+    "imagen": null
+  },
+  {
+    "pregunta": "48. ¿Cuáles de las siguientes son dos funciones que proporciona la capa de red? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Proporcionar conexiones de extremo a extremo dedicadas.",
+      "Transportar datos entre los procesos que se ejecutan en los hosts de origen y destino.",
+      "Proporcionar a los dispositivos finales un identificador de red único.",
+      "Colocar datos en el medio de red.",
+      "Dirigir los paquetes de datos a los hosts de destino en otras redes."
+    ],
+    "respuestas_correctas": [
+      2,
+      4
+    ],
+    "explicacion": "Tema 8.1.1 La Capa de Red (Capa 3 del modelo OSI) tiene como funciones principales: 1. Direccionamiento: Asigna direcciones lógicas (como las direcciones IP) que actúan como identificadores únicos para los dispositivos dentro de una red, permitiendo que sean localizados. 2. Enrutamiento: Determina la mejor ruta para enviar los paquetes de datos hacia su destino final, especialmente cuando el destino se encuentra en una red diferente (red remota).",
+    "imagen": null
+  },
+  {
+    "pregunta": "49. Durante el proceso de reenvío de tráfico, ¿qué hace el router de inmediato después de identificar la dirección IP de destino con una red en una entrada de la tabla de enrutamiento conectada directamente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Descartar el tráfico después de consultar la tabla de la ruta.",
+      "Buscar la dirección de siguiente salto para el paquete.",
+      "Conmutar el paquete a la interfaz conectada directamente.",
+      "Analizar la dirección IP de destino."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 8.5.1 Cuando un router recibe un paquete y, al consultar su tabla de enrutamiento, determina que la red de destino está conectada directamente a una de sus interfaces: 1. El router sabe que el destino final se encuentra en esa red local. 2. No necesita buscar un «siguiente salto» (otro router), porque el dispositivo destino es accesible directamente a través de esa interfaz. 3. Por lo tanto, procede inmediatamente a encapsular el paquete en la trama de Capa 2 correspondiente (usando ARP si es necesario) y a conmutarlo (enviarlo) hacia la interfaz física conectada a esa red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "50. ¿Cuáles son las dos afirmaciones correctas en una comparación de encabezados de paquetes IPv4 e IPv6? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "En IPv6, el campo Límite de saltos reemplazó al campo Tiempo de vida de IPv4.",
+      "El nombre del campo Dirección de origen del encabezado de IPv4 se mantiene en IPv6.",
+      "El campo Dirección de destino es nuevo en IPv6.",
+      "El nombre del campo Checksum del encabezado de IPv4 se mantiene en IPv6.",
+      "El campo Versión de IPv4 no se mantiene en IPv6."
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "Tema 8.3.3",
+    "imagen": null
+  },
+  {
+    "pregunta": "51. Una los protocolos de aplicación con los protocolos de transporte correctos.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "FTP",
+      "HTTP",
+      "SMTP",
+      "DHCP",
+      "TFTP"
+    ],
+    "objetivos": [
+      "TCP (1)",
+      "TCP (2)",
+      "TCP (3)",
+      "UDP (1)",
+      "UDP (2)"
+    ],
+    "respuestas_correctas": {
+      "TCP (1)": "FTP",
+      "TCP (2)": "HTTP",
+      "TCP (3)": "SMTP",
+      "UDP (1)": "DHCP",
+      "UDP (2)": "TFTP"
+    },
+    "explicacion": "Tema 14.4.3",
+    "imagen": null
+  },
+  {
+    "pregunta": "52. ¿Cuál es el propósito de la ventana deslizante de TCP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Finalizar la comunicación cuando se completa la transmisión de datos.",
+      "Informar a un origen que debe retransmitir datos desde un punto específico en adelante.",
+      "Solicitar a un origen que reduzca la velocidad de transferencia de datos.",
+      "Asegurar que los segmentos lleguen en orden al destino."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 14.6.5 La ventana deslizante de TCP permite que un dispositivo de destino informe a un origen que debe reducir la velocidad de transmisión. Para lograrlo, el dispositivo de destino reduce el valor incluido en el campo de tamaño de ventana del segmento. Para especificar la retransmisión desde un punto específico en adelante, se utilizan los números de acuse de recibo. Para asegurar que los segmentos lleguen en orden, se utilizan los números de secuencia. Por último, para finalizar la sesión de comunicación, se utiliza un bit de control FIN.",
+    "imagen": null
+  },
+  {
+    "pregunta": "53. ¿Cuáles son las tres partes de una dirección IPv6 unicast global? (Elija tres).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dirección de broadcast",
+      "ID de interfaz",
+      "Máscara de subred",
+      "ID de subred",
+      "Prefijo de enrutamiento global"
+    ],
+    "respuestas_correctas": [
+      1,
+      3,
+      4
+    ],
+    "explicacion": "Tema 12.3.5 Una dirección IPv6 unicast global está estructurada de forma jerárquica para permitir el enrutamiento eficiente a través de Internet. Sus tres partes principales son: 1. Prefijo de enrutamiento global: Es la parte de la dirección asignada por el proveedor o registro de Internet al cliente (típicamente los primeros 48 bits), que identifica la red específica de la organización. 2. ID de subred: Es la porción que utiliza la organización para dividir internamente su red en subredes más pequeñas (normalmente los siguientes 16 bits). 3. ID de interfaz: Es la parte restante de la dirección (los últimos 64 bits) que identifica de manera única a un dispositivo (host) dentro de esa subred específica.",
+    "imagen": null
+  },
+  {
+    "pregunta": "54. ¿Cuál sería el ID de interfaz, de una interfaz habilitada para IPv6 con una dirección MAC de 1C-6F-65-C2- BD-F8, cuando el ID de interfaz se genera mediante el proceso EUI-64?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "1E6F:65FF:FEC2:BDF8",
+      "106F:65FF:FEC2:BDF8",
+      "0C6F:65FF:FEC2:BDF8",
+      "C16F:65FF:FEC2:BDF8"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 12.5.6 Para derivar el ID de la interfaz EUI-64 mediante la dirección MAC 1C-6F-65-C2-BD-F8, se siguen tres pasos. Cambie el séptimo bit de la dirección MAC de un 0 binario a un 1 binario que cambia la C hexadecimal a una E. hexadecimal. Inserte los dígitos hexadecimales FFFE en el medio de la dirección. Vuelva a escribir la dirección en formato IPv6. Los tres pasos, cuando se completan, dan el ID de interfaz de 1E6F: 65FF: FEC2: BDF8.",
+    "imagen": null
+  },
+  {
+    "pregunta": "55. ¿Cuál de estos intervalos de direcciones link-local se puede asignar a una interfaz con IPv6 habilitado?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FF00::/8",
+      "FDEE::/7",
+      "FE80::/10",
+      "FEC0::/10"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 12.3.7 Las direcciones de enlace local están en el rango de FE80 :: / 10 a FEBF :: / 10. La especificación IPv6 original definía direcciones locales del sitio y usaba el rango de prefijo FEC0 :: / 10, pero el IETF desaprobó estas direcciones en favor de direcciones locales únicas. FDEE :: / 7 es una dirección local única porque está en el rango de FC00 :: / 7 a FDFF :: / 7. Las direcciones de multidifusión IPv6 tienen el prefijo FF00 :: / 8.",
+    "imagen": null
+  },
+  {
+    "pregunta": "56. ¿Cuál de los siguientes es un beneficio del uso de la computación en la nube en las redes?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La tecnología se integra a los dispositivos que se utilizan a diario, lo que permite que se interconecten con otros dispositivos y que se vuelvan más “inteligentes” o automatizados.",
+      "Los usuarios finales tienen la libertad de utilizar herramientas personales para acceder a información y comunicarse en una red comercial.",
+      "Se extienden las funcionalidades de red sin necesidad de invertir en infraestructura, personal ni software nuevos.",
+      "Las redes domésticas utilizan el cableado eléctrico existente para conectar los dispositivos a la red donde haya un tomacorriente, lo que permite ahorrar el costo de instalación de cables de datos."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 1.7.6 La computación en la nube permite que las organizaciones accedan a servicios, almacenamiento y potencia de procesamiento a través de Internet (proveedores externos). Esto ofrece un beneficio clave: las empresas pueden escalar sus operaciones y acceder a tecnologías avanzadas sin tener que comprar, mantener o actualizar físicamente servidores, software o contratar personal especializado para gestionar esa infraestructura local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "57. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 4 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.240",
+      "255.255.255.224",
+      "255.255.255.192",
+      "255.255.255.248"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 11.7.2 Para conectar 4 dispositivos sin desperdiciar direcciones IP, debemos calcular el número de bits de host necesarios: 1. Se necesitan 4 direcciones para los dispositivos + 1 dirección de red + 1 dirección de broadcast = 6 direcciones IP totales requeridas. 2. Buscamos la potencia de 2 más cercana que cubra este número: 1. 22 = 4 (insuficiente). 2. 23 = 8 (suficiente). 3. Al necesitar 3 bits para hosts (32 – 3 = 29 bits para la red), usamos un prefijo /29. 4. Una máscara /29 en formato decimal es 255.255.255.248.",
+    "imagen": null
+  },
+  {
+    "pregunta": "58. ¿Cuáles son las dos afirmaciones correctas sobre direcciones MAC e IP durante la transmisión de datos si no hay NAT? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un paquete que cruzó cuatro routers cambió la dirección IP de destino cuatro veces.",
+      "Cada vez que una trama se encapsula con una nueva dirección MAC de destino, se necesita una nueva dirección IP de destino.",
+      "Las direcciones MAC de destino nunca cambian en una trama que atraviesa siete routers.",
+      "Las direcciones IP de destino en un encabezado del paquete se mantienen constantes a lo largo de toda la ruta a un host de destino.",
+      "Las direcciones MAC de destino y de origen tienen importancia local y cambian cada vez que una trama va de una LAN a otra."
+    ],
+    "respuestas_correctas": [
+      3,
+      4
+    ],
+    "explicacion": "Tema 9.1.2 Direcciones IP (Capa 3): Estas direcciones identifican el origen y el destino final extremo a extremo. Por lo tanto, permanecen constantes desde que el paquete sale del host de origen hasta que llega al host de destino (si no hay NAT). Direcciones MAC (Capa 2): Estas direcciones solo tienen importancia local dentro del segmento de red (LAN) donde se encuentra el dispositivo. Cuando un paquete atraviesa un router, el encabezado de la trama antigua se elimina y se encapsula en una nueva trama con nuevas direcciones MAC (la dirección de origen cambia a la interfaz del router que envía la trama y la de destino cambia a la dirección MAC del siguiente salto).",
+    "imagen": null
+  },
+  {
+    "pregunta": "59. Una la característica con el método de reenvío. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Siempre almacena la trama completa.",
+      "Realiza la CRC antes de reenviar.",
+      "Revisa la longitud de la trama antes de reenviar.",
+      "No reenvía transmisiones.",
+      "Tiene baja latencia.",
+      "Puede reenviar runt frames.",
+      "Comienza a reenviar cuando se recibe la dirección de destino."
+    ],
+    "objetivos": [
+      "Por método de corte (1)",
+      "Por método de corte (2)",
+      "Por método de corte (3)",
+      "Por almacenamiento y envío (1)",
+      "Por almacenamiento y envío (2)",
+      "Por almacenamiento y envío (3)"
+    ],
+    "respuestas_correctas": {
+      "Por método de corte (1)": "Tiene baja latencia.",
+      "Por método de corte (2)": "Puede reenviar runt frames.",
+      "Por método de corte (3)": "Comienza a reenviar cuando se recibe la dirección de destino.",
+      "Por almacenamiento y envío (1)": "Siempre almacena la trama completa.",
+      "Por almacenamiento y envío (2)": "Realiza la CRC antes de reenviar.",
+      "Por almacenamiento y envío (3)": "Revisa la longitud de la trama antes de reenviar."
+    },
+    "explicacion": "Tema 7.4.1 Baja latencia. por método de corte Puede reenviar runt frames. por método de corte Comienza a reenviar cuando se recibe la dirección de destino. por método de corte Siempre almacena la trama completa. por almacenamiento y envío Realiza la CRC antes de reenviar. por almacenamiento y envío Revisa la longitud de la trama antes de reenviar. por almacenamiento y envío",
+    "imagen": null
+  },
+  {
+    "pregunta": "60. Asocie las características con las categorías. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "contenido en el encabezado de Capa 3",
+      "contenido en el encabezado de Capa 2",
+      "separados en OUI y un identificador único",
+      "separados en una parte de red y un identificador único",
+      "32 o 128 bits",
+      "48 bits",
+      "64 bits"
+    ],
+    "objetivos": [
+      "Dirección IP (1)",
+      "Dirección IP (2)",
+      "Dirección IP (3)",
+      "Dirección MAC (1)",
+      "Dirección MAC (2)",
+      "Dirección MAC (3)"
+    ],
+    "respuestas_correctas": {
+      "Dirección IP (1)": "contenido en el encabezado de Capa 3",
+      "Dirección IP (2)": "separados en una parte de red y un identificador único",
+      "Dirección IP (3)": "32 o 128 bits",
+      "Dirección MAC (1)": "contenido en el encabezado de Capa 2",
+      "Dirección MAC (2)": "separados en OUI y un identificador único",
+      "Dirección MAC (3)": "48 bits"
+    },
+    "explicacion": "Tema 9.1.1",
+    "imagen": null
+  },
+  {
+    "pregunta": "61. ¿Qué conector se utiliza con el cableado de par trenzado en una LAN Ethernet?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 4.4.2 El conector RJ-45 (que aparece resaltado en el recuadro rojo de la ilustración) es el estándar utilizado para el cableado de par trenzado (como los cables UTP de Categoría 5e, 6 o 6a) en redes locales Ethernet. Este conector cuenta con 8 contactos (pines) que se alinean con los 8 hilos internos del cable.",
+    "imagen": "pregunta_61.jpg"
+  },
+  {
+    "pregunta": "62. Consulte la ilustración. ¿Cuál es el problema con la terminación que se muestra?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Los cables son demasiado gruesos para el conector que se utiliza.",
+      "La longitud de la parte sin trenzar de cada cable es demasiado larga.",
+      "No se debería haber quitado la malla de cobre tejida.",
+      "Se está utilizando el tipo de conector incorrecto."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 4.4.2 Cuando se termina un cable a un conector RJ-45, es importante asegurarse de que los cables sin trenzar no sean demasiado largos y que la funda de plástico flexible que rodea a los cables esté doblada y no los cables desnudos. Ninguno de los cables de colores debe ser visible desde la parte inferior del conector.",
+    "imagen": "pregunta_62.jpg"
+  },
+  {
+    "pregunta": "63. Un técnico con una PC está utilizando varias aplicaciones mientras está conectado a Internet. ¿Cómo hace la PC para no perder de vista el flujo de datos entre las sesiones de varias aplicaciones y para que cada una de ellas reciba los flujos de paquetes correctos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Se realiza el seguimiento del flujo de datos según el número de puerto de origen utilizado por cada aplicación.",
+      "Se realiza el seguimiento del flujo de datos según la dirección IP de destino utilizada por la PC del técnico.",
+      "Se realiza el seguimiento del flujo de datos según la dirección MAC de destino de la PC del técnico.",
+      "Se realiza el seguimiento del flujo de datos según la dirección IP de origen utilizada por la PC del técnico."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 14.4.1 El número de puerto de origen de una aplicación se genera aleatoriamente y se utiliza para realizar un seguimiento individual de cada sesión que se conecta a Internet. Cada aplicación utilizará un número de puerto de origen único para proporcionar comunicación simultánea desde múltiples aplicaciones a través de Internet.",
+    "imagen": null
+  },
+  {
+    "pregunta": "64. Tres empleados de un banco utilizan la red corporativa. El primer empleado utiliza un explorador Web para ver una página Web de la compañía con el objetivo de leer algunos anuncios. El segundo empleado accede a la base de datos corporativa para realizar algunas transacciones financieras. El tercer empleado participa en una importante conferencia de audio en vivo con otros gerentes corporativos ubicados en sucursales. Si se implementa QoS en esta red, ¿cuál será el orden de prioridad de los diversos tipos de datos, de mayor a menor importancia?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Transacciones financieras, página Web, conferencia de audio",
+      "Conferencia de audio, transacciones financieras, página Web",
+      "Conferencia de audio, página Web, transacciones financieras",
+      "Transacciones financieras, conferencia de audio, página Web"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 1.6.4 Los mecanismos de QoS permiten el establecimiento de estrategias de gestión de colas que imponen prioridades para diferentes categorías de datos de aplicaciones. Por lo tanto, esta cola permite que los datos de voz tengan prioridad sobre los datos de transacciones, que tienen prioridad sobre los datos web.",
+    "imagen": null
+  },
+  {
+    "pregunta": "65. Un técnico puede hacer ping a la dirección IP del servidor web de una empresa remota, pero no puede hacer ping correctamente a la dirección URL del mismo servidor web. ¿Qué utilidad de software puede utilizar para diagnosticar el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "netstat",
+      "ipconfig",
+      "tracert",
+      "nslookup"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 15.4.4 Traceroute (tracert) es una utilidad que genera una lista de saltos que se alcanzaron con éxito a lo largo de la ruta desde el origen hasta el destino. Esta lista puede proporcionar información importante de verificación y solución de problemas. La utilidad ipconfig se utiliza para mostrar los valores de configuración de IP en una PC con Windows. La utilidad Netstat se utiliza para identificar qué conexiones TCP activas están abiertas y ejecutándose en un host en red. Nslookup es una utilidad que permite al usuario consultar manualmente los servidores de nombres para resolver un nombre de host determinado. Esta utilidad también se puede utilizar para solucionar problemas de resolución de nombres y verificar el estado actual de los servidores de nombres.",
+    "imagen": null
+  },
+  {
+    "pregunta": "66. Un administrador definió una cuenta de usuario local con una contraseña secreta en el router R1 para usarla con SSH. ¿Qué tres pasos adicionales se requieren para configurar R1 para aceptar solo conexiones SSH cifradas? (Escoja tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Habilitar las sesiones SSH de entrada vty.",
+      "Habilitar las sesiones Telnet de entrada VTY.",
+      "Configurar el DNS en el router.",
+      "Configurar el nombre de dominio IP en el router.",
+      "Generar las claves SSH.",
+      "Generar claves pre-compartidas bidireccionales."
+    ],
+    "respuestas_correctas": [
+      0,
+      3,
+      4
+    ],
+    "explicacion": "Tema 16.4.4 Para configurar el router R1 para aceptar solo conexiones SSH cifradas (una vez definida la cuenta de usuario local), los tres pasos adicionales necesarios son: Configurar el nombre de dominio IP en el router: Se requiere el comando ip domain-name <nombre> para poder generar las claves criptográficas. Generar las claves SSH: Se utiliza el comando crypto key generate rsa para crear las claves de cifrado necesarias para la sesión. Habilitar las sesiones SSH de entrada vty: Se utiliza el comando transport input ssh dentro de la configuración de las líneas VTY para restringir el acceso remoto exclusivamente a SSH.",
+    "imagen": null
+  },
+  {
+    "pregunta": "67. Una el tipo de amenaza con la causa. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Manejo deficiente de componentes eléctricos clave (descarga electrostática), falta de repuestos críticos, cableado y etiquetado deficientes",
+      "Daño físico a servidores, routers, switches, planta de cableado y estaciones de trabajo",
+      "Extremos de temperatura (demasiado calor o demasiado frío) o extremos de humedad (demasiado húmedo o demasiado seco)",
+      "Voltage spikes, insufficient supply voltage (brownouts), unconditioned power (noise), and total power loss"
+    ],
+    "objetivos": [
+      "Amenazas ambientales",
+      "Amenazas eléctricas",
+      "Amenazas de mantenimiento",
+      "Amenazas de hardware"
+    ],
+    "respuestas_correctas": {
+      "Amenazas ambientales": "Extremos de temperatura (demasiado calor o demasiado frío) o extremos de humedad (demasiado húmedo o demasiado seco)",
+      "Amenazas eléctricas": "Voltage spikes, insufficient supply voltage (brownouts), unconditioned power (noise), and total power loss",
+      "Amenazas de mantenimiento": "Manejo deficiente de componentes eléctricos clave (descarga electrostática), falta de repuestos críticos, cableado y etiquetado deficientes",
+      "Amenazas de hardware": "Daño físico a servidores, routers, switches, planta de cableado y estaciones de trabajo"
+    },
+    "explicacion": "Tema 16.1.3 Amenazas Extremos de temperatura (demasiado calor o demasiado frío) o extremos de ambientales humedad (demasiado húmedo o demasiado seco) Voltage spikes, insufficient supply voltage (brownouts), unconditioned power Amenazas eléctricas (noise), and total power loss Amenazas de Manejo deficiente de componentes eléctricos clave (descarga electrostática), mantenimiento falta de repuestos críticos, cableado y etiquetado deficientes Amenazas de Daño físico a servidores, routers, switches, planta de cableado y estaciones de hardware trabajo",
+    "imagen": null
+  },
+  {
+    "pregunta": "68. ¿Qué información muestra el comando show startup-config ?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El contenido del archivo de configuración en ejecución actual en la RAM",
+      "El contenido del archivo de configuración guardado en la NVRAM",
+      "La imagen de IOS copiada en la RAM",
+      "El programa de arranque en la ROM"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 2.5.1 El comando show startup-config muestra la configuración guardada ubicada en la NVRAM. El comando show running-config muestra el contenido del archivo de configuración que se está ejecutando actualmente y que se encuentra en la RAM.",
+    "imagen": null
+  },
+  {
+    "pregunta": "69. ¿Cómo mejora la seguridad de las contraseñas en los routers y switches Cisco el comando service password-encryption ?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Requiere que un usuario escriba contraseñas cifradas para obtener acceso a la consola del router o del switch.",
+      "Requiere que se utilicen contraseñas cifradas al conectarse a un router o switch de manera remota mediante Telnet.",
+      "Cifra las contraseñas a medida que se envían por la red.",
+      "Cifra las contraseñas que se almacenan en los archivos de configuración del router o del switch."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 2.4.4 El comando service password-encryption cifra las contraseñas de texto sin formato en el archivo de configuración para que no puedan ser vistas por usuarios no autorizados.",
+    "imagen": null
+  },
+  {
+    "pregunta": "70. Consulte la ilustración. Los switches tienen su configuración predeterminada. El host A debe comunicarse con el host D, pero no tiene la dirección MAC del gateway predeterminado. ¿Qué hosts de la red reciben la solicitud de ARP que envía el host A?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Solo el router R1",
+      "Solo los hosts A, B, C y D",
+      "Solo el host D",
+      "Solo los hosts B y C, y el router R1",
+      "Solo los hosts A, B y C",
+      "Solo los hosts B y C"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 11.4.1 Dado que el host A no tiene la dirección MAC de la gateway predeterminado en su tabla ARP, el host A envía una transmisión ARP. La transmisión de ARP se enviaría a todos los dispositivos de la red local. Los hosts B, C y el enrutador R1 recibirían la transmisión. El enrutador R1 no reenvía el mensaje.",
+    "imagen": "pregunta_70.jpg"
+  },
+  {
+    "pregunta": "71. ¿Qué servicio proporciona DHCP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Utiliza el cifrado para proporcionar acceso remoto seguro a los dispositivos y servidores de red.",
+      "Permite el acceso remoto a dispositivos de red y servidores.",
+      "Asigna direcciones IP dinámicamente a dispositivos finales e intermedios.",
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.4.6 El DHCP (Protocolo de Configuración Dinámica de Host) es un protocolo de red que automatiza el proceso de asignación de configuraciones IP. Su función principal es asignar dinámicamente direcciones IP (junto con otros parámetros como la máscara de subred, el gateway predeterminado y los servidores DNS) a los dispositivos en una red, eliminando la necesidad de que un administrador realice esta tarea de forma manual en cada equipo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "72. ¿Qué dos funciones se realizan en la subcapa MAC de la capa de enlace de datos OSI para facilitar la comunicación Ethernet? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "implementa CSMA/CD sobre medios semidúplex compartidos heredados",
+      "permite que IPv4 e IPv6 utilicen el mismo medio físico",
+      "gestiona la comunicación entre el software de red de capa superior y el hardware de NIC Ethernet",
+      "integra flujos de Capa 2 entre 10 Gigabit Ethernet sobre fibra y 1 Gigabit Ethernet sobre cobre",
+      "agrega información de control Ethernet a los datos de protocolo de red"
+    ],
+    "respuestas_correctas": [
+      0,
+      4
+    ],
+    "explicacion": "Tema 6.1.2 Al evaluar las opciones, clasifícalas así: 1. Si la opción menciona: «identificar el protocolo de capa superior», «interactuar con el software de red» o «permitir que IPv4/IPv6 usen el mismo medio» -> Es función de la subcapa LLC. 2. Si la opción menciona: «direcciones MAC», «detección de errores (FCS)», «CSMA/CD», «delimitación de tramas» o «acceso al medio» -> Es función de la subcapa MAC.",
+    "imagen": null
+  },
+  {
+    "pregunta": "73. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 200 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.248",
+      "255.255.255.0",
+      "255.255.255.240",
+      "255.255.255.224"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 11.7.2 Para determinar la máscara de red necesaria, debemos calcular cuántas direcciones IP se requieren para soportar 200 dispositivos: 1. Requerimiento de hosts: Necesitamos 200 direcciones para los dispositivos. 2. Direcciones reservadas: Debemos sumar la dirección de red y la dirección de broadcast (2 direcciones adicionales). Total: 202 direcciones necesarias. 3. Cálculo de bits: 1. Si usamos una máscara /25 (255.255.255.128), tenemos 27 – 2 = 126 direcciones útiles. (Insuficiente). 2. Si usamos una máscara /24 (255.255.255.0), tenemos 28 – 2 = 254 direcciones útiles. (Suficiente). Por lo tanto, la máscara 255.255.255.0 (/24) es la máscara más pequeña (es decir, la que tiene el prefijo más corto y por ende más direcciones de host) que permite cubrir los 200 dispositivos necesarios sin quedarse corto.",
+    "imagen": null
+  },
+  {
+    "pregunta": "74. ¿Qué valor incluido en un campo de encabezado de IPv4 reduce cada router cuando recibe un paquete?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Longitud del encabezado",
+      "Desplazamiento de fragmentos",
+      "Tiempo de vida",
+      "Servicios diferenciados"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 8.2.2 Cuando un router recibe un paquete, el enrutador disminuirá el campo de tiempo de vida (TTL) en uno. Cuando el campo llega a cero, el enrutador receptor descartará el paquete y enviará un mensaje ICMP Tiempo excedido al remitente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "75. ¿Cuáles dos instrucciones describen las características de una tabla de enrutamiento IPv4 en un router? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Si existiesen dos o más rutas posibles para llegar al mismo destino, se usa la métrica más alta para decidir cuál aparece en la tabla de enrutamiento.",
+      "Si se configura una ruta estática predeterminada en el router, se incluirá una entrada en la tabla de enrutamiento con el código fuente S.",
+      "Almacena información sobre rutas derivadas de las interfaces del router activas.",
+      "El comando netstat -r se puede utilizar para mostrar la tabla de enrutamiento de un router.",
+      "Las interfaces conectadas directamente tienen dos códigos de origen de ruta en la tabla de enrutamiento: : C and S .",
+      "La tabla de enrutamiento muestra las direcciones MAC de cada interfaz activa."
+    ],
+    "respuestas_correctas": [
+      1,
+      2
+    ],
+    "explicacion": "Tema 8.5.6 Código fuente S: Las rutas estáticas configuradas manualmente en un router se identifican en la tabla de enrutamiento con la letra S. Rutas de interfaces activas: La tabla de enrutamiento mantiene activamente las rutas hacia las redes que están conectadas directamente a sus interfaces, siempre que estas interfaces estén configuradas y operativas (código C para Connected y L para Local).",
+    "imagen": null
+  },
+  {
+    "pregunta": "76. ¿Cuáles son los dos comandos que se pueden utilizar en un host de Windows para mostrar la tabla de enrutamiento? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "netstat -s",
+      "tracert",
+      "show ip route",
+      "netstat -r",
+      "route print"
+    ],
+    "respuestas_correctas": [
+      3,
+      4
+    ],
+    "explicacion": "Tema 8.4.4 En un host de Windows, los comandos route print o netstat -r se pueden utilizar para mostrar la tabla de enrutamiento del host. Ambos comandos generan la misma salida. En un router, el comando show ip route se usa para mostrar la tabla de enrutamiento. El comando netstat –s se utiliza para mostrar estadísticas por protocolo. El comando tracert se utiliza para mostrar la ruta que recorre un paquete hasta su destino.",
+    "imagen": null
+  },
+  {
+    "pregunta": "77. Se asigna un bloque de direcciones IPv6 2001:db8:0:ca00::/56 a una organización. ¿Cuántas subredes se pueden crea sin usar bits en el espacio de ID de interfaz?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "512",
+      "256",
+      "1024",
+      "4096"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 12.8.1 Para calcular el número de subredes disponibles en IPv6, utilizamos la diferencia entre la longitud del prefijo asignado y la longitud estándar de la red (que es de 64 bits para el ID de interfaz): 1. Prefijo asignado: /56 2. Longitud estándar: /64 3. Cálculo de bits para subredes: 64 – 56 = 8 bits disponibles para crear subredes. 4. Cálculo del número de subredes: 28 = 256 Por lo tanto, con un bloque /56, la organización puede crear 256 subredes distintas sin modificar los 64 bits reservados para el ID de interfaz.",
+    "imagen": null
+  },
+  {
+    "pregunta": "78. Una la descripción con el componente de direccionamiento IPv6. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Prefijo de enrutamiento global",
+      "Máscara de subred",
+      "ID de subred",
+      "ID de interfaz"
+    ],
+    "objetivos": [
+      "Las organizaciones utilizan esta parte de la dirección para identificar subredes.",
+      "El proveedor asigna esta porción de red de la dirección.",
+      "Esta parte de la dirección es equivalente a la porción de host de una dirección IPv4."
+    ],
+    "respuestas_correctas": {
+      "Las organizaciones utilizan esta parte de la dirección para identificar subredes.": "ID de subred",
+      "El proveedor asigna esta porción de red de la dirección.": "Prefijo de enrutamiento global",
+      "Esta parte de la dirección es equivalente a la porción de host de una dirección IPv4.": "ID de interfaz"
+    },
+    "explicacion": "Tema 12.3.6",
+    "imagen": null
+  },
+  {
+    "pregunta": "79. ¿Qué característica describe un adware?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "el uso de credenciales robadas para acceder a datos privados",
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red",
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "software instalado en una computadora para recolectar información del usuario"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 1.8.1 El adware es un tipo de software malicioso o no deseado que, una vez instalado en el equipo, tiene como objetivo principal mostrar publicidad no solicitada y, frecuentemente, recolectar información del usuario (como sus hábitos de navegación) para dirigir dicha publicidad de manera más específica o vender esos datos a terceros.",
+    "imagen": null
+  },
+  {
+    "pregunta": "80. Se ha pedido a un nuevo administrador de red que introduzca un banner en un dispositivo Cisco. ¿Cuál es la forma más rápida en que un administrador de red podría probar si el banner está configurado correctamente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Apagar y encender el dispositivo.",
+      "Escribir CTRL-Z en la solicitud de modo privilegiado.",
+      "Reiniciar el dispositivo.",
+      "Salgir del modo EXEC privilegiado y pulsar Enter .",
+      "Salir del modo de configuración global."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 2.4.5 Mientras esté en modo privilegiado, como Router#, escriba exit , presione Enter y aparecerá el mensaje de banner. El ciclo de encendido de un dispositivo de red al que se ha emitido el comando banner motd también mostrará el mensaje de banner, pero esta no es una forma rápida de probar la configuración.",
+    "imagen": null
+  },
+  {
+    "pregunta": "81. Un administrador de redes quiere utilizar la misma máscara de subred para tres subredes en un sitio pequeño. El sitio tiene las siguientes redes y cantidad de dispositivos: Subred A: teléfonos IP (10 direcciones) Subred B: PC (8 direcciones) Subred C: impresoras (2 direcciones) ¿Cuál sería la única máscara de subred adecuada para utilizar en las tres subredes?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.240",
+      "255.255.255.0",
+      "255.255.255.252",
+      "255.255.255.248"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 11.7.2 Si se va a utilizar la misma máscara, entonces se debe examinar la red con más hosts para determinar el número de hosts. Debido a que son 10 hosts, se necesitan 4 bits de host. La máscara de subred / 28 o 255.255.255.240 sería apropiada para usar en estas redes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "82. Un administrador de redes quiere utilizar la misma máscara de red para todas las redes en un sitio pequeño en particular. El sitio tiene las siguientes redes y cantidad de dispositivos: Teléfonos IP: 22 direcciones PC: 20 direcciones necesarias Impresoras: 2 direcciones necesarias Escáneres: 2 direcciones necesarias El administrador de redes considera que la red que se utilizará en este sitio es 192.168.10.0/24. ¿Cuál es la máscara de subred única que utilizaría las direcciones disponibles para las cuatro subredes de la manera más eficaz?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.192",
+      "255.255.255.248",
+      "255.255.255.0",
+      "255.255.255.252",
+      "255.255.255.224",
+      "255.255.255.240"
+    ],
+    "respuestas_correctas": [
+      4
+    ],
+    "explicacion": "Tema 11.7.2 Para resolver esta pregunta, debemos determinar cuál es la máscara de red mínima que puede albergar a la red con mayor cantidad de dispositivos, ya que se requiere usar la misma máscara para todas. Análisis de los requerimientos: 1. Red más grande: La de «Teléfonos IP» requiere 22 direcciones. 2. Cálculo de direcciones necesarias: 1. Para que la red sea funcional, debemos sumar la dirección de red y la dirección de broadcast (2 direcciones adicionales). 2. 22 + 2 = 24 direcciones totales necesarias. 3. Búsqueda de la potencia de 2: 1. 24 = 16 (insuficiente). 2. 25 = 32 (suficiente). 3. Necesitamos 5 bits para hosts (25 = 32). Cálculo de la máscara: Si usamos 5 bits para hosts, nos quedan 32 – 5 = 27 bits para la red (prefijo /27). Una máscara /27 se representa en formato decimal como 255.255.255.224.",
+    "imagen": null
+  },
+  {
+    "pregunta": "83. Una cada tipo de campo de trama con la función correspondiente. (No se utilizan todas las opciones.)",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Direccionamiento",
+      "Detección de errores",
+      "Tipo",
+      "Inicio de trama"
+    ],
+    "objetivos": [
+      "Este campo revisa si la trama se dañó durante la transferencia.",
+      "Este campo identifica servicios especiales de control del flujo.",
+      "Este campo ayuda a dirigir la trama hacia su destino.",
+      "Este campo identifica el comienzo de una trama.",
+      "El LLC utiliza este campo para identificar el protocolo de capa 3."
+    ],
+    "respuestas_correctas": {
+      "Este campo revisa si la trama se dañó durante la transferencia.": "Detección de errores",
+      "Este campo ayuda a dirigir la trama hacia su destino.": "Direccionamiento",
+      "Este campo identifica el comienzo de una trama.": "Inicio de trama",
+      "El LLC utiliza este campo para identificar el protocolo de capa 3.": "Tipo"
+    },
+    "explicacion": "Tema 6.3.2",
+    "imagen": null
+  },
+  {
+    "pregunta": "84. Un usuario envía una solicitud HTTP a un servidor Web en una red remota. Durante la encapsulación para esta solicitud, ¿qué información se agrega al campo de dirección de una trama para indicar el destino?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La dirección IP del gateway predeterminado",
+      "la dirección MAC del host de destino",
+      "El dominio de red del host de destino",
+      "La dirección MAC del gateway predeterminado"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 9.1.2 Una trama está encapsulada con direcciones MAC de origen y destino. El dispositivo de origen no conocerá la dirección MAC del host remoto. La fuente enviará una solicitud ARP y el enrutador responderá. El enrutador responderá con la dirección MAC de su interfaz, la que está conectada a la misma red que la fuente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "85. ¿Qué son los protocolos exclusivos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Protocolos desarrollados por organizaciones que tienen control sobre su definición y operación.",
+      "Protocolos que pueden ser utilizados libremente por cualquier organización o proveedor.",
+      "Protocolos desarrollados por organizaciones privadas para que operen en hardware de cualquier proveedor.",
+      "Un conjunto de protocolos conocidos como “suite de protocolos TCP/IP”."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 3.3.4 Los protocolos patentados tienen su definición y operación controladas por una empresa o proveedor. Algunos de ellos pueden ser utilizados por diferentes organizaciones con permiso del propietario. El conjunto de protocolos TCP / IP es un estándar abierto, no un protocolo propietario.",
+    "imagen": null
+  },
+  {
+    "pregunta": "86. Cuando la configuración de un switch incluye un umbral de error por puerto definido por el usuario, ¿a qué método de switching se revierte el switch cuando se alcanza el umbral de error?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Libre de fragmentos",
+      "Envío rápido",
+      "Método de corte",
+      "Almacenamiento y envío"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 7.4.2 Por defecto, muchos switches pueden utilizar métodos de switching más rápidos, como el método de corte (cut-through), para reducir la latencia. Sin embargo, este método no verifica los errores en la trama antes de reenviarla. Cuando un puerto alcanza un umbral de error definido por el usuario, el switch cambia automáticamente al método de Almacenamiento y envío. Esto se hace por seguridad: este método obliga al switch a recibir la trama completa, calcular su propia suma de verificación (CRC) y verificar si la trama está libre de errores antes de reenviarla, evitando así la propagación de tramas dañadas por la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "87. Consulte la ilustración. Si el host A envía un paquete IP al host B, ¿cuál es la dirección de destino en la trama cuando deja el host A?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "BB:BB:BB:BB:BB:BB",
+      "172.168.10.65",
+      "DD:DD:DD:DD:DD:DD",
+      "CC:CC:CC:CC:CC:CC",
+      "AA:AA:AA:AA:AA:AA",
+      "172.168.10.99"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 9.1.2 Cuando un host envía información a una red distante, el encabezado de la trama de Capa 2 contendrá una dirección MAC de origen y destino. La dirección de origen será el dispositivo host de origen. La dirección de destino será la interfaz del enrutador que se conecta a la misma red. En el caso de que el host A envíe información al host B, la dirección de origen es AA: AA: AA: AA: AA: AA y la dirección de destino es la dirección MAC asignada a la interfaz Ethernet R2, BB: BB: BB: BB: BB: BB.",
+    "imagen": "pregunta_87.jpg"
+  },
+  {
+    "pregunta": "88. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 143. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FTP",
+      "Telnet",
+      "IMAP",
+      "SSH"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 14.4.3 El número de puerto 143 es el puerto estándar asignado al protocolo IMAP (Internet Message Access Protocol). Este protocolo se utiliza para que los clientes de correo electrónico recuperen mensajes de un servidor de correo. FTP utiliza los puertos 20 y 21. Telnet utiliza el puerto 23. SSH utiliza el puerto 22.",
+    "imagen": null
+  },
+  {
+    "pregunta": "89. ¿Qué servicio proporciona Internet Messenger?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos.",
+      "Utiliza el cifrado para proporcionar acceso remoto seguro a los dispositivos y servidores de red.",
+      "Traduce los nombres de dominio tales como cisco.com a direcciones IP",
+      "Permite el acceso remoto a dispositivos de red y servidores."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 1.2.1 El servicio de mensajería instantánea (Internet Messenger) es una aplicación diseñada específicamente para la comunicación en tiempo real entre personas. A través de este servicio, los usuarios pueden enviar y recibir mensajes de texto, y frecuentemente también archivos, audio y video, de forma inmediata con otros usuarios remotos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "90. ¿Qué característica describe mejor a un virus?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "software malintencionado o código que se ejecuta en un dispositivo final",
+      "el uso de credenciales robadas para acceder a datos privados",
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 16.2.1 Un virus informático es un tipo de software malicioso (malware) que, a diferencia de un gusano, requiere que el usuario ejecute un programa o abra un archivo infectado para poder activarse y propagarse. Su característica principal es que se ejecuta en un dispositivo final (computadora, servidor, dispositivo móvil) donde altera el funcionamiento normal, daña archivos o roba información.",
+    "imagen": null
+  },
+  {
+    "pregunta": "91. ¿Qué técnica se utiliza con el cable UTP para la protección contra la interferencia de señal del crosstalk?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Terminar el cable con conectores a tierra especiales.",
+      "Trenzar los cables entre sí en pares.",
+      "Recubrir los cables con un revestimiento de plástico flexible.",
+      "Envolver los pares de hilos en papel metálico."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 4.4.1 para ayudar a prevenir los efectos de la diafonía, los cables UTP se trenzan en pares. Al retorcer los cables, los campos magnéticos de cada cable se cancelan entre sí.",
+    "imagen": null
+  },
+  {
+    "pregunta": "92. Consulte la ilustración. ¿Cuáles son los tres hechos que se pueden determinar a partir del resultado visible del comando show ip interface brief ? (Elija tres opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El switch se puede administrar de manera remota.",
+      "Un dispositivo está conectado a una interfaz física.",
+      "Se configuraron contraseñas en el switch.",
+      "Se configuró la SVI predeterminada.",
+      "Dos dispositivos están conectados al switch.",
+      "Se configuraron dos interfaces físicas."
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      3
+    ],
+    "explicacion": "Tema 17.5.7 Vlan1 es el SVI predeterminado. Debido a que se ha configurado una SVI, el switch se puede configurar y administrar de forma remota. FastEthernet0/0 aparece y está activo, por lo que hay un dispositivo conectado.",
+    "imagen": "pregunta_92.jpg"
+  },
+  {
+    "pregunta": "93. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 69. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "TFTP",
+      "DHCP",
+      "DNS",
+      "SMTP"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 14.4.3 El número de puerto 69 es el puerto estándar asignado al protocolo TFTP (Trivial File Transfer Protocol). El TFTP es un protocolo de transferencia de archivos simplificado, diseñado para ser fácil de implementar y que se utiliza comúnmente para tareas como la transferencia de archivos de configuración o imágenes de sistemas operativos entre dispositivos de red (como routers y switches) y servidores, dado que no requiere autenticación ni las funciones complejas del FTP tradicional. DHCP utiliza los puertos 67 y 68. DNS utiliza el puerto 53. SMTP utiliza el puerto 25.",
+    "imagen": null
+  },
+  {
+    "pregunta": "94. Un dispositivo con IPv6 habilitado envía un paquete de datos con la dirección de destino FF02::2. ¿Cuál es el destino de este paquete?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Todos los dispositivos con IPv6 habilitado en el enlace local",
+      "Todos los routers con IPv6 configurado en el enlace local",
+      "Todos los servidores IPv6 DHCP",
+      "Todos los dispositivos con IPv6 habilitado en la red"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 12.7.2 En IPv6, la dirección de multidifusión (multicast) FF02::2 está reservada específicamente para enviar paquetes a todos los routers (All-Routers) dentro del enlace local (segmento de red local). Es utilizada, por ejemplo, por los dispositivos para enviar mensajes de Solicitud de Router (RS) cuando necesitan descubrir routers y obtener información de configuración.",
+    "imagen": null
+  },
+  {
+    "pregunta": "95. ¿Cuál es el ID de subred asociado a la dirección IPv6 2001:DA48:FC5:A 4:3 D1B::1/64?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2001::/64",
+      "2001:DA48:FC5::A4:/64",
+      "2001:DA48:FC5:A4::/64",
+      "2001:DA48::/64"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 12.3.6 Para encontrar el ID de subred de una dirección IPv6 con un prefijo /64, debemos tomar los primeros 64 bits (los primeros 4 bloques hexadecimales) y establecer el resto de los bits a cero. 1. Dirección original: 2001:DA48:FC5:A4:3D1B::1 (eliminando espacios). 2. Identificación del prefijo /64: Los primeros 64 bits corresponden a los primeros cuatro grupos: 2001:DA48:FC5:A4 . 3. Formato de subred: Al ser un prefijo /64, estos cuatro grupos forman el ID de subred. El resto de la dirección (el ID de interfaz) se representa como :: . 4. Resultado: 2001:DA48:FC5:A4::/64",
+    "imagen": null
+  },
+  {
+    "pregunta": "96. ¿Qué tipo de amenaza de seguridad sería responsable si un complemento de la hoja de cálculo deshabilita el firewall de software local?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DoS",
+      "Caballo de Troya",
+      "Desbordamiento del búfer",
+      "Ataque de fuerza bruta"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 16.2.1 un caballo de Troya es un software que hace algo dañino, pero que está oculto en un código de software legítimo. Un ataque de denegación de servicio (DoS) resulta en la interrupción de los servicios de red a los usuarios, dispositivos de red o aplicaciones. Un ataque de fuerza bruta normalmente implica intentar acceder a un dispositivo de red. Se produce un desbordamiento del búfer cuando un programa intenta almacenar más datos en una ubicación de memoria de los que puede contener.",
+    "imagen": null
+  },
+  {
+    "pregunta": "97. ¿Qué dos tipos de mensajes ICMPv6 se deben permitir a través de listas de control de acceso IPv6 para permitir la resolución de direcciones de Capa 3 a direcciones MAC de Capa 2? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "solicitudes de echo",
+      "Anuncios de router (RA)",
+      "Solicitud de vecino (NS)",
+      "respuestas de echo",
+      "Anuncio de vecino (NA)",
+      "Solicitud de router (RS)"
+    ],
+    "respuestas_correctas": [
+      2,
+      4
+    ],
+    "explicacion": "Tema 9.3.3 En IPv6, el protocolo NDP (Neighbor Discovery Protocol) es el encargado de resolver direcciones de Capa 3 (IPv6) a direcciones de Capa 2 (MAC), reemplazando la función que el protocolo ARP realizaba en IPv4. Solicitud de vecino (Neighbor Solicitation – NS): Es el mensaje enviado por un nodo para preguntar por la dirección física (MAC) de otro nodo en la red local. Anuncio de vecino (Neighbor Advertisement – NA): Es el mensaje de respuesta enviado por el nodo que posee la dirección IPv6 consultada, proporcionando su dirección MAC. Para que la comunicación de red funcione correctamente, estos dos mensajes deben permitirse explícitamente en las listas de control de acceso (ACL) de IPv6.",
+    "imagen": null
+  },
+  {
+    "pregunta": "98. ¿Qué dos instrucciones describen con precisión una ventaja o una desventaja al implementar NAT para IPv4 en una red? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "NAT hace que las tablas de enrutamiento incluyan más información.",
+      "NAT mejora el manejo de paquetes.",
+      "NAT proporciona una solución para ralentizar el agotamiento de direcciones IPv4.",
+      "NAT tendrá un impacto negativo en el rendimiento del switch.",
+      "NAT agrega capacidad de autenticación a IPv4.",
+      "NAT presenta problemas para algunas aplicaciones que requieren conectividad de extremo a extremo."
+    ],
+    "respuestas_correctas": [
+      2,
+      5
+    ],
+    "explicacion": "Tema 12.1.1 Ventaja (Ralentizar el agotamiento): NAT permite que múltiples dispositivos en una red privada compartan una única dirección IPv4 pública. Esto ayudó significativamente a conservar el limitado espacio de direccionamiento de IPv4. Desventaja (Problemas de extremo a extremo): Dado que NAT oculta las direcciones IP internas reales (realizando una traducción de direcciones), las aplicaciones que dependen de una conexión directa y transparente de extremo a extremo (como algunas herramientas de videoconferencia, VoIP o juegos en línea) a menudo encuentran dificultades para establecer la sesión, requiriendo configuraciones adicionales (como el reenvío de puertos o protocolos NAT-T).",
+    "imagen": null
+  },
+  {
+    "pregunta": "99. Un usuario se queja de que una página web externa está tardando más de lo normal en cargarse. La página web eventualmente se carga en el equipo del usuario. ¿Qué herramienta debe usar el técnico con privilegios de administrador para localizar dónde está el problema en la red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "ipconfig /displaydns",
+      "tracert",
+      "nslookup",
+      "ping"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 17.4.3 El comando tracert mapeará la ruta desde el PC al servidor web y medirá los retrasos de tránsito de los paquetes a través de la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "100. Un técnico de red está investigando el uso del cableado de fibra óptica en un nuevo centro tecnológico. ¿Cuáles dos puntos deben considerarse antes de implementar medios de fibra óptica? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El cableado de fibra óptica requiere una conexión a tierra específica para ser inmune a EMI.",
+      "El cableado de fibra óptica es susceptible a la pérdida de señal debido a RFI.",
+      "El cableado de fibra óptica requiere diferentes conocimientos de terminación y empalme de lo que requiere el cableado de cobre.",
+      "El cable de fibra óptica es capaz de soportar un manejo sin mucho cuidado.",
+      "La fibra óptica proporciona una mayor capacidad de datos, pero es más costosa que el cableado de cobre."
+    ],
+    "respuestas_correctas": [
+      2,
+      4
+    ],
+    "explicacion": "Tema 4.5.6 Terminación y empalme: A diferencia del cableado de cobre, que utiliza conectores estándar (como RJ-45) y técnicas de crimpado relativamente sencillas, la fibra óptica requiere herramientas especializadas, capacitación técnica para realizar fusiones o terminaciones precisas y una limpieza extrema para evitar la atenuación de la señal. Capacidad y costo: La fibra óptica es superior al cobre en cuanto a ancho de banda (capacidad de datos) y alcance, pero su implementación es significativamente más costosa debido tanto al material mismo como a la infraestructura y mano de obra especializada que requiere.",
+    "imagen": null
+  },
+  {
+    "pregunta": "101. Un administrador de red advierte que algunos cables Ethernet instalados recientemente transportan señales de datos distorsionadas y con errores. Los cables nuevos se instalaron en el cielo raso, cerca de tubos fluorescentes y equipos eléctricos. ¿Cuáles son los dos factores que pueden interferir con el cableado de cobre y provocar una distorsión de la señal y daños en los datos? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "EMI",
+      "Gran longitud de los cables",
+      "RFI",
+      "Atenuación de la señal",
+      "Crosstalk"
+    ],
+    "respuestas_correctas": [
+      0,
+      2
+    ],
+    "explicacion": "Tema 4.3.2 El cableado de cobre, como el UTP (par trenzado sin blindaje), es susceptible a interferencias externas cuando se instala cerca de fuentes que generan campos electromagnéticos. EMI (Interferencia Electromagnética): Es causada por motores eléctricos, transformadores y equipos eléctricos pesados, los cuales generan campos magnéticos que inducen voltajes no deseados en los hilos de cobre, distorsionando la señal. RFI (Interferencia de Radiofrecuencia): Es causada por fuentes como los balastos de luces fluorescentes, las cuales emiten ondas de radio que pueden interferir con la transmisión de datos en el cableado, provocando errores en los datos recibidos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "102. ¿Qué característica describe el robo de identidad?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "software en un router que filtra el tráfico basado en direcciones IP o aplicaciones",
+      "un protocolo de túnel que proporciona a los usuarios remotos acceso seguro a la red de una organización",
+      "software que identifica amenazas de propagación rápida",
+      "el uso de credenciales robadas para acceder a datos privados"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 1.8.1 El robo de identidad ocurre cuando un atacante obtiene ilegalmente información personal de una víctima (como nombres de usuario, contraseñas, números de seguridad social o información bancaria) para suplantar su identidad, acceder a sus cuentas y extraer datos privados o realizar transacciones fraudulentas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "103. Los datos se envían de una PC de origen a un servidor de destino. ¿Qué afirmaciones describen correctamente la función del TCP o UDP en esta situación? (Elija tres opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El campo del puerto de origen identifica la aplicación o el servicio en ejecución que maneja la devolución de datos a la PC.",
+      "El número de puerto de origen de TCP identifica el host emisor de la red.",
+      "El TCP es el protocolo preferido cuando una función requiere menor sobrecarga de red.",
+      "Los segmentos UDP se encapsulan en paquetes IP para ser transportados a través de la red.",
+      "El número de puerto de destino de UDP identifica la aplicación o los servicios en el servidor que maneja los datos.",
+      "El proceso del TCP en ejecución en la PC selecciona al azar el puerto de destino al establecer una sesión con el servidor."
+    ],
+    "respuestas_correctas": [
+      0,
+      3,
+      4
+    ],
+    "explicacion": "Tema 14.4.2 El número de puerto de capa 4 identifica la aplicación o el servicio que administrarán los datos. El dispositivo emisor añade el número de puerto de origen, que será el número de puerto de destino cuando se devuelva la información solicitada. Los segmentos de capa 4 se encapsulan dentro de los paquetes IP. UDP, no TCP, se usa cuando se necesita una carga menor. Una dirección IP de origen, no el número de puerto de TCP, identifica el host emisor en la red. Los números de puerto de destino son puertos específicos que el servicio o la aplicación del servidor controlan para las solicitudes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "104. ¿Qué método de switching descarta las tramas que no pasan la revisión FCS?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Almacenamiento en búfer de puerto de entrada",
+      "Conmutación por método de corte",
+      "Switching por almacenamiento y envío",
+      "Switching sin fronteras"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 7.4.1 En el método de almacenamiento y envío, el switch recibe la trama completa antes de reenviarla. Durante este proceso, realiza una comprobación de FCS (Frame Check Sequence) utilizando el algoritmo CRC (Cyclic Redundancy Check) para verificar si la trama tiene errores. Si la trama está dañada (no pasa la revisión), el switch la descarta automáticamente, garantizando que solo se reenvíen datos íntegros. Por el contrario, otros métodos como el de corte (cut-through) comienzan a reenviar la trama antes de recibirla completa, por lo que no pueden realizar esta validación de errores.",
+    "imagen": null
+  },
+  {
+    "pregunta": "105. Haga coincidir el campo de encabezado con la capa apropiada del modelo OSI. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Dirección IP de origen",
+      "Número de puerto de destino",
+      "Opciones de destino",
+      "FCS (Frame Check Sequence)",
+      "Encabezado 802.2",
+      "TTL",
+      "Número de Acuse de Recibo",
+      "Dirección MAC de destino"
+    ],
+    "objetivos": [
+      "Capa 2 (1)",
+      "Capa 2 (2)",
+      "Capa 2 (3)",
+      "Capa 3 (1)",
+      "Capa 3 (2)",
+      "Capa 4 (1)",
+      "Capa 4 (2)"
+    ],
+    "respuestas_correctas": {
+      "Capa 2 (1)": "FCS (Frame Check Sequence)",
+      "Capa 2 (2)": "Encabezado 802.2",
+      "Capa 2 (3)": "Dirección MAC de destino",
+      "Capa 3 (1)": "TTL",
+      "Capa 3 (2)": "Dirección IP de origen",
+      "Capa 4 (1)": "Número de puerto de destino",
+      "Capa 4 (2)": "Número de Acuse de Recibo"
+    },
+    "explicacion": "Tema 3.6.3",
+    "imagen": null
+  },
+  {
+    "pregunta": "106. ¿Cuál es una característica principal de la capa de enlace de datos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Protege el protocolo de la capa superior de conocer el medio físico que se utilizará en la comunicación.",
+      "Acepta paquetes de capa 3 y decide la ruta por la cual reenviar el paquete a una red remota.",
+      "Convierte una transmisión de bits de datos en un «código» predefinido.",
+      "Genera señales eléctricas u ópticas que representan 1 y en el medio."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 6.1.1 La capa de enlace de datos actúa como un «traductor» o intermediario. Su función principal es preparar los datos de la capa superior (Capa 3, red) para que puedan ser transmitidos por el medio físico, independientemente de si ese medio es fibra óptica, cobre o inalámbrico. Al hacerlo, oculta los detalles técnicos del hardware a los protocolos de red (como IPv4 o IPv6), permitiéndoles funcionar sin necesidad de conocer los detalles de cómo se transportan los bits físicamente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "107. ¿Cuáles son las dos responsabilidades principales de la subcapa MAC Ethernet? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Detección de errores",
+      "Asignación lógica de direcciones",
+      "Delimitación de tramas",
+      "encapsulamiento de datos",
+      "acceso a los medios de comunicación"
+    ],
+    "respuestas_correctas": [
+      3,
+      4
+    ],
+    "explicacion": "Tema 7.1.3 La subcapa MAC (Media Access Control), que es la subcapa inferior de la capa de enlace de datos (Capa 2), tiene como funciones principales: 1. Encapsulamiento de datos: Incluye procesos como la delimitación de tramas (frame delimiting), el direccionamiento (direcciones MAC de origen y destino) y la detección de errores (mediante el campo FCS). 2. Acceso a los medios de comunicación: Controla cómo se colocan los datos en el medio físico y cómo se gestionan los conflictos (mediante métodos como CSMA/CD en Ethernet).",
+    "imagen": null
+  },
+  {
+    "pregunta": "108. Consulte la ilustración. Una compañía utiliza el bloque de direcciones 128.107.0.0/16 para su red. ¿Cuál de estas máscaras de subred proporcionaría la cantidad máxima de subredes de igual tamaño y, a la vez, suficientes direcciones de host para cada subred que se muestra en la ilustración?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.192",
+      "255.255.255.0",
+      "255.255.255.128",
+      "255.255.255.240",
+      "255.255.255.224"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 11.7.2 la subred más grande de la topología tiene 100 hosts, por lo que la máscara de subred debe tener al menos 7 bits de host (27-2 = 126). 255.255.255.0 tiene 8 bits de host, pero esto no cumple con el requisito de proporcionar el número máximo de subredes.",
+    "imagen": "pregunta_108.jpg"
+  },
+  {
+    "pregunta": "109. Un administrador de red debe mantener la privacidad de la ID de usuario, la contraseña y el contenido de la sesión cuando establece conectividad remota con la CLI con un switch para administrarla. ¿Qué método de acceso se debe elegir?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Consola",
+      "AUX",
+      "Telnet",
+      "SSH"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 2.1.4 El protocolo SSH (Secure Shell) es el método de acceso recomendado porque proporciona una conexión remota segura y cifrada. Al utilizar SSH, tanto el nombre de usuario, la contraseña como todo el contenido de la sesión se transmiten cifrados, lo que garantiza la privacidad y protección contra ataques de interceptación. Por el contrario, Telnet transmite la información en texto plano (sin cifrar), lo que hace que las credenciales y los datos de la sesión sean vulnerables a cualquier persona que pueda monitorear el tráfico de la red. Los accesos por consola y AUX son conexiones físicas locales, no remotas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "110. ¿Cuáles son dos problemas que pueden ser causados por un gran número de mensajes de solicitud y respuesta ARP? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La solicitud ARP se envía como un broadcast e inundará toda la subred.",
+      "Un gran número de mensajes de solicitud y respuesta ARP puede ralentizar el proceso de switching, lo que lleva al switch a realizar muchos cambios en su tabla MAC.",
+      "Los switches se sobrecargan porque concentran todo el tráfico de las subredes conectadas.",
+      "La red puede sobrecargarse porque los mensajes de respuesta ARP tienen una carga útil muy grande debido a la dirección MAC de 48 bits y la dirección IP de 32 bits que contienen.",
+      "Todos los mensajes de solicitud ARP deben ser procesados por todos los nodos de la red local."
+    ],
+    "respuestas_correctas": [
+      0,
+      4
+    ],
+    "explicacion": "Tema 9.2.8 Las solicitudes ARP se envían como transmisiones: (1) Todos los nodos los recibirán y serán procesados por software, interrumpiendo la CPU. (2) El switch reenvía (inunda) las difusiones de Capa 2 a todos los puertos. Un switch no cambia su tabla MAC según la solicitud de ARP o los mensajes de respuesta. El switch llena la tabla MAC utilizando la dirección MAC de origen de todas las tramas. La carga útil de ARP es muy pequeña y no sobrecarga el switch.",
+    "imagen": null
+  },
+  {
+    "pregunta": "111. Una impresora láser está conectada por cables a una computadora doméstica. Se compartió la impresora para que otras computadoras de la red doméstica también puedan usarla. ¿Qué modelo de red se usa?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Maestro/esclavo",
+      "Punto a punto",
+      "Entre pares (P2P)",
+      "Basada en clientes"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 1.2.2 las redes peer-to-peer (P2P) tienen dos o más dispositivos de red que pueden compartir recursos como impresoras o archivos sin tener un servidor dedicado.",
+    "imagen": null
+  },
+  {
+    "pregunta": "112. ¿Cuáles son las tres características del proceso de CSMA/CD? (Elija tres opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El dispositivo con el token electrónico es el único que puede transmitir luego de una colisión.",
+      "Antes de transmitir, un dispositivo escucha y espera hasta que los medios no se encuentren ocupados.",
+      "Una señal de congestión indica que se ha borrado la colisión y que los medios no se encuentran ocupados.",
+      "Luego de detectar una colisión, los hosts pueden intentar reanudar la transmisión después de que ha caducado el retardo de tiempo aleatorio.",
+      "Se pueden configurar los dispositivos con una mayor prioridad de transmisión.",
+      "Todos los dispositivos de un segmento ven los datos que pasan en el medio de red."
+    ],
+    "respuestas_correctas": [
+      1,
+      3,
+      5
+    ],
+    "explicacion": "Tema 6.2.7 El proceso Carrier Sense Multiple Access/Collision Detection (CSMA/CD) es un mecanismo de control de acceso a medios basado en contención que se utiliza en redes de acceso a medios compartidos, como Ethernet. Cuando un dispositivo necesita transmitir datos, escucha y espera hasta que el medio esté disponible (silencioso), luego enviará datos. Si dos dispositivos transmiten al mismo tiempo, se producirá una colisión. Ambos dispositivos detectarán la colisión en la red. Cuando un dispositivo detecta una colisión, detendrá el proceso de transmisión de datos, esperará un período de tiempo aleatorio y luego volverá a intentarlo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "113. Un cliente usa SLAAC para obtener una dirección IPv6 para su interfaz. Una vez que se genera una dirección y se aplica a la interfaz, ¿qué debe hacer el cliente antes de que pueda comenzar a usar esta dirección IPv6?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Debe enviar un mensaje DHCPv6 INFORMATION-REQUEST para solicitar la dirección del servidor DNS.",
+      "Debe enviar un mensaje ICMPv6 de solicitud de vecino para asegurarse de que la dirección no esté en uso en la red.",
+      "Debe enviar un mensaje ICMPv6 de solicitud de router para determinar qué gateway predeterminado debe usar.",
+      "Debe enviar un mensaje DHCPv6 REQUEST al servidor de DHCPv6 para solicitar permiso para usar esta dirección."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 12.5.7 Cuando un dispositivo genera una dirección IPv6 mediante SLAAC (Stateless Address Autoconfiguration), debe asegurarse de que la dirección sea única en el enlace local antes de utilizarla. Para ello, realiza un proceso conocido como DAD (Duplicate Address Detection): 1. El cliente envía un mensaje ICMPv6 de Solicitud de vecino (Neighbor Solicitation – NS) dirigido a la dirección que acaba de generar. 2. Si ningún otro dispositivo responde con un Anuncio de vecino (Neighbor Advertisement – NA), el cliente asume que la dirección es única y puede comenzar a utilizarla. Si alguien responde, significa que la dirección ya está en uso y el cliente debe generar una nueva.",
+    "imagen": null
+  },
+  {
+    "pregunta": "114. Un host intenta enviar un paquete a un dispositivo en un segmento de red LAN remoto, pero actualmente no hay asignaciones en su caché ARP. ¿Cómo obtiene el dispositivo una dirección MAC de destino?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Envía una solicitud de ARP para la dirección MAC del dispositivo de destino.",
+      "Envía una solicitud al servidor DNS para obtener la dirección MAC de destino.",
+      "Envía una solicitud de ARP para la dirección MAC del gateway predeterminado.",
+      "Envía la trama y utiliza su propia dirección MAC como destino.",
+      "Envía la trama con una dirección MAC de broadcast."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 9.2.5 Cuando un host necesita enviar un paquete a un dispositivo en una red remota (un segmento LAN diferente), el host no puede comunicarse directamente con el destino a través de la Capa 2. En su lugar, el host debe enviar el paquete al gateway predeterminado (router) para que este lo reenvíe. 1. El host verifica su tabla de enrutamiento y determina que el destino está en una red remota. 2. El host busca en su caché ARP la dirección MAC correspondiente a la dirección IP del gateway predeterminado. 3. Si la entrada no existe, el host genera una solicitud ARP (ARP Request) preguntando específicamente por la dirección MAC asociada a la dirección IP de dicho gateway. 4. Una vez obtenida la MAC del gateway, el host encapsula el paquete en una trama de Ethernet utilizando la MAC del gateway como destino, permitiendo que la trama llegue al router para su posterior envío.",
+    "imagen": null
+  },
+  {
+    "pregunta": "115. Consulte la ilustración. ¿Qué protocolo fue responsable de construir la tabla que se muestra?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "ICMP",
+      "ARP",
+      "DNS",
+      "DHCP"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 9.2.7 La tabla que se muestra en la ilustración es una tabla ARP (Address Resolution Protocol). La tabla muestra la asociación entre Direcciones de Internet (direcciones IPv4) y Direcciones Físicas (direcciones MAC). El protocolo ARP es responsable de construir y mantener esta tabla, permitiendo que un dispositivo determine la dirección MAC de destino (Capa 2) necesaria para enviar datos a una dirección IP específica (Capa 3) en la red local.",
+    "imagen": "pregunta_115.jpg"
+  },
+  {
+    "pregunta": "116. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 80. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "HTTP",
+      "DHCP",
+      "DNS",
+      "SMTP"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 14.4.3 El puerto número 80 es el puerto estándar asignado al protocolo HTTP (Hypertext Transfer Protocol), que es utilizado para la transferencia de archivos y páginas web en la World Wide Web. Cuando un cliente envía un paquete con este puerto de destino, está solicitando conectarse a un servidor web.",
+    "imagen": null
+  },
+  {
+    "pregunta": "117. Observe la ilustración. A un ingeniero de red se le ha dado la dirección de red 192.168.99.0 y una máscara de subred 255.255.255.192 para dividirla en las cuatro redes mostradas. ¿Cuántas direcciones de host totales no se utilizan en las cuatro subredes?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "88",
+      "224",
+      "200",
+      "158",
+      "72"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 11.5.2",
+    "imagen": "pregunta_117.jpg"
+  },
+  {
+    "pregunta": "118. Consulte la ilustración. ¿Cuáles son las dos direcciones de red que se pueden asignar a la red con los 10 hosts? Sus respuestas deben desperdiciar la menor cantidad de direcciones posible, no se pueden reutilizar direcciones que ya se hayan asignado y se debe permanecer dentro del intervalo de direcciones 10.18.10.0/24. (Elija dos opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "10.18.10.200/28",
+      "10.18.10.208/28",
+      "10.18.10.240/27",
+      "10.18.10.200/27",
+      "10.18.10.224/27",
+      "10.18.10.224/28"
+    ],
+    "respuestas_correctas": [
+      1,
+      5
+    ],
+    "explicacion": "Tema 11.7.2 las direcciones 10.18.10.0 a 10.18.10.63 se toman para la red más a la izquierda. Las direcciones 192 a 199 son utilizadas por la red central. Debido a que se necesitan 4 bits de host para acomodar 10 hosts, se necesita una máscara/28. 10.18.10.200/28 no es un número de red válido. Dos subredes que se pueden utilizar son 10.18.10.208/28 y 10.18.10.224/28.",
+    "imagen": "pregunta_118.jpg"
+  },
+  {
+    "pregunta": "119. Un usuario intenta acceder a http://www.cisco.com/ sin éxito. ¿Cuáles son los dos valores de configuración que se deben establecer en el host para permitir el acceso? (Elija dos opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Gateway predeterminado",
+      "Servidor DNS",
+      "Dirección MAC de origen",
+      "Servidor HTTP",
+      "Número de puerto de origen"
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "Tema 11.1.2 Para que un host pueda acceder a un sitio web (como www.cisco.com) ubicado en una red externa: 1. Servidor DNS: Es necesario para traducir el nombre de dominio (www.cisco.com) a su dirección IP correspondiente. Sin esta resolución, el host no sabe a qué dirección IP enviar la solicitud. 2. Gateway predeterminado: Es necesario para que el host pueda enviar paquetes fuera de su propia subred local hacia redes remotas (donde se encuentra el servidor web). Si no se establece, el host no podrá comunicarse con dispositivos que están fuera de su red local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "120. ¿Cual es una función de la capa de enlace de datos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "proporciona entrega de datos de extreme a extremo entre hosts",
+      "proporciona el formato de los datos",
+      "proporciona entrega de datos entre dos aplicaciones",
+      "proporciona el intercambio de tramas a través de un medio común"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 6.1.1 La función principal de la capa de enlace de datos (Capa 2 del modelo OSI) es permitir que los datos (encapsulados en tramas) se transfieran de manera confiable a través del medio físico compartido entre dos nodos que están directamente conectados en la misma red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "121. ¿Qué servicio proporciona SMTP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Permite el acceso remoto a dispositivos de red y servidores.",
+      "Utiliza el cifrado para proporcionar acceso remoto seguro a los dispositivos y servidores de red.",
+      "Permite a los clientes enviar correo electrónico a un servidor de correo y a los servidores enviar correo electrónico a otros servidores.",
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.3.4 El protocolo SMTP (Simple Mail Transfer Protocol) es el estándar utilizado específicamente para el envío de mensajes de correo electrónico. Su función es doble: permite que las aplicaciones cliente envíen correos hacia un servidor, y facilita que los servidores de correo se comuniquen entre sí para entregar el mensaje al destino final.",
+    "imagen": null
+  },
+  {
+    "pregunta": "122. Consulte la ilustración. Si el Host1 transfiriera un archivo al servidor, ¿qué capas del modelo TCP/IP se utilizarían?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Solo las capas de aplicación, de Internet y de acceso a la red",
+      "Solo las capas de aplicación, de transporte, de Internet y de acceso a la red",
+      "Solo las capas de aplicación, de sesión, de transporte, de red, de enlace de datos y física",
+      "Solo las capas de aplicación, de transporte, de red, de enlace de datos y física",
+      "Solo las capas de aplicación y de Internet",
+      "Solo las capas de Internet y de acceso a la red"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 3.5.3 el modelo TCP/IP contiene las capas de aplicación, transporte, Internet y acceso a la red. Una transferencia de archivos utiliza el protocolo de capa de aplicación FTP. Los datos se moverían desde la capa de aplicación a través de todas las capas del modelo y a través de la red hasta el servidor de archivos.",
+    "imagen": "pregunta_122.jpg"
+  },
+  {
+    "pregunta": "123. Se emitieron dos pings desde un host en una red local. El primer ping se emitió a la dirección IP del gateway predeterminado del host y falló. El segundo ping se emitió a la dirección IP de un host fuera de la red local y se realizó correctamente. ¿Cuál de las siguientes es una posible causa del ping fallido?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El gateway predeterminado no está en funcionamiento.",
+      "El stack de TCP/IP en el gateway predeterminado no funciona correctamente.",
+      "Se aplican reglas de seguridad al dispositivo de gateway predeterminado, lo cual evita que procese solicitudes de ping.",
+      "El dispositivo de gateway predeterminado está configurado con la dirección IP incorrecta."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 13.2.3 Dado que el segundo ping (a un host fuera de la red local) se realizó correctamente, sabemos con certeza que: 1. El tráfico está saliendo de la red local correctamente. 2. El gateway predeterminado está funcionando y enrutando paquetes de manera efectiva. Si el gateway no funcionara o estuviera mal configurado, el segundo ping también habría fallado. Por lo tanto, la única explicación lógica es que el dispositivo gateway sí está operando, pero tiene configurada una política de seguridad (como una lista de control de acceso o una regla de firewall) que descarta específicamente los paquetes ICMP (ping) dirigidos a su propia dirección IP, mientras sigue permitiendo el paso de tráfico destinado a otras redes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "124. Se agregó un grupo de equipos Windows en una nueva subred a una red Ethernet. Al probar la conectividad, un técnico descubre que estas computadoras pueden acceder a los recursos de red local, pero no a los recursos de Internet. Para resolver el problema, el técnico desea confirmar inicialmente las configuraciones de direcciones IP y DNS en las computadoras, además de verificar la conectividad al router local. ¿Cuáles son los tres comandos y utilidades de CLI de Windows que proporcionan la información necesaria? (Elija tres).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "ping",
+      "nslookup",
+      "netsh interface ipv6 show neighbor",
+      "tracert",
+      "ipconfig",
+      "telnet",
+      "arp -a"
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      4
+    ],
+    "explicacion": "Tema 17.5.1 Para diagnosticar por qué las computadoras tienen acceso local pero no a Internet, el técnico debe verificar la configuración lógica y la conectividad: 1. ipconfig: Es la utilidad principal para confirmar la configuración de direcciones IP, máscara de subred y, fundamentalmente, la dirección del gateway predeterminado y los servidores DNS configurados en el equipo. 2. ping: Se utiliza para verificar la conectividad básica con el router local (gateway) y luego para probar si existe alcance hacia destinos en Internet (por ejemplo, haciendo ping a una IP pública). 3. nslookup: Permite verificar si la resolución de nombres DNS está funcionando correctamente. Si el técnico puede hacer ping a una dirección IP externa pero no puede acceder a un sitio web por su nombre (URL), el problema radica en el servidor DNS, y nslookup confirma si el servidor responde adecuadamente a las consultas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "125. ¿Qué capa del modelo TCP/IP proporciona una ruta para reenviar mensajes a través de una interconexión de redes?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Transporte",
+      "Acceso a la red",
+      "Internet",
+      "Aplicación"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 3.5.3 La capa de red del modelo OSI corresponde directamente a la capa de Internet del modelo TCP/IP y se utiliza para describir protocolos que direccionan y enrutan mensajes a través de una internetwork.",
+    "imagen": null
+  },
+  {
+    "pregunta": "126. Consulte la ilustración. La PC1 emite una solicitud de ARP porque necesita enviar un paquete a la PC2. En esta situación, ¿qué sucede a continuación?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El RT1 envía una respuesta de ARP con la dirección MAC de la PC2.",
+      "El SW1 envía una respuesta de ARP con la dirección MAC Fa0/1.",
+      "El SW1 envía una respuesta de ARP con la dirección MAC de la PC2.",
+      "La PC2 envía una respuesta de ARP con la dirección MAC.",
+      "El RT1 envía una respuesta de ARP con su dirección MAC Fa0/0."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 9.2.4 Cuando un dispositivo de red desea comunicarse con otro dispositivo en la misma red, envía una solicitud de ARP de difusión. En este caso, la solicitud contendrá la dirección IP de la PC2. El dispositivo de destino (PC2) envía una respuesta ARP con su dirección MAC.",
+    "imagen": "pregunta_126.jpg"
+  },
+  {
+    "pregunta": "127. Una cada descripción con el mecanismo TCP correspondiente. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Acuse de recibo",
+      "Retransmisión",
+      "FCS",
+      "Números de secuencia",
+      "Tamaño de la ventana"
+    ],
+    "objetivos": [
+      "Número de bytes que un dispositivo de destino puede aceptar y procesar al mismo tiempo.",
+      "Se utiliza para identificar segmentos faltantes de datos.",
+      "Método para administrar segmentos de pérdida de datos.",
+      "Recibido por un emisor antes de transmitir más segmentos en una sesión."
+    ],
+    "respuestas_correctas": {
+      "Número de bytes que un dispositivo de destino puede aceptar y procesar al mismo tiempo.": "Tamaño de la ventana",
+      "Se utiliza para identificar segmentos faltantes de datos.": "Números de secuencia",
+      "Método para administrar segmentos de pérdida de datos.": "Retransmisión",
+      "Recibido por un emisor antes de transmitir más segmentos en una sesión.": "Acuse de recibo"
+    },
+    "explicacion": "Tema 14.6",
+    "imagen": null
+  },
+  {
+    "pregunta": "128. ¿Qué servicio ofrece BOOTP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Utiliza el cifrado para asegurar el intercambio de texto, imágenes gráficas, sonido y vídeo en la web.",
+      "Permite la transferencia de datos entre un cliente y un servidor.",
+      "Un Conjunto de reglas para intercambiar texto, imágenes gráficas, sonido, video y otros archivos multimedia en la World Wide Web.",
+      "Aplicación heredada que permite a una estación de trabajo sin disco descubrir su propia dirección IP y encontrar un servidor BOOTP en la red."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 3.3.4 BOOTP (Bootstrap Protocol) es un protocolo de red antiguo que se utilizaba para permitir que las estaciones de trabajo (especialmente aquellas sin disco duro) obtuvieran su dirección IP de forma automática al arrancar, al mismo tiempo que localizaban un servidor de arranque en la red. Fue el precursor del protocolo DHCP que utilizamos hoy en día.",
+    "imagen": null
+  },
+  {
+    "pregunta": "129. ¿Qué característica describe un VPN?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "software que identifica amenazas de propagación rápida",
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "software en un router que filtra el tráfico basado en direcciones IP o aplicaciones",
+      "un protocolo de túnel que proporciona a los usuarios remotos acceso seguro a la red de una organización"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 1.8.2 Una VPN (Virtual Private Network) establece un túnel cifrado y seguro a través de una red pública (como Internet), permitiendo que los usuarios remotos se conecten de forma privada a la red interna de una organización, garantizando que la información transmitida esté protegida contra accesos no autorizados.",
+    "imagen": null
+  },
+  {
+    "pregunta": "130. Haga coincidir la función del firewall con el tipo de protección contra amenazas que proporciona a la red. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "impide el acceso por número de puerto",
+      "impide el acceso basado en la dirección IP o dirección MAC",
+      "evita sesiones entrantes no solicitadas",
+      "impide el acceso a sitios web"
+    ],
+    "objetivos": [
+      "Filtrado de paquetes",
+      "Filtrado de direcciones URL",
+      "Traducción de direcciones de redes",
+      "Inspección de paquetes con estado",
+      "Filtrado de aplicaciones"
+    ],
+    "respuestas_correctas": {
+      "Filtrado de paquetes": "impide el acceso basado en la dirección IP o dirección MAC",
+      "Filtrado de direcciones URL": "impide el acceso a sitios web",
+      "Inspección de paquetes con estado": "evita sesiones entrantes no solicitadas",
+      "Filtrado de aplicaciones": "impide el acceso por número de puerto"
+    },
+    "explicacion": "Tema 16.3.6 los productos de firewall vienen empaquetados en varias formas. Estos productos utilizan diferentes técnicas para determinar qué se permitirá o denegará el acceso a una red. Incluyen lo siguiente: + Filtrado de paquetes: evita o permite el acceso basado en direcciones IP o MAC + Filtrado de aplicaciones: evita o permite el acceso de tipos de aplicaciones específicos en función de los números de puerto + Filtrado de URL: evita o permite el acceso a sitios web basados en URL o palabras clave específicas + Inspección de paquetes con estado (SPI): los paquetes entrantes deben ser respuestas legítimas a las solicitudes de los hosts internos. Los paquetes no solicitados se bloquean a menos que se permitan específicamente. SPI también puede incluir la capacidad de reconocer y filtrar tipos específicos de ataques, como denegación de servicio (DoS)",
+    "imagen": null
+  },
+  {
+    "pregunta": "131. ¿Qué característica describe un spyware?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red",
+      "el uso de credenciales robadas para acceder a datos privados",
+      "software instalado en una computadora para recolectat informacion del usuario",
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 1.8.1 El spyware es un tipo de software malicioso que se instala en un equipo sin el consentimiento del usuario con el objetivo principal de espiar y recopilar información sobre sus actividades (como hábitos de navegación, credenciales, datos personales, etc.) para luego enviarla a terceros.",
+    "imagen": null
+  },
+  {
+    "pregunta": "132. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 22. ¿Qué servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "SSH",
+      "DHCP",
+      "DNS",
+      "TFTP"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 14.4.3 El puerto número 22 es el puerto estándar asignado al protocolo SSH (Secure Shell). Este servicio se utiliza para establecer conexiones remotas seguras, permitiendo a los usuarios administrar dispositivos de red y servidores de manera cifrada, protegiendo así las credenciales y el contenido de la sesión.",
+    "imagen": null
+  },
+  {
+    "pregunta": "133. ¿Cuáles de las siguientes son dos características que comparten TCP y UDP? (Elija dos opciones.)",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Numeración de puertos",
+      "Capacidad de transportar voz digitalizada",
+      "Tamaño predeterminado de la ventana",
+      "Uso de checksum",
+      "Comunicación sin conexión",
+      "Protocolo de enlace de tres vías"
+    ],
+    "respuestas_correctas": [
+      0,
+      3
+    ],
+    "explicacion": "Tema 14.1.2 Tanto TCP como UDP utilizan números de puerto de origen y destino para distinguir diferentes flujos de datos y para reenviar los segmentos de datos correctos a las aplicaciones correctas. Ambos protocolos realizan la comprobación de errores en el encabezado y los datos mediante un cálculo de suma de comprobación para determinar la integridad de los datos que se reciben. TCP está orientado a la conexión y utiliza un protocolo de enlace de 3 vías para establecer una conexión inicial. TCP también usa la ventana para regular la cantidad de tráfico enviado antes de recibir un acuse de recibo. UDP no tiene conexión y es el mejor protocolo para transportar señales VoIP digitalizadas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "134. ¿Qué mecanismo utiliza un router para evitar que un paquete IPv4 recibido viaje interminablemente en una red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Comprueba el valor del campo TTL y, si es 100, descarta el paquete y envía un mensaje Destination Unreachable al host de origen.",
+      "Comprueba el valor del campo TTL y, si es 0, descarta el paquete y envía un mensaje Destination Unreachable al host de origen.",
+      "Reduce el valor del campo TTL en 1 y si el resultado es 0, descarta el paquete y envía un mensaje de Tiempo excedido al host de origen.",
+      "Incrementa el valor del campo TTL en 1 y si el resultado es 100, descarta el paquete y envía un mensaje de problema de parámetro al host de origen."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 8.2.2 El campo TTL (Time to Live o Tiempo de vida) en el encabezado IPv4 tiene la función específica de evitar que los paquetes circulen indefinidamente en la red (por ejemplo, debido a un bucle de enrutamiento). 1. Cada vez que un router recibe un paquete, reduce el valor del campo TTL en 1. 2. Si el valor resultante es 0, el router descarta el paquete. 3. Al descartarlo, el router envía un mensaje ICMP de Tiempo excedido (Time Exceeded) al host de origen para notificarle que el paquete no pudo ser entregado, evitando así que sature la red innecesariamente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "135. ¿Qué servicio ofrece POP3?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos.",
+      "Utiliza el cifrado para proporcionar acceso remoto seguro a los dispositivos y servidores de red.",
+      "Recupera el correo electrónico del servidor descargándolo a la aplicación de correo local del cliente.",
+      "Permite el acceso remoto a dispositivos de red y servidores."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.3.4 El protocolo POP3 (Post Office Protocol version 3) se utiliza principalmente para que los clientes de correo electrónico (como Outlook o Thunderbird) se conecten a un servidor de correo y descarguen los mensajes a la computadora local del usuario, eliminándolos generalmente del servidor después de la descarga.",
+    "imagen": null
+  },
+  {
+    "pregunta": "136. Una cada elemento con el tipo de diagrama de topología en el que se lo suele identificar. No se utilizan todas las opciones.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Dirección IP de un servidor",
+      "Ubicación de una PC de escritorio en un aula",
+      "Puerto USB de una PC de escritorio en un aula",
+      "Tendido de cables que conectan salas a armarios de cableado"
+    ],
+    "objetivos": [
+      "Diagrama de topología física (1)",
+      "Diagrama de topología física (2)",
+      "Diagrama de topología lógica"
+    ],
+    "respuestas_correctas": {
+      "Diagrama de topología física (1)": "Ubicación de una PC de escritorio en un aula",
+      "Diagrama de topología física (2)": "Tendido de cables que conectan salas a armarios de cableado",
+      "Diagrama de topología lógica": "Dirección IP de un servidor"
+    },
+    "explicacion": "Tema 1.3.2 Ubicación de una PC de escritorio en un aula Diagrama de topología física Tendido de cables que conectan salas a armarios de cableado Diagrama de topología física Dirección IP de un servidor Diagrama de topología lógica DEl orden no es importante en este grupo Diagrama de topología lógica",
+    "imagen": null
+  },
+  {
+    "pregunta": "137. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 61 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.192",
+      "255.255.255.128",
+      "255.255.255.240",
+      "255.255.255.224"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 11.7.2 Para conectar 61 dispositivos, necesitamos una subred que proporcione al menos 61 direcciones IP para hosts. 1. La fórmula para calcular el número de hosts utilizables es 2n – 2, donde n es el número de bits asignados al host. 2. Si usamos 6 bits para hosts (n=6): 26 – 2 = 64 – 2 = \\mathbf{62} direcciones utilizables. Esto es suficiente para cubrir los 61 dispositivos requeridos. 3. Si usáramos 5 bits (n=5): 25 – 2 = 32 – 2 = 30 direcciones, lo cual es insuficiente. 4. Como estamos usando 6 bits para hosts, el prefijo de la máscara es 32 – 6 = 26 bits (/26). 5. Una máscara /26 equivale a 255.255.255.192.",
+    "imagen": null
+  },
+  {
+    "pregunta": "138. Observe la ilustración. ¿Cual es la dirección IP se debe utilizar como puerta de enlace predeterminada del host H1?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1: G0/0",
+      "R1: S0/0/0",
+      "R2: S0/0/1",
+      "R2: S0/0/0"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 10.3.1 Para determinar la dirección IP que debe utilizarse como puerta de enlace predeterminada (default gateway) para el host H1, debemos observar la topología de la red: 1. Identificación del segmento: El host H1 está conectado a un switch que, a su vez, está conectado a la interfaz G0/0 del router R1. 2. Regla de diseño: En una red local, la puerta de enlace predeterminada de un host debe ser la dirección IP de la interfaz del router que sirve a esa misma red local. 3. Conclusión: Como H1 está en la subred conectada a la interfaz G0/0 del router R1, la dirección IP configurada en esa interfaz G0/0 es la que debe configurarse como puerta de enlace en el host H1.",
+    "imagen": "pregunta_138.jpg"
+  },
+  {
+    "pregunta": "139. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 90 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.248",
+      "255.255.255.240",
+      "255.255.255.224",
+      "255.255.255.128"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 11.7.2 Para determinar la máscara de red más pequeña (la que desperdicia menos direcciones IP) que pueda admitir 90 dispositivos: 1. Necesitamos encontrar una potencia de 2 que sea mayor o igual a 90 + 2 (los 90 hosts + la dirección de red + la dirección de broadcast), es decir, 92. 2. Las potencias de 2 son: …, 32, 64, 128, 256… 3. El valor 64 no es suficiente para 92 hosts, por lo tanto, debemos usar 128. 4. Una subred con 128 direcciones utiliza 7 bits para los hosts (27 = 128). 5. Esto nos deja 32 – 7 = 25 bits para la red (prefijo /25). 6. La máscara /25 corresponde a 255.255.255.128.",
+    "imagen": null
+  },
+  {
+    "pregunta": "140. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 53. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Telnet",
+      "FTP",
+      "SSH",
+      "DNS"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 14.4.3 El puerto número 53 es el puerto estándar asignado al protocolo DNS (Domain Name System). Este servicio se utiliza para traducir nombres de dominio (como www.cisco.com) a direcciones IP, permitiendo que los dispositivos encuentren recursos en la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "141. ¿Cuáles son las dos soluciones de seguridad más probables que se utilizan solo en un entorno corporativo? (Escoja dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Sistemas de prevención de intrusiones",
+      "antispyware",
+      "Software antivirus",
+      "contraseñas seguras",
+      "Redes privadas virtuales"
+    ],
+    "respuestas_correctas": [
+      0,
+      4
+    ],
+    "explicacion": "Tema 1.8.2 Aunque herramientas como el antivirus, antispyware y las contraseñas seguras son necesarias en cualquier nivel (tanto doméstico como corporativo), las opciones seleccionadas son características distintivas de un entorno empresarial: Sistemas de prevención de intrusiones (IPS): Son soluciones de seguridad de red avanzadas diseñadas para detectar y bloquear automáticamente ataques maliciosos a gran escala, algo que generalmente excede las necesidades o capacidades de una red doméstica simple. Redes privadas virtuales (VPN): Aunque se usan a nivel personal, en el entorno corporativo son fundamentales para permitir que los empleados accedan de forma segura y cifrada a los recursos internos de la empresa desde ubicaciones remotas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "142. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 110. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DHCP",
+      "DNS",
+      "POP3",
+      "SMTP"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 14.4.3 El puerto número 110 es el puerto estándar asignado al protocolo POP3 (Post Office Protocol version 3), el cual se utiliza para la recuperación de correos electrónicos desde un servidor hacia un cliente de correo local.",
+    "imagen": null
+  },
+  {
+    "pregunta": "143. ¿Cuáles son los dos datos que se muestran en el resultado del comando show ip interface brief? (Elija dos).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "direcciones IP",
+      "Configuración de velocidad y dúplex",
+      "Direcciones de siguiente salto",
+      "Estados de la capa 1",
+      "direcciones MAC",
+      "Descripción de las interfaces"
+    ],
+    "respuestas_correctas": [
+      0,
+      3
+    ],
+    "explicacion": "Tema 10.2.3 El comando show ip interface brief muestra la dirección IP de cada interfaz, así como el estado operativo de las interfaces tanto en la Capa 1 como en la Capa 2. En orden Para ver las descripciones de la interfaz y la configuración de velocidad y dúplex, use el comando show running-config interface. Las direcciones del siguiente salto se muestran en la tabla de enrutamiento con el comando show ip route, y la dirección MAC de una interfaz se puede ver con el comando show interfaces.",
+    "imagen": null
+  },
+  {
+    "pregunta": "144. ¿Qué servicio proporciona HTTP ?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un Conjunto de reglas para intercambiar texto, imágenes gráficas, sonido, video y otros archivos multimedia en la World Wide Web.",
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos.",
+      "Utiliza el cifrado para asegurar el intercambio de texto, imágenes gráficas, sonido y vídeo en la web.",
+      "Permite la transferencia de datos entre un cliente y un servidor."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 15.3.1 El protocolo HTTP (Hypertext Transfer Protocol) es el protocolo base de la World Wide Web. Define cómo se formatean y transmiten los mensajes, y qué acciones deben tomar los servidores web y navegadores en respuesta a diversos comandos para el intercambio de archivos multimedia y documentos de hipertexto.",
+    "imagen": null
+  },
+  {
+    "pregunta": "145. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 25 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.240",
+      "255.255.255.128",
+      "255.255.255.224",
+      "255.255.255.192"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 11.7.2 Para determinar la máscara de red más pequeña (más eficiente) que soporte 25 dispositivos: 1. Necesitamos espacio para 25 direcciones de host utilizables. 2. La fórmula para calcular hosts utilizables es 2n – 2 (donde n es el número de bits de host). 3. Si probamos con n = 4: 24 – 2 = 16 – 2 = 14 direcciones (insuficiente). 4. Si probamos con n = 5: 25 – 2 = 32 – 2 = \\mathbf{30} direcciones (suficiente para 25). 5. Esto significa que reservamos 5 bits para los hosts. Los 27 bits restantes (32 – 5 = 27) son para la red. 6. Una máscara con prefijo /27 equivale a 255.255.255.224.",
+    "imagen": null
+  },
+  {
+    "pregunta": "146. Un administrador de red está agregando una nueva LAN a una sucursal. La nueva LAN debe admitir 10 dispositivos conectados. ¿Cuál es la máscara de red más pequeña que el administrador de red puede usar para la nueva red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "255.255.255.240",
+      "255.255.255.128",
+      "255.255.255.224",
+      "255.255.255.192"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tema 11.5.2 Para determinar la máscara de red más pequeña (la más eficiente) que pueda admitir 10 dispositivos: 1. Se necesitan al menos 12 direcciones en total (10 para los dispositivos + 1 para la dirección de red + 1 para la dirección de broadcast). 2. La fórmula para calcular las direcciones de host utilizables es 2n – 2. 1. Si usamos 3 bits (23 – 2 = 6), es insuficiente. 2. Si usamos 4 bits (24 – 2 = 14), cubrimos los 10 dispositivos requeridos. 3. Al reservar 4 bits para los hosts, nos quedan 28 bits para la red (32 – 4 = 28). 4. Una máscara con prefijo /28 equivale a 255.255.255.240.",
+    "imagen": null
+  },
+  {
+    "pregunta": "147. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 67. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FTP",
+      "DHCP",
+      "SSH",
+      "Telnet"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 14.4.3 El puerto número 67 es el puerto de destino estándar utilizado por el protocolo DHCP (Dynamic Host Configuration Protocol) en el servidor. Cuando un cliente solicita una dirección IP y configuraciones de red de forma automática, envía sus mensajes iniciales (como el DHCP Discover) dirigidos a este puerto en el servidor.",
+    "imagen": null
+  },
+  {
+    "pregunta": "148. Un técnico ha capturado paquetes en una red que se ejecuta lentamente en el acceso a Internet. ¿Qué número de puerto debe buscar el técnico en el material capturado para ubicar los paquetes HTTP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "110",
+      "80",
+      "20",
+      "21",
+      "53"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 14.4.3 HTTP Utiliza el puerto TCP 80 y HTTPS utiliza el puerto TCP 443 HTTP y HTTPS son protocolos que se utilizan comúnmente para acceder a páginas web.",
+    "imagen": null
+  },
+  {
+    "pregunta": "149. Una las afirmaciones con el modelo de red relacionado. (No se utilizan todas las opciones).",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Requiere una interfaz de usuario específica.",
+      "No se requiere un servidor dedicado.",
+      "Se requiere un servicio en segundo plano.",
+      "Las funciones de cliente y servidor se establecen por solicitud.",
+      "Los dispositivos solo pueden desempeñar una función por vez."
+    ],
+    "objetivos": [
+      "Red punto a punto (1)",
+      "Red punto a punto (2)",
+      "Aplicación punto a punto (1)",
+      "Aplicación punto a punto (2)"
+    ],
+    "respuestas_correctas": {
+      "Red punto a punto (1)": "No se requiere un servidor dedicado.",
+      "Red punto a punto (2)": "Las funciones de cliente y servidor se establecen por solicitud.",
+      "Aplicación punto a punto (1)": "Requiere una interfaz de usuario específica.",
+      "Aplicación punto a punto (2)": "Se requiere un servicio en segundo plano."
+    },
+    "explicacion": "Tema 15.2.2 Las redes peer-to-peer no requieren el uso de un servidor dedicado, y los dispositivos pueden asumir roles de cliente y servidor simultáneamente por solicitud. Debido a que no requieren cuentas o permisos formalizados, es mejor usarlos en situaciones limitadas. Las aplicaciones de igual a igual requieren una interfaz de usuario y un servicio en segundo plano para ejecutarse, y se pueden utilizar en situaciones más diversas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "150. ¿Qué característica describe el antispyware?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "aplicaciones que protegen a los dispositivos finales de infectarse con software malintencionado",
+      "software en un router que filtra el tráfico basado en direcciones IP o aplicaciones",
+      "un protocolo de túnel que proporciona a los usuarios remotos acceso seguro a la red de una organización"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 1.8.2 El antispyware es un software diseñado específicamente para detectar, prevenir y eliminar programas de tipo spyware (software espía) y otras formas de malware que buscan infiltrarse en los dispositivos finales para recolectar información del usuario sin su consentimiento.",
+    "imagen": null
+  },
+  {
+    "pregunta": "151. Se ha agregado un grupo de PC con Windows en una nueva subred a una red Ethernet. Al probar la conectividad, un técnico descubre que estas PC pueden acceder a los recursos de la red local pero no a los recursos de Internet. Para solucionar el problema, el técnico desea confirmar inicialmente la dirección IP y las configuraciones de DNS en las PC, y también verificar la conectividad al enrutador local. ¿Qué tres comandos y utilidades de la CLI de Windows proporcionarán la información necesaria? (Elija tres).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "interfaz netsh ipv6 show vecino",
+      "arp -a",
+      "tracert",
+      "ping",
+      "ipconfig",
+      "nslookup",
+      "telnet"
+    ],
+    "respuestas_correctas": [
+      3,
+      4,
+      5
+    ],
+    "explicacion": "Tema 17.5.1 Los comandos ipconfig y nslookup proporcionarán la dirección IP inicial y la información de configuración de DNS a los técnicos y determinarán si DHCP está asignando la información correcta a las PC. La utilidad ping se utilizaría para verificar, o no, la conectividad a la puerta de enlace predeterminada (enrutador) mediante la dirección de la puerta de enlace predeterminada configurada o utilizando la dirección conocida correcta de la puerta de enlace predeterminada si se determina que son diferentes. Los comandos arp -a o netsh interface ipv6 show neighbor se pueden usar si se sospecha que el problema es un problema de asignación de direcciones IP a MAC. Las utilidades telnet y tracert pueden utilizarse para determinar dónde se encuentra el problema en la red si se determina que la configuración de la puerta de enlace predeterminada es correcta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "152. ¿Qué característica describe el software espía?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un dispositivo de red que filtra el acceso y el tráfico que ingresa a una red",
+      "software que se instala en el dispositivo de un usuario y recopila información sobre el usuario",
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red",
+      "el uso de credenciales robadas para acceder a datos privados"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 1.8.1 El software espía (o spyware) es un tipo de código malicioso diseñado específicamente para infiltrarse en el equipo de un usuario sin su conocimiento. Su función principal es monitorear la actividad del usuario y recopilar información sensible (como hábitos de navegación, contraseñas o datos personales) para enviarla a terceros con fines malintencionados.",
+    "imagen": null
+  },
+  {
+    "pregunta": "153. ¿Qué servicio proporciona FTP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Un conjunto básico de reglas para intercambiar texto, imágenes gráficas, sonido, video y otros archivos multimedia en la web.",
+      "Una aplicación que permite chatear en tiempo real entre usuarios remotos.",
+      "Permite transferencias de datos entre un cliente y un servidor de archivos.",
+      "Utiliza encriptación para asegurar el intercambio de texto, imágenes gráficas, sonido y video en la web."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 15.5.1 El protocolo FTP (File Transfer Protocol) es un estándar de red diseñado específicamente para la transferencia de archivos entre un cliente y un servidor en una red TCP/IP. Su función principal es facilitar la subida (carga) y bajada (descarga) de archivos de manera eficiente entre diferentes sistemas informáticos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "154. Consulte la ilustración. Haga coincidir la red con la dirección IP y el prefijo correctos que satisfagan los requisitos de direccionamiento de host utilizables para cada red.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "192.168.0.96/27",
+      "192.168.0.128/25",
+      "192.168.0.80/30",
+      "192.168.0.0/26"
+    ],
+    "objetivos": [
+      "Network A",
+      "Network B",
+      "Network C",
+      "Network D"
+    ],
+    "respuestas_correctas": {
+      "Network A": "192.168.0.128/25",
+      "Network B": "192.168.0.0/26",
+      "Network C": "192.168.0.96/27",
+      "Network D": "192.168.0.80/30"
+    },
+    "explicacion": "Tema 11.7.2 La red A necesita usar 192.168.0.128/25, lo que genera 128 direcciones de host. La red B necesita usar 192.168.0.0/26, lo que genera 64 direcciones de host. La red C necesita usar 192.168.0.96/27, lo que genera 32 direcciones de host. La red D necesita usar 192.168.0.80/30, lo que genera 4 direcciones de host.",
+    "imagen": "pregunta_154.jpg"
+  },
+  {
+    "pregunta": "155. ¿Qué característica describe un caballo de Troya?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un dispositivo de red que filtra el acceso y el tráfico que entra en una red",
+      "el uso de credenciales robadas para acceder a datos privados",
+      "software malintencionado o código que se ejecuta en un dispositivo final",
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 16.2.1 Un Caballo de Troya (Trojan horse) es un tipo de malware que se disfraza de software legítimo o útil para engañar al usuario y lograr que lo instale. Una vez ejecutado en el dispositivo final, el código malicioso puede realizar acciones perjudiciales, como robar datos, instalar otros tipos de malware o proporcionar a un atacante acceso no autorizado al sistema. A diferencia de un virus, el Caballo de Troya no se replica por sí mismo, sino que depende de que el usuario lo ejecute.",
+    "imagen": null
+  },
+  {
+    "pregunta": "156. ¿Qué característica describe un ataque DoS?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "el uso de credenciales robadas para acceder a datos privados",
+      "un dispositivo de red que filtra el acceso y el tráfico que ingresa a una red",
+      "software que está instalado en el dispositivo de un usuario y recopila información sobre el usuario",
+      "un ataque que ralentiza o bloquea un dispositivo o servicio de red"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 16.2.4 Un ataque DoS (Denial of Service o Denegación de Servicio) tiene como objetivo principal hacer que los recursos, servicios o dispositivos de una red no estén disponibles para sus usuarios legítimos. Esto se logra mediante la saturación de los sistemas con tráfico malintencionado, lo que provoca una ralentización extrema o el bloqueo total del servicio.",
+    "imagen": null
+  },
+  {
+    "pregunta": "157. ¿Qué característica describe un IPS?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "un protocolo de tunelización que proporciona a los usuarios remotos un acceso seguro a la red de una organización",
+      "un dispositivo de red que filtra el acceso y el tráfico que ingresa a una red",
+      "software que identifica amenazas de rápida propagación",
+      "software en un router que filtra el tráfico según las direcciones IP o las aplicaciones"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Tema 1.8.2 Un IPS (Intrusion Prevention System o Sistema de Prevención de Intrusiones) es un dispositivo de seguridad de red que monitorea el tráfico de red de forma activa. A diferencia de un simple firewall, su función principal es filtrar el tráfico buscando patrones de ataque conocidos y, lo más importante, bloquear o prevenir automáticamente las amenazas detectadas antes de que logren infiltrarse en la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "158. Consulte la ilustración. Los switches tienen una configuración predeterminada. El host A necesita comunicarse con el host D, pero el host A no tiene la dirección MAC de la gateway predeterminado. ¿Qué dispositivos de red recibirán la solicitud ARP enviada por el host A?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "solo host D",
+      "solo hosts A, B, C y D",
+      "solo hosts B y C",
+      "solo hosts B, C y enrutador R1",
+      "solo hosts A, B y C",
+      "solo enrutador R1"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 11.4.1 Naturaleza de ARP: Cuando un host necesita comunicarse con un dispositivo en una red remota (fuera de su propia subred), debe enviar el paquete a su puerta de enlace predeterminada (default gateway). Si el host A no conoce la dirección MAC de dicha puerta de enlace, genera una solicitud ARP (Address Resolution Protocol). Difusión (Broadcast): Las solicitudes ARP se envían como tramas de difusión (broadcast) a la dirección MAC FF:FF:FF:FF:FF:FF. Comportamiento del switch: En una configuración predeterminada, un switch recibe una trama de difusión en uno de sus puertos y la reenvía por todos los demás puertos de ese mismo dominio de difusión (VLAN). Destinatarios: Por lo tanto, la solicitud enviada por el host A llegará a todos los demás dispositivos conectados al mismo switch: el host B, el host C y la interfaz del router R1. Alcance: El router R1 no reenvía la difusión de ARP a otras redes, por lo que el proceso termina ahí (el host D no recibe esta solicitud específica).",
+    "imagen": "pregunta_158.jpg"
+  },
+  {
+    "pregunta": "159. ¿Qué tecnología inalámbrica tiene requisitos de baja potencia y baja velocidad de datos que la hacen popular en entornos de IoT?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Bluetooth",
+      "Zigbee",
+      "WiMAX",
+      "Wi-Fi"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Tema 4.6.2 Zigbee es una especificación utilizada para comunicaciones de baja velocidad de datos y baja potencia. Está diseñado para aplicaciones que requieren corto alcance, velocidades de datos bajas y una batería de larga duración. Zigbee se utiliza normalmente para entornos industriales y de Internet de las cosas (IoT), como interruptores de luz inalámbricos y recopilación de datos de dispositivos médicos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "160. Qué servicio proporciona HTTPS ?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Utiliza el cifrado para proporcionar acceso remoto seguro a los dispositivos y servidores de red.",
+      "Traduce los nombres de dominio tales como cisco.com a direcciones IP",
+      "Permite el acceso remoto a dispositivos de red y servidores.",
+      "Utiliza el cifrado para asegurar el intercambio de texto, imágenes gráficas, sonido y vídeo en la web."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Tema 15.3.2 El protocolo HTTPS (Hypertext Transfer Protocol Secure) es la versión segura de HTTP. Su función principal es proteger la integridad y la confidencialidad de los datos que se intercambian entre el navegador del usuario y el servidor web. Para lograr esto, utiliza protocolos de cifrado (como TLS o SSL) para asegurar toda la información que viaja por la web.",
+    "imagen": null
+  },
+  {
+    "pregunta": "161. ¿En qué capa OSI se agrega una dirección IP de origen a una PDU durante el proceso de encapsulación?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Capa de enlace de datos",
+      "Capa de transporte",
+      "Capa de red",
+      "Capa de aplicación"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "En el modelo OSI, la Capa de red (Capa 3) es la responsable de la lógica de direccionamiento. Durante el proceso de encapsulación, esta capa toma el segmento recibido de la capa superior (transporte) y le añade un encabezado que incluye, entre otros datos, la dirección IP de origen y la dirección IP de destino, formando así el paquete (la PDU de esta capa).",
+    "imagen": null
+  },
+  {
+    "pregunta": "162. ¿Qué paso en el proceso de enrutamiento del estado del vínculo es descrito por un router que ejecuta un algoritmo para determinar la mejor ruta a cada destino?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "seleccionando la ID del enrutador",
+      "Ejecucuta el algoritmo SPF",
+      "construye la tabla de topología",
+      "declarando que un vecino es inaccesible"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "En los protocolos de enrutamiento de estado de enlace (como OSPF o IS-IS), el proceso sigue varios pasos. El paso descrito en la pregunta corresponde a la fase en la que el router procesa la información recopilada en su base de datos para calcular las rutas: 1. Algoritmo SPF (Shortest Path First): También conocido como el algoritmo de Dijkstra, es el proceso matemático que utiliza el router para analizar la topología de la red y calcular la ruta con el menor «costo» hacia cada destino posible. 2. Resultado: Tras ejecutar este algoritmo, el router determina la mejor ruta (o rutas) y las instala en su tabla de enrutamiento para reenviar paquetes eficientemente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "163. ¿Qué banda de RF inalámbrica utilizan los dispositivos IEEE 802.11b/g?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Banda de 60 GHz",
+      "5 GHz",
+      "900 MHz",
+      "2.4 GHz"
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "900 MHz es una tecnología inalámbrica de FCC que se utilizó antes del desarrollo de los estándares 802.11. Los dispositivos de 900 MHz tienen un rango de cobertura mayor que las frecuencias más altas y no requieren una línea de visión entre los dispositivos. Los dispositivos 802.11b/g/n/ad funcionan a 2,4 GHz. Los dispositivos 802.11a/n/ac/ad funcionan a 5 GHz y los dispositivos 802.11ad funcionan a 60 GHz.",
+    "imagen": null
+  },
+  {
+    "pregunta": "164. Un servidor recibe un paquete del cliente. El paquete tiene el número de puerto de destino 548. ¿Qué aplicación de servicio solicita el cliente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "AFP",
+      "HTTP",
+      "TFTP",
+      "POP3"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El puerto número 548 está asignado al protocolo AFP (Apple Filing Protocol), que es un protocolo de red propietario utilizado por los sistemas operativos de Apple para compartir archivos en una red de área local.",
+    "imagen": null
+  }
+]
