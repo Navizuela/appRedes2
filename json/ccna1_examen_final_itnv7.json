@@ -335,7 +335,7 @@
       "Una dirección experimental": "240.2.6.255",
       "Una dirección pública": "198.133.219.2"
     },
-    "explicacion": "Tema 11.3.4",
+    "explicacion": "Cada bloque IPv4 tiene un uso definido. 169.254.1.5 pertenece a 169.254.0.0/16, reservado para direcciones link-local que permiten comunicación dentro del enlace sin un servidor DHCP. 127.0.0.1 pertenece a 127.0.0.0/8 y representa el bucle invertido o loopback del propio equipo. 240.2.6.255 está dentro de 240.0.0.0/4, espacio reservado para uso experimental. 198.133.219.2 no pertenece a los rangos privados ni a otro bloque especial presentado, por lo que es una dirección pública enrutable.",
     "imagen": null
   },
   {
@@ -565,7 +565,7 @@
       "Red C": "192.168.0.192/27",
       "Red D": "192.168.0.224/30"
     },
-    "explicacion": "Tema 11.7.2",
+    "explicacion": "Se aplica VLSM asignando primero la subred más grande que satisfaga cada requisito. La Red A necesita 100 hosts, por lo que usa 192.168.0.0/25, con 126 direcciones utilizables. La Red B necesita 50 hosts y usa 192.168.0.128/26, con 62 utilizables. La Red C necesita 25 hosts y usa 192.168.0.192/27, con 30 utilizables. Finalmente, el enlace Red D necesita 2 hosts y usa 192.168.0.224/30, que ofrece exactamente 2 direcciones utilizables. Así las subredes no se superponen y se aprovecha el espacio disponible.",
     "imagen": "pregunta_34.jpg"
   },
   {
@@ -823,7 +823,7 @@
       0,
       1
     ],
-    "explicacion": "Tema 8.3.3",
+    "explicacion": "IPv6 conserva los campos Versión, Dirección de origen y Dirección de destino, aunque las direcciones pasan de 32 a 128 bits. El campo Límite de saltos de IPv6 cumple la función del TTL de IPv4: cada router lo reduce y descarta el paquete cuando llega a cero. IPv6 eliminó la suma de comprobación del encabezado base para simplificar el procesamiento; por eso no se mantiene el campo Checksum de IPv4. Dirección de destino no es nueva y el campo Versión sigue existiendo.",
     "imagen": null
   },
   {
@@ -850,7 +850,7 @@
       "UDP (1)": "DHCP",
       "UDP (2)": "TFTP"
     },
-    "explicacion": "Tema 14.4.3",
+    "explicacion": "FTP, HTTP y SMTP utilizan TCP porque requieren una conexión y entrega confiable y ordenada de los datos. DHCP utiliza UDP, normalmente los puertos 67 y 68, porque el cliente debe poder difundir solicitudes antes de tener una dirección IP. TFTP también utiliza UDP, normalmente el puerto 69, y proporciona un mecanismo de transferencia sencillo sin establecer una sesión TCP.",
     "imagen": null
   },
   {
@@ -1022,7 +1022,7 @@
       "Dirección MAC (2)": "separados en OUI y un identificador único",
       "Dirección MAC (3)": "48 bits"
     },
-    "explicacion": "Tema 9.1.1",
+    "explicacion": "Una dirección IP es lógica, aparece en el encabezado de Capa 3 y se divide conceptualmente en una parte de red y otra que identifica la interfaz o host; IPv4 usa 32 bits e IPv6, 128 bits. Una dirección MAC pertenece a la Capa 2 y normalmente tiene 48 bits. En una MAC universal, los primeros 24 bits corresponden al OUI asignado al fabricante y los restantes identifican de forma única la interfaz. La opción de 64 bits no corresponde al tamaño de una dirección MAC Ethernet estándar.",
     "imagen": null
   },
   {
@@ -1322,7 +1322,7 @@
       "El proveedor asigna esta porción de red de la dirección.": "Prefijo de enrutamiento global",
       "Esta parte de la dirección es equivalente a la porción de host de una dirección IPv4.": "ID de interfaz"
     },
-    "explicacion": "Tema 12.3.6",
+    "explicacion": "Una dirección IPv6 unicast global se estructura con un prefijo de enrutamiento global, un ID de subred y un ID de interfaz. El proveedor entrega a la organización el prefijo de enrutamiento global. La organización utiliza el ID de subred para identificar sus redes internas. El ID de interfaz identifica una interfaz dentro del enlace y equivale funcionalmente a la porción de host de IPv4. En IPv6 se usa longitud de prefijo, no una máscara de subred escrita en decimal como en IPv4.",
     "imagen": null
   },
   {
@@ -1410,7 +1410,7 @@
       "Este campo identifica el comienzo de una trama.": "Inicio de trama",
       "El LLC utiliza este campo para identificar el protocolo de capa 3.": "Tipo"
     },
-    "explicacion": "Tema 6.3.2",
+    "explicacion": "Los campos de una trama cumplen funciones diferentes. La FCS realiza detección de errores mediante un CRC para descubrir daños durante la transmisión. Las direcciones de origen y destino permiten dirigir la trama por la red local. El preámbulo y el delimitador de inicio indican y sincronizan el comienzo de la trama. El campo Tipo, o la información LLC en una trama 802.3, identifica el protocolo de Capa 3 transportado. La descripción sobre servicios especiales de control de flujo queda sin asignar porque no corresponde a ninguna de las opciones disponibles.",
     "imagen": null
   },
   {
@@ -1779,7 +1779,7 @@
       "Capa 4 (1)": "Número de puerto de destino",
       "Capa 4 (2)": "Número de Acuse de Recibo"
     },
-    "explicacion": "Tema 3.6.3",
+    "explicacion": "La Capa 2 crea tramas, por lo que contiene la dirección MAC de destino, el encabezado IEEE 802.2 y la FCS que detecta errores. La Capa 3 crea paquetes: allí se encuentran la dirección IP de origen y el TTL, que limita cuántos routers puede atravesar un paquete IPv4. La Capa 4 crea segmentos TCP o datagramas UDP; el número de puerto identifica la aplicación y, en TCP, el número de acuse de recibo confirma los datos esperados. Opciones de destino es un encabezado de extensión IPv6 de Capa 3 y no se utiliza en este emparejamiento.",
     "imagen": null
   },
   {
@@ -1970,7 +1970,7 @@
     "respuestas_correctas": [
       2
     ],
-    "explicacion": "Tema 11.5.2",
+    "explicacion": "La máscara 255.255.255.192 equivale a /26. Cada subred /26 contiene 64 direcciones, de las cuales 62 son utilizables después de excluir red y broadcast. Las cuatro subredes ofrecen 4 × 62 = 248 direcciones de host utilizables. El diagrama requiere 30 hosts en la Red A, 14 en la Red D y 2 direcciones para cada uno de los dos enlaces punto a punto, es decir, 48 direcciones utilizadas. Por tanto, quedan 248 − 48 = 200 direcciones de host sin utilizar.",
     "imagen": "pregunta_117.jpg"
   },
   {
@@ -2143,7 +2143,7 @@
       "Método para administrar segmentos de pérdida de datos.": "Retransmisión",
       "Recibido por un emisor antes de transmitir más segmentos en una sesión.": "Acuse de recibo"
     },
-    "explicacion": "Tema 14.6",
+    "explicacion": "TCP usa el tamaño de la ventana para anunciar cuántos bytes puede aceptar el receptor antes de necesitar más confirmaciones, proporcionando control de flujo. Los números de secuencia permiten ordenar los bytes e identificar segmentos faltantes. Si un segmento se pierde, TCP lo vuelve a enviar mediante retransmisión. El acuse de recibo indica al emisor el siguiente número de secuencia esperado y confirma lo recibido antes de continuar según la ventana. FCS pertenece a las tramas de Capa 2, no es un mecanismo del encabezado TCP.",
     "imagen": null
   },
   {
