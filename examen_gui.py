@@ -10,6 +10,7 @@ STORAGE_KEY = "ccna_exam_progress_v1"
 THEME_STORAGE_KEY = "ccna_exam_theme_v1"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGES_DIR = os.path.join(BASE_DIR, "img")
+VALOR_SIN_ASIGNAR = "__sin_asignar__"
 
 
 async def main(page: ft.Page):
@@ -225,6 +226,10 @@ async def main(page: ft.Page):
     def pregunta_respondida(indice=None):
         indice = state["indice"] if indice is None else indice
         return state["resultados"][indice] is not None
+
+    def permite_opciones_sin_usar(q):
+        texto = (q.get("pregunta") or "").lower()
+        return "no se utilizan todas las opciones" in texto
 
     def resultado_actual():
         return state["resultados"][state["indice"]]
@@ -708,18 +713,35 @@ async def main(page: ft.Page):
             mostrar_feedback(q, feedback_container)
         elif tipo == "emparejamiento":
             dropdowns = []
+            permite_vacias = permite_opciones_sin_usar(q)
             for obj in q["objetivos"]:
+                opciones_dropdown = []
+                if permite_vacias:
+                    opciones_dropdown.append(
+                        ft.dropdown.Option(
+                            key=VALOR_SIN_ASIGNAR,
+                            text="— Sin asignar —",
+                        )
+                    )
+                opciones_dropdown.extend(ft.dropdown.Option(o) for o in q["opciones"])
                 dd = ft.Dropdown(
                     label=obj,
-                    options=[ft.dropdown.Option(o) for o in q["opciones"]],
+                    options=opciones_dropdown,
                     width=ancho_disponible(),
                 )
                 dropdowns.append(dd)
                 container.controls.append(dd)
 
             async def verificar_emp(e):
-                respuestas = {obj: dd.value for obj, dd in zip(q["objetivos"], dropdowns)}
-                if any(v is None for v in respuestas.values()):
+                respuestas = {
+                    obj: None if dd.value == VALOR_SIN_ASIGNAR else dd.value
+                    for obj, dd in zip(q["objetivos"], dropdowns)
+                }
+                cantidad_respondida = sum(valor is not None for valor in respuestas.values())
+                if permite_vacias:
+                    if cantidad_respondida != len(q["respuestas_correctas"]):
+                        return
+                elif cantidad_respondida != len(q["objetivos"]):
                     return
                 await mostrar_indicador_boton(e)
                 aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
