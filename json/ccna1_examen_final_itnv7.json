@@ -1218,7 +1218,7 @@
     ],
     "respuestas_correctas": [
       0,
-      3
+      4
     ],
     "explicacion": "Tema 6.1.2 Al evaluar las opciones, clasifícalas así: 1. Si la opción menciona: «identificar el protocolo de capa superior», «interactuar con el software de red» o «permitir que IPv4/IPv6 usen el mismo medio» -> Es función de la subcapa LLC. 2. Si la opción menciona: «direcciones MAC», «detección de errores (FCS)», «CSMA/CD», «delimitación de tramas» o «acceso al medio» -> Es función de la subcapa MAC.",
     "imagen": null
