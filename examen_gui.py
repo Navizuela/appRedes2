@@ -79,13 +79,28 @@ async def main(page: ft.Page):
         spacing=12,
         horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
     )
+    layout_principal = ft.Column(
+        controls=[container],
+        expand=True,
+        spacing=12,
+        horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
+    )
     content = ft.Container(
-        content=container,
+        content=layout_principal,
         expand=True,
         padding=ft.Padding(left=16, top=16, right=16, bottom=88),
     )
     timer_ref = {"control": None}
     navegacion_ref = {"control": None}
+    barra_ref = {
+        "control": None,
+        "items": [],
+        "indice": None,
+        "tema": None,
+        "total": 0,
+        "texto_pregunta": None,
+        "texto_puntaje": None,
+    }
     guardado_ref = {"task": None, "dirty": False}
     page.add(content)
 
@@ -440,8 +455,9 @@ async def main(page: ft.Page):
     def mostrar_resultado():
         container.controls.clear()
         actualizar_boton_reintentar()
-        container.controls.append(crear_barra_acciones_examen())
-        container.controls.append(crear_barra_examen())
+        barra_ref["control"] = None
+        barra = crear_barra_examen()
+        layout_principal.controls = [crear_barra_acciones_examen(), barra, container]
         container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
         container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
         page.update()
@@ -661,6 +677,52 @@ async def main(page: ft.Page):
 
         return click_navegar
 
+    def actualizar_item_navegacion(indice):
+        items = barra_ref["items"]
+        if indice is None or indice < 0 or indice >= len(items):
+            return
+        es_oscuro = state["tema"] == "dark"
+        resultado = state["resultados"][indice] if indice < len(state["resultados"]) else None
+        activo = indice == state["indice"]
+        if activo:
+            bgcolor = "#2563eb" if es_oscuro else "#0b5cab"
+            color = "white"
+        elif resultado is True:
+            bgcolor = "#064e3b" if es_oscuro else "#d9f2e4"
+            color = "#bbf7d0" if es_oscuro else "#136c3a"
+        elif resultado is False:
+            bgcolor = "#7f1d1d" if es_oscuro else "#fde2e2"
+            color = "#fecaca" if es_oscuro else "#9f1f1f"
+        else:
+            bgcolor = "#1f2937" if es_oscuro else "#eef2f7"
+            color = "#9ca3af" if es_oscuro else "#4b5563"
+
+        puede_navegar = state["finalizado"] or indice <= state["indice"] or resultado is not None
+        border_color = (
+            "#60a5fa" if es_oscuro else "#0b5cab"
+        ) if activo else ("#4b5563" if es_oscuro else "#b8c4d4")
+        item = items[indice]
+        item.bgcolor = bgcolor
+        item.content.controls[0].color = color
+        item.border = ft.Border(
+            left=ft.BorderSide(1, border_color),
+            top=ft.BorderSide(1, border_color),
+            right=ft.BorderSide(1, border_color),
+            bottom=ft.BorderSide(1, border_color),
+        )
+        item.on_click = crear_click_navegar(indice) if puede_navegar else None
+        item.opacity = 1 if puede_navegar else 0.45
+
+    def actualizar_barra_persistente():
+        indice_anterior = barra_ref["indice"]
+        actualizar_item_navegacion(indice_anterior)
+        actualizar_item_navegacion(state["indice"])
+        barra_ref["indice"] = state["indice"]
+        total = len(state["preguntas"])
+        barra_ref["texto_pregunta"].value = f"Pregunta {state['indice'] + 1} de {total}"
+        barra_ref["texto_puntaje"].value = f"Puntaje {state['puntaje']} / {total}"
+        actualizar_texto_tiempo()
+
     def crear_barra_examen():
         total = len(state["preguntas"])
         es_oscuro = state["tema"] == "dark"
@@ -729,7 +791,9 @@ async def main(page: ft.Page):
             cache_extent=360,
             scroll=ft.ScrollMode.AUTO,
         )
-        return ft.Container(
+        texto_pregunta = ft.Text(f"Pregunta {state['indice'] + 1} de {total}", color=texto_info_color)
+        texto_puntaje = ft.Text(f"Puntaje {state['puntaje']} / {total}", color=texto_info_color)
+        barra = ft.Container(
             bgcolor=barra_bg,
             border=ft.Border(bottom=ft.BorderSide(1, barra_borde)),
             padding=ft.Padding(left=10, top=8, right=10, bottom=8),
@@ -738,9 +802,9 @@ async def main(page: ft.Page):
                     ft.Row(
                         [
                             ft.Text("Cisco Academy", weight="bold", color=titulo_color),
-                            ft.Text(f"Pregunta {state['indice'] + 1} de {total}", color=texto_info_color),
+                            texto_pregunta,
                             timer_ref["control"],
-                            ft.Text(f"Puntaje {state['puntaje']} / {total}", color=texto_info_color),
+                            texto_puntaje,
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                         wrap=True,
@@ -752,6 +816,30 @@ async def main(page: ft.Page):
                 spacing=8,
             ),
         )
+        barra_ref.update(
+            control=barra,
+            items=controles,
+            indice=state["indice"],
+            tema=state["tema"],
+            total=total,
+            texto_pregunta=texto_pregunta,
+            texto_puntaje=texto_puntaje,
+        )
+        return barra
+
+    def preparar_layout_examen():
+        barra_montada = (
+            barra_ref["control"] is not None
+            and barra_ref["control"] in layout_principal.controls
+            and barra_ref["tema"] == state["tema"]
+            and barra_ref["total"] == len(state["preguntas"])
+        )
+        if barra_montada:
+            actualizar_barra_persistente()
+            return
+
+        barra = crear_barra_examen()
+        layout_principal.controls = [crear_barra_acciones_examen(), barra, container]
 
     async def reintentar_examen():
         state["indice"] = 0
@@ -800,8 +888,7 @@ async def main(page: ft.Page):
 
         q = state["preguntas"][state["indice"]]
         sincronizar_estado_pregunta()
-        container.controls.append(crear_barra_acciones_examen())
-        container.controls.append(crear_barra_examen())
+        preparar_layout_examen()
         container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1} de {len(state['preguntas'])}", weight="bold", size=18))
         if state["finalizado"]:
             container.controls.append(ft.Button(content=ft.Text("Ver resultado"), on_click=lambda e: mostrar_resultado()))
@@ -1037,6 +1124,7 @@ async def main(page: ft.Page):
 
     async def mostrar_menu():
         container.controls.clear()
+        layout_principal.controls = [container]
         actualizar_boton_reintentar()
         container.controls.append(crear_boton_tema())
         container.controls.append(ft.Text("Selecciona el modulo:", size=24, weight="bold"))
