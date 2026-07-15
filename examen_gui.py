@@ -458,8 +458,12 @@ async def main(page: ft.Page):
         barra_ref["control"] = None
         barra = crear_barra_examen()
         layout_principal.controls = [crear_barra_acciones_examen(), barra, container]
+        total = len(state["preguntas"])
+        porcentaje = (state["puntaje"] / total * 100) if total else 0
         container.controls.append(ft.Text("Examen Finalizado", size=24, weight="bold"))
-        container.controls.append(ft.Text(f"Puntaje: {state['puntaje']} / {len(state['preguntas'])}"))
+        container.controls.append(
+            ft.Text(f"Puntaje: {state['puntaje']} / {total} ({porcentaje:.1f}%)")
+        )
         page.update()
 
     def mostrar_feedback(q, fb_container):
