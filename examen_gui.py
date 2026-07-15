@@ -2,6 +2,7 @@ import asyncio
 import inspect
 import json
 import os
+import random
 
 import flet as ft
 
@@ -32,6 +33,8 @@ async def main(page: ft.Page):
         "finalizado": False,
         "tema": "dark",
         "tiempo_segundos": 0,
+        "randomizar_preguntas": False,
+        "orden_preguntas": None,
     }
     container = ft.Column(
         scroll=ft.ScrollMode.AUTO,
@@ -140,6 +143,7 @@ async def main(page: ft.Page):
             "ultima_correcta": state["ultima_correcta"],
             "finalizado": state["finalizado"],
             "tiempo_segundos": state["tiempo_segundos"],
+            "orden_preguntas": state.get("orden_preguntas"),
         }
         try:
             await resolver_si_es_async(storage.set(STORAGE_KEY, json.dumps(data)))
@@ -216,12 +220,43 @@ async def main(page: ft.Page):
         state["ultima_correcta"] = None
         state["finalizado"] = False
         state["tiempo_segundos"] = 0
+        state["orden_preguntas"] = None
 
     def preparar_resultados(total):
         resultados = state.get("resultados") or []
         respuestas_usuario = state.get("respuestas_usuario") or []
         state["resultados"] = (resultados + [None] * total)[:total]
         state["respuestas_usuario"] = (respuestas_usuario + [None] * total)[:total]
+
+    def orden_guardado_valido(orden, total):
+        if not isinstance(orden, list) or len(orden) != total:
+            return False
+        try:
+            indices = [int(i) for i in orden]
+        except (TypeError, ValueError):
+            return False
+        return sorted(indices) == list(range(total))
+
+    def aplicar_orden_preguntas(preguntas, progreso=None):
+        total = len(preguntas)
+        orden_guardado = progreso.get("orden_preguntas") if progreso else None
+        if orden_guardado_valido(orden_guardado, total):
+            orden = [int(i) for i in orden_guardado]
+            state["orden_preguntas"] = orden
+            return [preguntas[i] for i in orden]
+
+        if progreso:
+            state["orden_preguntas"] = None
+            return preguntas
+
+        if state.get("randomizar_preguntas"):
+            orden = list(range(total))
+            random.shuffle(orden)
+            state["orden_preguntas"] = orden
+            return [preguntas[i] for i in orden]
+
+        state["orden_preguntas"] = None
+        return preguntas
 
     def pregunta_respondida(indice=None):
         indice = state["indice"] if indice is None else indice
@@ -454,6 +489,50 @@ async def main(page: ft.Page):
             padding=ft.Padding(left=10, top=8, right=10, bottom=8),
             width=ancho_disponible(),
             content=ft.Column(textos, spacing=3),
+        )
+
+    def crear_tarjeta_alternativa(control, texto, on_click=None):
+        colores = colores_revision()
+        return ft.Container(
+            content=ft.Row(
+                [
+                    control,
+                    ft.Text(
+                        texto,
+                        expand=True,
+                        no_wrap=False,
+                    ),
+                ],
+                spacing=8,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
+            bgcolor=colores["neutral_bg"],
+            border=ft.Border(
+                left=ft.BorderSide(1, colores["neutral_border"]),
+                top=ft.BorderSide(1, colores["neutral_border"]),
+                right=ft.BorderSide(1, colores["neutral_border"]),
+                bottom=ft.BorderSide(1, colores["neutral_border"]),
+            ),
+            border_radius=4,
+            padding=ft.Padding(
+                left=6,
+                top=8,
+                right=12,
+                bottom=8,
+            ),
+            width=ancho_disponible(),
+            on_click=on_click,
+        )
+
+    def crear_opcion_dropdown(texto, key=None):
+        return ft.dropdown.Option(
+            key=key or texto,
+            text=texto,
+            content=ft.Text(
+                texto,
+                size=12 if es_movil() else None,
+                no_wrap=False,
+            ),
         )
 
     def mostrar_alternativas_revisadas(q):
@@ -717,17 +796,31 @@ async def main(page: ft.Page):
             for obj in q["objetivos"]:
                 opciones_dropdown = []
                 if permite_vacias:
-                    opciones_dropdown.append(
-                        ft.dropdown.Option(
-                            key=VALOR_SIN_ASIGNAR,
-                            text="— Sin asignar —",
+                    if es_movil():
+                        opciones_dropdown.append(crear_opcion_dropdown("Sin asignar", key=VALOR_SIN_ASIGNAR))
+                    else:
+                        opciones_dropdown.append(
+                            ft.dropdown.Option(
+                                key=VALOR_SIN_ASIGNAR,
+                                text="— Sin asignar —",
+                            )
                         )
-                    )
-                opciones_dropdown.extend(ft.dropdown.Option(o) for o in q["opciones"])
+                if es_movil():
+                    opciones_dropdown.extend(crear_opcion_dropdown(o) for o in q["opciones"])
+                else:
+                    opciones_dropdown.extend(ft.dropdown.Option(o) for o in q["opciones"])
+                if es_movil():
+                    container.controls.append(ft.Text(obj, weight="bold", size=13))
                 dd = ft.Dropdown(
-                    label=obj,
+                    label=None if es_movil() else obj,
+                    hint_text="Selecciona alternativa" if es_movil() else None,
                     options=opciones_dropdown,
                     width=ancho_disponible(),
+                    menu_width=ancho_disponible() if es_movil() else None,
+                    menu_height=360 if es_movil() else None,
+                    dense=es_movil(),
+                    text_size=12 if es_movil() else None,
+                    content_padding=ft.Padding(left=10, top=8, right=10, bottom=8) if es_movil() else None,
                 )
                 dropdowns.append(dd)
                 container.controls.append(dd)
@@ -751,9 +844,27 @@ async def main(page: ft.Page):
         else:
             es_multiple = isinstance(resp_correctas, list) and len(resp_correctas) > 1
             if es_multiple:
-                cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
-                for cb in cbs:
-                    container.controls.append(cb)
+                if es_movil():
+                    cbs = []
+
+                    def sincronizar_control(e):
+                        pass
+
+                    def crear_click_checkbox(cb):
+                        def click_checkbox(e):
+                            cb.value = not bool(cb.value)
+                            page.update()
+
+                        return click_checkbox
+
+                    for op in q["opciones"]:
+                        cb = ft.Checkbox(value=False, on_change=sincronizar_control)
+                        cbs.append(cb)
+                        container.controls.append(crear_tarjeta_alternativa(cb, op, crear_click_checkbox(cb)))
+                else:
+                    cbs = [ft.Checkbox(label=op) for op in q["opciones"]]
+                    for cb in cbs:
+                        container.controls.append(cb)
 
                 async def verif_multi(e):
                     seleccionados = [i for i, cb in enumerate(cbs) if cb.value]
@@ -762,7 +873,26 @@ async def main(page: ft.Page):
 
                 container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verif_multi))
             else:
-                rg = ft.RadioGroup(content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])]))
+                if es_movil():
+                    opciones_radio = ft.Column(spacing=8)
+                    rg = ft.RadioGroup(content=opciones_radio, on_change=lambda e: None)
+
+                    def crear_click_radio(valor):
+                        def click_radio(e):
+                            rg.value = valor
+                            page.update()
+
+                        return click_radio
+
+                    for i, op in enumerate(q["opciones"]):
+                        valor = str(i)
+                        opciones_radio.controls.append(
+                            crear_tarjeta_alternativa(ft.Radio(value=valor), op, crear_click_radio(valor))
+                        )
+                else:
+                    rg = ft.RadioGroup(
+                        content=ft.Column([ft.Radio(value=str(i), label=op) for i, op in enumerate(q["opciones"])])
+                    )
                 container.controls.append(rg)
 
                 async def verif_radio(e):
@@ -786,6 +916,7 @@ async def main(page: ft.Page):
             if not preguntas:
                 raise ValueError("El archivo no tiene preguntas.")
 
+            preguntas = aplicar_orden_preguntas(preguntas, progreso)
             state["preguntas"] = preguntas
             state["ruta"] = ruta
             state["indice"] = 0
@@ -843,6 +974,9 @@ async def main(page: ft.Page):
     async def click_borrar_progreso(e):
         await volver_al_menu()
 
+    def cambiar_randomizar_preguntas(e):
+        state["randomizar_preguntas"] = bool(e.control.value)
+
     def crear_click_cargar(ruta):
         async def click_cargar(e):
             await cargar_examen(ruta)
@@ -854,6 +988,13 @@ async def main(page: ft.Page):
         actualizar_boton_reintentar()
         container.controls.append(crear_boton_tema())
         container.controls.append(ft.Text("Selecciona el modulo:", size=24, weight="bold"))
+        container.controls.append(
+            ft.Checkbox(
+                label="Ordenar preguntas al azar",
+                value=state["randomizar_preguntas"],
+                on_change=cambiar_randomizar_preguntas,
+            )
+        )
 
         progreso = await obtener_estado_guardado()
         if progreso and progreso.get("ruta") and os.path.exists(progreso["ruta"]):
