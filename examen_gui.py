@@ -3,6 +3,8 @@ import inspect
 import json
 import os
 import random
+import re
+from collections import Counter
 
 # Render runs without a desktop session. Force Flet to expose its web server
 # instead of trying to start a native application.
@@ -16,6 +18,37 @@ THEME_STORAGE_KEY = "ccna_exam_theme_v1"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGES_DIR = os.path.join(BASE_DIR, "img")
 VALOR_SIN_ASIGNAR = "__sin_asignar__"
+
+
+def grupo_objetivo(objetivo):
+    """Agrupa objetivos equivalentes como 'TCP (1)', 'TCP (2)', etc."""
+    coincidencia = re.fullmatch(r"(.*?)\s*\(\d+\)\s*", objetivo)
+    return coincidencia.group(1).strip() if coincidencia else objetivo
+
+
+def objetivos_del_grupo(pregunta, objetivo):
+    grupo = grupo_objetivo(objetivo)
+    return [
+        candidato
+        for candidato in pregunta.get("objetivos", [])
+        if grupo_objetivo(candidato) == grupo
+    ]
+
+
+def grupo_emparejamiento_correcto(pregunta, respuestas, objetivo):
+    correctas = pregunta.get("respuestas_correctas", {})
+    objetivos = objetivos_del_grupo(pregunta, objetivo)
+    return Counter(respuestas.get(item) for item in objetivos) == Counter(
+        correctas.get(item) for item in objetivos
+    )
+
+
+def respuestas_emparejamiento_correctas(pregunta, respuestas):
+    """Compara sin importar el orden dentro de objetivos numerados equivalentes."""
+    return all(
+        grupo_emparejamiento_correcto(pregunta, respuestas, objetivo)
+        for objetivo in pregunta.get("objetivos", [])
+    )
 
 
 async def main(page: ft.Page):
@@ -299,10 +332,18 @@ async def main(page: ft.Page):
         control.value = f"Tiempo {formatear_tiempo()}"
         control.color = color_tiempo()
 
+    def cronometro_activo():
+        if not state["preguntas"] or state["finalizado"]:
+            return False
+        # El examen comienza a contar después de contestar la primera
+        # pregunta y se pausa mientras se revisa una ya respondida.
+        examen_iniciado = any(resultado is not None for resultado in state["resultados"])
+        return examen_iniciado and not pregunta_respondida()
+
     async def contador_tiempo():
         while True:
             await asyncio.sleep(1)
-            if not state["preguntas"] or state["finalizado"]:
+            if not cronometro_activo():
                 continue
             state["tiempo_segundos"] += 1
             actualizar_texto_tiempo()
@@ -552,11 +593,18 @@ async def main(page: ft.Page):
             for obj in q.get("objetivos", []):
                 seleccion = respuestas_usuario.get(obj)
                 correcta = correctas.get(obj)
-                estado = "correct" if seleccion == correcta else "wrong"
+                grupo_correcto = grupo_emparejamiento_correcto(q, respuestas_usuario, obj)
+                estado = "correct" if grupo_correcto else "wrong"
+                objetivos_equivalentes = objetivos_del_grupo(q, obj)
+                if len(objetivos_equivalentes) > 1:
+                    valores_validos = [correctas.get(item) for item in objetivos_equivalentes]
+                    texto_correcta = f"Válidas para {grupo_objetivo(obj)}: {', '.join(valores_validos)}"
+                else:
+                    texto_correcta = f"Correcta: {correcta}"
                 textos = [
                     f"{obj}",
                     f"Tu respuesta: {seleccion if seleccion else 'Sin respuesta'}",
-                    f"Correcta: {correcta}",
+                    texto_correcta,
                 ]
                 container.controls.append(crear_tarjeta_revision("\n".join(textos), estado=estado))
             return
@@ -841,7 +889,7 @@ async def main(page: ft.Page):
                 elif cantidad_respondida != len(q["objetivos"]):
                     return
                 await mostrar_indicador_boton(e)
-                aciertos = all(respuestas[obj] == q["respuestas_correctas"].get(obj) for obj in q["objetivos"])
+                aciertos = respuestas_emparejamiento_correctas(q, respuestas)
                 await finalizar(aciertos, q, feedback_container, respuestas)
 
             container.controls.append(ft.Button(content=ft.Text("Confirmar"), on_click=verificar_emp))
