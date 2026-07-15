@@ -4,6 +4,10 @@ import json
 import os
 import random
 
+# Render runs without a desktop session. Force Flet to expose its web server
+# instead of trying to start a native application.
+os.environ.setdefault("FLET_FORCE_WEB_SERVER", "true")
+
 import flet as ft
 
 
@@ -1026,4 +1030,10 @@ async def main(page: ft.Page):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    ft.app(target=main, port=port, view=ft.AppView.WEB_BROWSER, assets_dir=IMAGES_DIR)
+    ft.run(
+        main,
+        host="0.0.0.0",
+        port=port,
+        view=ft.AppView.WEB_BROWSER,
+        assets_dir=IMAGES_DIR,
+    )

@@ -1,2 +1,2 @@
-flet
-flet-web
+flet==0.85.3
+flet-web==0.85.3
