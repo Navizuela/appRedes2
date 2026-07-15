@@ -590,14 +590,23 @@ async def main(page: ft.Page):
 
             respuestas_usuario = respuesta if isinstance(respuesta, dict) else {}
             correctas = q.get("respuestas_correctas", {})
+            selecciones_validas_usadas = Counter()
             for obj in q.get("objetivos", []):
                 seleccion = respuestas_usuario.get(obj)
                 correcta = correctas.get(obj)
-                grupo_correcto = grupo_emparejamiento_correcto(q, respuestas_usuario, obj)
-                estado = "correct" if grupo_correcto else "wrong"
                 objetivos_equivalentes = objetivos_del_grupo(q, obj)
+                grupo = grupo_objetivo(obj)
+                valores_validos = [correctas.get(item) for item in objetivos_equivalentes]
+                cantidad_admitida = Counter(valores_validos)[seleccion]
+                clave_seleccion = (grupo, seleccion)
+                seleccion_correcta = (
+                    seleccion is not None
+                    and selecciones_validas_usadas[clave_seleccion] < cantidad_admitida
+                )
+                if seleccion_correcta:
+                    selecciones_validas_usadas[clave_seleccion] += 1
+                estado = "correct" if seleccion_correcta else "wrong"
                 if len(objetivos_equivalentes) > 1:
-                    valores_validos = [correctas.get(item) for item in objetivos_equivalentes]
                     texto_correcta = f"Válidas para {grupo_objetivo(obj)}: {', '.join(valores_validos)}"
                 else:
                     texto_correcta = f"Correcta: {correcta}"
