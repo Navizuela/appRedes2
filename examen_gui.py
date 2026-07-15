@@ -84,11 +84,9 @@ async def main(page: ft.Page):
         expand=True,
         padding=ft.Padding(left=16, top=16, right=16, bottom=88),
     )
-    imagen_precarga = ft.Image(src="", width=1, height=1, opacity=0)
     timer_ref = {"control": None}
     guardado_ref = {"task": None, "dirty": False}
     page.add(content)
-    page.overlay.append(imagen_precarga)
 
     def es_movil():
         return bool(page.width and page.width < 600)
@@ -129,17 +127,6 @@ async def main(page: ft.Page):
         ruta_local = os.path.join(IMAGES_DIR, ruta_relativa)
         ruta_publica = "/" + ruta_relativa.replace(os.sep, "/")
         return ruta_publica, ruta_local
-
-    def precargar_siguiente_imagen():
-        """Descarga en segundo plano la próxima imagen para aprovechar la caché."""
-        imagen_precarga.src = ""
-        for pregunta in state["preguntas"][state["indice"] + 1:]:
-            if not pregunta.get("imagen"):
-                continue
-            src, ruta_local = obtener_ruta_imagen(pregunta["imagen"])
-            if ruta_local and os.path.isfile(ruta_local):
-                imagen_precarga.src = src
-            break
 
     async def resolver_si_es_async(resultado):
         if not inspect.isawaitable(resultado):
@@ -691,17 +678,7 @@ async def main(page: ft.Page):
         item_borde = "#4b5563" if es_oscuro else "#b8c4d4"
         timer_ref["control"] = ft.Text(f"Tiempo {formatear_tiempo()}", color=color_tiempo())
         controles = []
-        if total <= 20:
-            indices_visibles = list(range(total))
-        else:
-            inicio = max(0, state["indice"] - 5)
-            fin = min(total, state["indice"] + 6)
-            indices_visibles = sorted({0, total - 1, *range(inicio, fin)})
-
-        indice_anterior = None
-        for i in indices_visibles:
-            if indice_anterior is not None and i - indice_anterior > 1:
-                controles.append(ft.Text("…", color=pendiente_color, width=20, text_align=ft.TextAlign.CENTER))
+        for i in range(total):
             resultado = state["resultados"][i] if i < len(state["resultados"]) else None
             if i == state["indice"]:
                 bgcolor = activo_bg
@@ -739,8 +716,6 @@ async def main(page: ft.Page):
                     opacity=1 if puede_navegar else 0.45,
                 )
             )
-            indice_anterior = i
-
         return ft.Container(
             bgcolor=barra_bg,
             border=ft.Border(bottom=ft.BorderSide(1, barra_borde)),
@@ -812,7 +787,6 @@ async def main(page: ft.Page):
 
         q = state["preguntas"][state["indice"]]
         sincronizar_estado_pregunta()
-        precargar_siguiente_imagen()
         container.controls.append(crear_barra_acciones_examen())
         container.controls.append(crear_barra_examen())
         container.controls.append(ft.Text(f"Pregunta {state['indice'] + 1} de {len(state['preguntas'])}", weight="bold", size=18))
