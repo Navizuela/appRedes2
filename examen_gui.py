@@ -85,6 +85,7 @@ async def main(page: ft.Page):
         padding=ft.Padding(left=16, top=16, right=16, bottom=88),
     )
     timer_ref = {"control": None}
+    navegacion_ref = {"control": None}
     guardado_ref = {"task": None, "dirty": False}
     page.add(content)
 
@@ -697,6 +698,7 @@ async def main(page: ft.Page):
             border_color = item_borde if i != state["indice"] else activo_borde
             controles.append(
                 ft.Container(
+                    key=f"pregunta-{i}",
                     content=ft.Row(
                         [ft.Text(str(i + 1), color=color, weight="bold")],
                         alignment=ft.MainAxisAlignment.CENTER,
@@ -716,6 +718,17 @@ async def main(page: ft.Page):
                     opacity=1 if puede_navegar else 0.45,
                 )
             )
+        navegacion_ref["control"] = ft.ListView(
+            controls=controles,
+            horizontal=True,
+            height=42,
+            spacing=4,
+            item_extent=36,
+            padding=ft.Padding(left=0, top=0, right=0, bottom=10),
+            build_controls_on_demand=True,
+            cache_extent=360,
+            scroll=ft.ScrollMode.AUTO,
+        )
         return ft.Container(
             bgcolor=barra_bg,
             border=ft.Border(bottom=ft.BorderSide(1, barra_borde)),
@@ -734,7 +747,7 @@ async def main(page: ft.Page):
                         spacing=12,
                         run_spacing=6,
                     ),
-                    ft.Row(controles, scroll=ft.ScrollMode.AUTO, spacing=4),
+                    navegacion_ref["control"],
                 ],
                 spacing=8,
             ),
@@ -942,6 +955,10 @@ async def main(page: ft.Page):
 
         container.controls.append(feedback_container)
         page.update()
+        try:
+            navegacion_ref["control"].scroll_to(scroll_key=f"pregunta-{state['indice']}")
+        except Exception:
+            pass
 
     async def cargar_examen(ruta, progreso=None):
         try:
