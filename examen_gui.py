@@ -10,6 +10,19 @@ from collections import Counter
 # instead of trying to start a native application.
 os.environ.setdefault("FLET_FORCE_WEB_SERVER", "true")
 
+# Compatibility fix: flet-web passes openapi_prefix to FastAPI.__init__,
+# which was removed in newer versions of FastAPI. Intercept and clean up.
+try:
+    import fastapi
+    _orig_fastapi_init = fastapi.FastAPI.__init__
+    def _patched_fastapi_init(self, *args, **kwargs):
+        if "openapi_prefix" not in inspect.signature(_orig_fastapi_init).parameters:
+            kwargs.pop("openapi_prefix", None)
+        return _orig_fastapi_init(self, *args, **kwargs)
+    fastapi.FastAPI.__init__ = _patched_fastapi_init
+except Exception:
+    pass
+
 import flet as ft
 
 
