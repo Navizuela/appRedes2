@@ -2,12 +2,12 @@
 
 Aplicación web interactiva desarrollada en Python y Flet para practicar preguntas y exámenes de preparación para las certificaciones y evaluaciones de **Cisco Networking Academy (NetAcad)**, abarcando **CCNA 1 v7 (ITN)** y **CCNA 2 v7 (SRWE)**.
 
-🚀 **Accede a la aplicación en vivo aquí:**  
-👉 **[https://redes-sh74.onrender.com](https://redes-sh74.onrender.com)**
+**Accede a la aplicación en vivo aquí:**  
+**[https://redes-sh74.onrender.com](https://redes-sh74.onrender.com)**
 
 ---
 
-## 📋 Módulos y Exámenes Disponibles
+## Módulos y Exámenes Disponibles
 
 ### 📘 CCNA 1: Introduction to Networks (ITNv7)
 - **Módulos 11 - 13:** Direccionamiento IP, Subnetting IPv4/IPv6 y VLSM
@@ -20,7 +20,7 @@ Aplicación web interactiva desarrollada en Python y Flet para practicar pregunt
 
 ---
 
-## ✨ Características
+## Características
 
 - **Formatos de preguntas interactivos:**
   - Opción múltiple (selección simple y selección múltiple).
@@ -36,7 +36,7 @@ Aplicación web interactiva desarrollada en Python y Flet para practicar pregunt
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Lenguaje:** [Python](https://www.python.org/)
 - **Framework UI / Web:** [Flet](https://flet.dev/) (`flet`, `flet-web`)
