@@ -1,27 +1,38 @@
 # CCNA NetAcad Practice App 🌐
 
-Aplicación interactiva desarrollada en Python y Flet para practicar preguntas y exámenes de preparación para las evaluaciones de **Cisco Networking Academy (NetAcad)**, específicamente orientada a **CCNA 1 v7 (ITN - Introduction to Networks)**.
+Aplicación web interactiva desarrollada en Python y Flet para practicar preguntas y exámenes de preparación para las certificaciones y evaluaciones de **Cisco Networking Academy (NetAcad)**, abarcando **CCNA 1 v7 (ITN)** y **CCNA 2 v7 (SRWE)**.
 
 🚀 **Accede a la aplicación en vivo aquí:**  
 👉 **[https://redes-sh74.onrender.com](https://redes-sh74.onrender.com)**
 
 ---
 
-## 📋 Características
+## 📋 Módulos y Exámenes Disponibles
 
-- **Preguntas oficiales y de práctica:** Basadas en los cuestionarios y exámenes de Cisco NetAcad CCNA 1 (ITNv7).
-- **Módulos incluidos:**
-  - Módulos 11 - 13: Direccionamiento IP, Subnetting y VLSM
-  - Módulos 14 - 15: Capa de Transporte y Aplicación
-  - Módulos 16 - 17: Seguridad y Fundamentos de Red
-  - Examen Final CCNA 1 (ITNv7)
-- **Formatos interactivos:**
-  - Opción múltiple (selección única y múltiple).
-  - Preguntas de emparejamiento / arrastrar y soltar (*matching*).
-  - Soporte de diagramas, topologías y esquemas de red.
-- **Interfaz moderna y adaptable:**
-  - Compatible con modo claro y oscuro.
-  - Guardado de progreso en el navegador.
+### 📘 CCNA 1: Introduction to Networks (ITNv7)
+- **Módulos 11 - 13:** Direccionamiento IP, Subnetting IPv4/IPv6 y VLSM
+- **Módulos 14 - 15:** Capas de Transporte y Aplicación (TCP, UDP, servicios de red)
+- **Módulos 16 - 17:** Fundamentos de Seguridad de Red y mitigación de amenazas
+- **Examen Final ITNv7:** Evaluación integral del curso completo
+
+### 📙 CCNA 2: Switching, Routing and Wireless Essentials (SRWE v7)
+- **Módulos 1 - 4:** Conceptos de conmutación, configuración de switches, VLANs, enlaces troncales (802.1Q, DTP) y enrutamiento entre VLAN (*router-on-a-stick*).
+
+---
+
+## ✨ Características
+
+- **Formatos de preguntas interactivos:**
+  - Opción múltiple (selección simple y selección múltiple).
+  - Preguntas de emparejamiento / arrastrar y soltar (*matching* con detección de opciones sin usar).
+  - Integración completa de diagramas, topologías, tablas CAM y esquemas de red.
+- **Apartados y navegación por cursos:**
+  - Filtro por pestañas (`Todos`, `CCNA 1`, `CCNA 2`).
+  - Tarjetas visuales organizadas por curso y orden temático.
+- **Interfaz moderna y responsiva:**
+  - Soporte de modo oscuro y modo claro.
+  - Persistencia de progreso y respuestas en el almacenamiento local.
+  - Temporizador integrado y revisión detallada de respuestas con explicaciones oficiales.
 
 ---
 
@@ -61,4 +72,4 @@ Si deseas clonar el proyecto y ejecutarlo en tu entorno local:
    ```bash
    python examen_gui.py
    ```
-   *La aplicación se abrirá automáticamente en tu navegador o ventana de escritorio.*
+   *La aplicación se iniciará y estará disponible en `http://localhost:8080` (o el puerto configurado).*

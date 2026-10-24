@@ -72,6 +72,7 @@ async def main(page: ft.Page):
         "tiempo_segundos": 0,
         "randomizar_preguntas": False,
         "orden_preguntas": None,
+        "pestana_curso": "TODOS",
     }
     container = ft.Column(
         scroll=ft.ScrollMode.AUTO,
@@ -1126,12 +1127,105 @@ async def main(page: ft.Page):
 
         return click_cargar
 
+    METADATA_EXAMENES = {
+        "modulo11-13": {
+            "curso": "CCNA 1",
+            "titulo": "Módulos 11 - 13",
+            "descripcion": "Direccionamiento IP y Subnetting",
+            "orden": 1,
+        },
+        "modulo14-15": {
+            "curso": "CCNA 1",
+            "titulo": "Módulos 14 - 15",
+            "descripcion": "Capas de Transporte y Aplicación",
+            "orden": 2,
+        },
+        "modulo16-17": {
+            "curso": "CCNA 1",
+            "titulo": "Módulos 16 - 17",
+            "descripcion": "Seguridad y Fundamentos de Red",
+            "orden": 3,
+        },
+        "ccna1_examen_final_itnv7": {
+            "curso": "CCNA 1",
+            "titulo": "Examen Final ITNv7",
+            "descripcion": "Evaluación integral de Introducción a las Redes",
+            "orden": 4,
+        },
+        "ccna2_modulo1-4": {
+            "curso": "CCNA 2",
+            "titulo": "Módulos 1 - 4: Conmutación y VLANs",
+            "descripcion": "Conceptos de switching, VLAN y enrutamiento entre VLAN",
+            "orden": 1,
+        },
+    }
+
+    def crear_tarjeta_modulo(archivo, ruta):
+        clave = archivo.replace(".json", "")
+        meta = METADATA_EXAMENES.get(clave)
+        if not meta:
+            es_ccna2 = "ccna2" in clave.lower()
+            meta = {
+                "curso": "CCNA 2" if es_ccna2 else "CCNA 1",
+                "titulo": f"Iniciar {clave.replace('_', ' ').replace('-', ' ').upper()}",
+                "descripcion": "Cuestionario de práctica",
+                "orden": 99,
+            }
+        colores = colores_revision()
+        es_ccna2 = meta.get("curso") == "CCNA 2"
+        badge_color = "#0284c7" if es_ccna2 else "#059669"
+        badge_bg = (
+            ("#0c4a6e" if state["tema"] == "dark" else "#e0f2fe")
+            if es_ccna2
+            else ("#064e3b" if state["tema"] == "dark" else "#d1fae5")
+        )
+
+        return ft.Container(
+            content=ft.Row(
+                [
+                    ft.Container(
+                        content=ft.Icon(
+                            ft.Icons.ROUTER_OUTLINED if es_ccna2 else ft.Icons.SCHOOL_OUTLINED,
+                            color=badge_color,
+                            size=26,
+                        ),
+                        bgcolor=badge_bg,
+                        border_radius=8,
+                        padding=ft.Padding(10, 10, 10, 10),
+                    ),
+                    ft.Column(
+                        [
+                            ft.Text(meta["titulo"], weight="bold", size=15),
+                            ft.Text(meta["descripcion"], size=12, color=colores["muted_text"]),
+                        ],
+                        spacing=2,
+                        expand=True,
+                    ),
+                    ft.Icon(ft.Icons.ARROW_FORWARD_IOS, color=colores["muted_text"], size=16),
+                ],
+                alignment=ft.MainAxisAlignment.START,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                spacing=12,
+            ),
+            padding=ft.Padding(14, 12, 14, 12),
+            border_radius=10,
+            bgcolor=colores["neutral_bg"],
+            border=ft.Border(
+                left=ft.BorderSide(1, colores["neutral_border"]),
+                top=ft.BorderSide(1, colores["neutral_border"]),
+                right=ft.BorderSide(1, colores["neutral_border"]),
+                bottom=ft.BorderSide(1, colores["neutral_border"]),
+            ),
+            on_click=crear_click_cargar(ruta),
+            ink=True,
+        )
+
     async def mostrar_menu():
         container.controls.clear()
         layout_principal.controls = [container]
         actualizar_boton_reintentar()
         container.controls.append(crear_boton_tema())
-        container.controls.append(ft.Text("Selecciona el modulo:", size=24, weight="bold"))
+        container.controls.append(ft.Text("Selecciona el módulo o examen:", size=24, weight="bold"))
         container.controls.append(
             ft.Checkbox(
                 label="Ordenar preguntas al azar",
@@ -1145,17 +1239,124 @@ async def main(page: ft.Page):
             container.controls.append(ft.Button(content=ft.Text("Continuar examen guardado"), on_click=click_continuar, width=ancho_boton()))
             container.controls.append(ft.Button(content=ft.Text("Borrar progreso guardado"), on_click=click_borrar_progreso, width=ancho_boton()))
 
-        if os.path.exists("json"):
-            for archivo in [f for f in os.listdir("json") if f.endswith(".json")]:
-                ruta = os.path.join("json", archivo)
-                btn = ft.Button(
-                    content=ft.Text(f"Iniciar {archivo.replace('.json', '').upper()}"),
-                    on_click=crear_click_cargar(ruta),
-                    width=ancho_boton(),
-                )
-                container.controls.append(btn)
-        else:
+        if not os.path.exists("json"):
             container.controls.append(ft.Text("Carpeta 'json' no encontrada.", color="red"))
+            page.update()
+            return
+
+        # Pestañas / Categorías
+        pestana_actual = state.get("pestana_curso", "TODOS")
+
+        def crear_click_pestana(curso):
+            async def click_pestana(e):
+                state["pestana_curso"] = curso
+                await mostrar_menu()
+
+            return click_pestana
+
+        botones_pestana = []
+        opciones_pestana = [
+            ("TODOS", "Todos"),
+            ("CCNA 1", "CCNA 1 (ITN)"),
+            ("CCNA 2", "CCNA 2 (SRWE)"),
+        ]
+        colores = colores_revision()
+        for clave, etiqueta in opciones_pestana:
+            activa = pestana_actual == clave
+            color_activo = "#0284c7"
+            botones_pestana.append(
+                ft.Container(
+                    content=ft.Text(
+                        etiqueta,
+                        weight="bold" if activa else "normal",
+                        color="#ffffff" if activa else colores["neutral_text"],
+                        size=13,
+                    ),
+                    bgcolor=color_activo if activa else colores["neutral_bg"],
+                    border=ft.Border(
+                        left=ft.BorderSide(1, color_activo if activa else colores["neutral_border"]),
+                        top=ft.BorderSide(1, color_activo if activa else colores["neutral_border"]),
+                        right=ft.BorderSide(1, color_activo if activa else colores["neutral_border"]),
+                        bottom=ft.BorderSide(1, color_activo if activa else colores["neutral_border"]),
+                    ),
+                    border_radius=8,
+                    padding=ft.Padding(14, 8, 14, 8),
+                    on_click=crear_click_pestana(clave),
+                    ink=True,
+                )
+            )
+
+        container.controls.append(ft.Row(botones_pestana, wrap=True, spacing=8))
+
+        archivos = [f for f in os.listdir("json") if f.endswith(".json")]
+        items_ccna1 = []
+        items_ccna2 = []
+        items_otros = []
+
+        for archivo in archivos:
+            ruta = os.path.join("json", archivo)
+            clave = archivo.replace(".json", "")
+            meta = METADATA_EXAMENES.get(clave, {
+                "curso": "CCNA 2" if "ccna2" in clave.lower() else "CCNA 1",
+                "titulo": f"Iniciar {clave.upper()}",
+                "descripcion": "Cuestionario de práctica",
+                "orden": 99,
+            })
+            curso = meta.get("curso", "CCNA 1")
+            item = (meta.get("orden", 99), archivo, ruta)
+            if curso == "CCNA 1":
+                items_ccna1.append(item)
+            elif curso == "CCNA 2":
+                items_ccna2.append(item)
+            else:
+                items_otros.append(item)
+
+        items_ccna1.sort(key=lambda x: x[0])
+        items_ccna2.sort(key=lambda x: x[0])
+        items_otros.sort(key=lambda x: x[0])
+
+        if pestana_actual in ("TODOS", "CCNA 1") and items_ccna1:
+            container.controls.append(
+                ft.Container(
+                    content=ft.Row(
+                        [
+                            ft.Icon(ft.Icons.SCHOOL, color="#34d399", size=20),
+                            ft.Text("CCNA 1: Introduction to Networks (ITNv7)", size=16, weight="bold"),
+                        ],
+                        spacing=8,
+                    ),
+                    margin=ft.Margin(top=10, bottom=2, left=0, right=0),
+                )
+            )
+            for _, arch, ruta in items_ccna1:
+                container.controls.append(crear_tarjeta_modulo(arch, ruta))
+
+        if pestana_actual in ("TODOS", "CCNA 2") and items_ccna2:
+            container.controls.append(
+                ft.Container(
+                    content=ft.Row(
+                        [
+                            ft.Icon(ft.Icons.ROUTER, color="#38bdf8", size=20),
+                            ft.Text("CCNA 2: Switching, Routing & Wireless (SRWE)", size=16, weight="bold"),
+                        ],
+                        spacing=8,
+                    ),
+                    margin=ft.Margin(top=10, bottom=2, left=0, right=0),
+                )
+            )
+            for _, arch, ruta in items_ccna2:
+                container.controls.append(crear_tarjeta_modulo(arch, ruta))
+
+        if pestana_actual == "TODOS" and items_otros:
+            container.controls.append(
+                ft.Container(
+                    content=ft.Text("Otros Exámenes", size=16, weight="bold"),
+                    margin=ft.Margin(top=10, bottom=2, left=0, right=0),
+                )
+            )
+            for _, arch, ruta in items_otros:
+                container.controls.append(crear_tarjeta_modulo(arch, ruta))
+
         page.update()
 
     tema_guardado = await obtener_tema_guardado()
