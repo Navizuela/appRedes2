@@ -1,0 +1,305 @@
+import json
+
+questions = [
+    {
+        "pregunta": "1. Una red contiene varias VLAN que abarcan varios switches. ¿Qué sucede cuando un dispositivo en la VLAN 20 envía una trama de Ethernet de difusión?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "Solo los dispositivos de la VLAN 20 ven la trama.",
+            "Todos los dispositivos de todas las VLAN ven la trama.",
+            "Solo los dispositivos que están conectados al switch local ven la trama.",
+            "Los dispositivos de la VLAN 20 y la VLAN de administración ven la trama."
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación: Las VLAN crean dominios de difusión lógicos independientes. Por lo tanto, una trama de difusión enviada por un dispositivo en una VLAN específica (en este caso VLAN 20) solo puede ser recibida y procesada por otros dispositivos pertenecientes a la misma VLAN, incluso si la VLAN abarca múltiples switches a través de enlaces troncales.",
+        "imagen": None
+    },
+    {
+        "pregunta": "2. ¿Qué ocurre con los puertos de switch después de eliminar la VLAN a la que están asignados?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "Los puertos dejan de comunicarse con los dispositivos conectados.",
+            "Los puertos se desactivan.",
+            "Los puertos se colocan en el modo de enlace troncal.",
+            "Los puertos se asignan a la VLAN1, la VLAN predeterminada.",
+            "Los puertos afectados se deben volver a configurar para una VLAN activa."
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación: Cuando se elimina una VLAN asignada a puertos de switch de acceso, dichos puertos quedan inactivos y dejan de comunicarse con los dispositivos conectados. Para que vuelvan a funcionar, deben reasignarse manualmente a una VLAN activa existente.",
+        "imagen": None
+    },
+    {
+        "pregunta": "3. Consulte la ilustración. ¿Cuántos dominios de difusión se muestran?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "12",
+            "1",
+            "16",
+            "8",
+            "4"
+        ],
+        "respuestas_correctas": [
+            3
+        ],
+        "explicacion": "Explicación: Un router define un límite de difusión, por lo que cada interfaz de un router constituye un dominio de difusión independiente. En la ilustración, los 4 enlaces que conectan el router central con los 4 routers perimetrales forman 4 dominios de difusión. Además, la red LAN conectada a cada uno de los 4 routers perimetrales constituye un dominio de difusión adicional. Por lo tanto, hay 4 + 4 = 8 dominios de difusión en total.",
+        "imagen": "pregunta_3.png"
+    },
+    {
+        "pregunta": "4. Consulte la exhibición. ¿Cómo se reenvía una trama desde la PCA hacia la PCC si la tabla de direcciones MAC en el switch SW1 está vacía?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "SW1 satura todos los puertos en SW1 con la trama, a excepción del puerto a través del cual la trama ingresó al switch.",
+            "SW1 descarta la trama porque no conoce el destino de la dirección MAC.",
+            "SW1 reenvía la trama directamente a SW2. SW2 satura todos los puertos conectados a SW2 con la trama, a excepción del puerto a través del cual la trama ingresó al switch.",
+            "SW1 satura todos los puertos en el switch con la trama, a excepción del puerto interconectado al switch SW2 y el puerto a través del cual la trama ingresó al switch."
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación: Cuando un switch recibe una trama con una dirección MAC de destino que no está registrada en su tabla de direcciones MAC (o si la tabla está vacía), trata la trama como unidifusión desconocida (unknown unicast) y realiza inundación (flooding): la reenvía por todos los puertos activos de la misma VLAN, excepto por el puerto por donde ingresó (Fa0/1 en este caso).",
+        "imagen": "pregunta_4.png"
+    },
+    {
+        "pregunta": "5. ¿Después de qué paso de la secuencia de arranque del switch se ejecuta el gestor de arranque?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "después de la localización de IOS",
+            "después de la ejecución POST",
+            "después de la inicialización de la CPU",
+            "después de la inicialización del sistema de archivos flash"
+        ],
+        "respuestas_correctas": [
+            1
+        ],
+        "explicacion": "Explicación: El orden correcto de la secuencia de arranque de un switch Cisco es:\n1. El switch carga y ejecuta el autodiagnóstico al encender (POST).\n2. El switch carga el software del gestor de arranque (boot loader).\n3. El gestor de arranque realiza la inicialización de bajo nivel de la CPU.\n4. El gestor de arranque inicializa la memoria flash.\n5. El gestor de arranque localiza y carga la imagen predeterminada del software IOS.",
+        "imagen": None
+    },
+    {
+        "pregunta": "6. ¿Qué tipo de VLAN está configurado específicamente para el tráfico de red como SSH, Telnet, HTTPS, HTTP y SNMP?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "VLAN troncal",
+            "VLAN de voz",
+            "VLAN de administración",
+            "VLAN de seguridad"
+        ],
+        "respuestas_correctas": [
+            2
+        ],
+        "explicacion": "Explicación: La VLAN de administración es la VLAN configurada para gestionar los dispositivos de red remotamente mediante protocolos seguros o de gestión como SSH, Telnet, HTTPS, HTTP y SNMP. Se le asigna una dirección IP y máscara de subred a través de una SVI (Switch Virtual Interface).",
+        "imagen": None
+    },
+    {
+        "pregunta": "7. ¿Cuál es el propósito del protocolo de árbol de expansión (STP)?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "crear dominios de colisiones más pequeños",
+            "permitir que dispositivos Cisco intercambien actualizaciones de tabla de enrutamiento",
+            "prevenir bucles en la Capa 2",
+            "prevenir loops de enrutamiento en un router",
+            "crear dominios de broadcast más pequeños"
+        ],
+        "respuestas_correctas": [
+            2
+        ],
+        "explicacion": "Explicación: El protocolo de árbol de expansión (STP, IEEE 802.1D) está diseñado para evitar bucles lógicos en la Capa 2 de la red cuando existen rutas redundantes entre switches. Bloquea selectivamente los puertos redundantes para asegurar una topología libre de bucles.",
+        "imagen": None
+    },
+    {
+        "pregunta": "8. ¿Cuáles de las siguientes son dos desventajas de desactivar un árbol de expansión y tener varias rutas a través de la red de switch de capa 2? (Elija dos opciones).",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "La tabla de direcciones MAC se vuelve inestable.",
+            "Las tramas de difusión se transmiten indefinidamente.",
+            "La seguridad de puertos desactiva todos los puertos que tienen dispositivos conectados.",
+            "El switch actúa como un concentrador.",
+            "La seguridad de puertos se vuelve inestable."
+        ],
+        "respuestas_correctas": [
+            0,
+            1
+        ],
+        "explicacion": "Explicación: Desactivar STP en una red de capa 2 con enlaces redundantes produce dos efectos catastróficos:\n1) Inestabilidad en la tabla de direcciones MAC: la misma trama llega repetidamente por distintos puertos, provocando que el switch actualice continuamente su tabla con datos contradictorios.\n2) Tormentas de difusión (broadcast storms): como las tramas de capa 2 no tienen un campo TTL (Time to Live), las tramas de difusión se transmiten y replican indefinidamente entre los switches en bucle, agotando los recursos de la red.",
+        "imagen": None
+    },
+    {
+        "pregunta": "9. ¿Qué combinan tres componentes para formar un ID de puente (Bridge ID)? (Elija tres opciones).",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "ID de puerto",
+            "dirección IP",
+            "ID de sistema extendido",
+            "dirección MAC",
+            "prioridad del puente",
+            "costo"
+        ],
+        "respuestas_correctas": [
+            2,
+            3,
+            4
+        ],
+        "explicacion": "Explicación: El Bridge ID (BID) de STP consta de 8 bytes formados por tres componentes:\n1) Prioridad del puente (4 bits): valor configurable en incrementos de 4096 (por defecto 32768).\n2) ID del sistema extendido (12 bits): contiene el número de VLAN (permite PVST+).\n3) Dirección MAC (48 bits): la dirección MAC del switch para desempatar si las prioridades son idénticas.",
+        "imagen": None
+    },
+    {
+        "pregunta": "10. ¿Qué característica describe el switching por método de corte?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "Solo las tramas de salida se revisan para detectar errores.",
+            "Se reenvían los fragmentos sin errores, así que el switching ocurre con una latencia más baja.",
+            "El almacenamiento en búfer se utiliza para admitir diferentes velocidades de Ethernet.",
+            "Las tramas se reenvían sin ninguna verificación de errores."
+        ],
+        "respuestas_correctas": [
+            3
+        ],
+        "explicacion": "Explicación: En el switching por método de corte (cut-through), el switch comienza a reenviar la trama tan pronto como recibe y lee la dirección MAC de destino (primeros 6 bytes), sin esperar a recibir el resto de la trama ni realizar el cálculo de verificación de redundancia cíclica (CRC/FCS), por lo que las tramas se reenvían sin ninguna verificación de errores, ofreciendo la menor latencia.",
+        "imagen": None
+    },
+    {
+        "pregunta": "11. ITEM 2: Términos pareados. Una cada definición de la Columna A con su concepto correspondiente de la Columna B.",
+        "tipo": "emparejamiento",
+        "opciones": [
+            "8021q",
+            "Auto-mdix",
+            "BpduGuard",
+            "DTP",
+            "loopback",
+            "PortFast",
+            "PVST",
+            "STA",
+            "STP",
+            "subinterfaz",
+            "vlan",
+            "Vlan de administracion",
+            "Vlan de datos",
+            "Vlan nativa",
+            "Vlan predeterminada"
+        ],
+        "objetivos": [
+            "1- Protege los puertos de acceso",
+            "2- Encabezado de 4 bytes",
+            "3- Transporta datos sin etiquetar",
+            "4- Se necesita una ip una mascara de subred y un Gateway predeterminado para usarla",
+            "5- Es utilizada para el enrutamiento router on a stick",
+            "6- Permite negociar un enlace troncal automáticamente",
+            "7- El puerto pasa a estado de reenvio inmediatamente",
+            "8- Protocolo de árbol de expansion",
+            "9- Spanning tree algorithm",
+            "10- Todos los puertos del switch petenecen a ella cuando se enciende el switch",
+            "11- Lan virtual",
+            "12- Transporta datos de los usuarios",
+            "13- Es una interfaz lógica que no esta ligada a un puerto físico, sirve para probar internet",
+            "14- Permite detectar el tipo de cable automáticamente",
+            "15- Una mejora de stp que permite tener un nodo raíz para cada vlan"
+        ],
+        "respuestas_correctas": {
+            "1- Protege los puertos de acceso": "BpduGuard",
+            "2- Encabezado de 4 bytes": "8021q",
+            "3- Transporta datos sin etiquetar": "Vlan nativa",
+            "4- Se necesita una ip una mascara de subred y un Gateway predeterminado para usarla": "Vlan de administracion",
+            "5- Es utilizada para el enrutamiento router on a stick": "subinterfaz",
+            "6- Permite negociar un enlace troncal automáticamente": "DTP",
+            "7- El puerto pasa a estado de reenvio inmediatamente": "PortFast",
+            "8- Protocolo de árbol de expansion": "STP",
+            "9- Spanning tree algorithm": "STA",
+            "10- Todos los puertos del switch petenecen a ella cuando se enciende el switch": "Vlan predeterminada",
+            "11- Lan virtual": "vlan",
+            "12- Transporta datos de los usuarios": "Vlan de datos",
+            "13- Es una interfaz lógica que no esta ligada a un puerto físico, sirve para probar internet": "loopback",
+            "14- Permite detectar el tipo de cable automáticamente": "Auto-mdix",
+            "15- Una mejora de stp que permite tener un nodo raíz para cada vlan": "PVST"
+        },
+        "explicacion": "Explicación:\n- 1 -> BPDU Guard: Protege los puertos de acceso con PortFast desactivándolos si reciben BPDUs.\n- 2 -> 802.1Q: Estándar de etiquetado de enlaces troncales que añade un encabezado de 4 bytes a la trama Ethernet.\n- 3 -> VLAN nativa: Transporta el tráfico sin etiquetar a través de un enlace troncal 802.1Q.\n- 4 -> VLAN de administración: SVI configurada con dirección IP, máscara y default gateway para gestión remota.\n- 5 -> Subinterfaz: Interfaz virtual del router empleada en el método de enrutamiento Router-on-a-Stick.\n- 6 -> DTP: Dynamic Trunking Protocol, negocia automáticamente la formación de un enlace troncal.\n- 7 -> PortFast: Permite a un puerto de acceso pasar directamente al estado de reenvío (Forwarding) omitiendo Listening y Learning.\n- 8 -> STP: Spanning Tree Protocol, protocolo para prevenir bucles de capa 2.\n- 9 -> STA: Spanning Tree Algorithm, algoritmo utilizado por STP para calcular la topología libre de bucles.\n- 10 -> VLAN predeterminada: VLAN 1, a la que pertenecen todos los puertos de switch de manera inicial.\n- 11 -> VLAN: Virtual Local Area Network, red de área local virtual.\n- 12 -> VLAN de datos: VLAN configurada para transportar exclusivamente el tráfico de datos generado por usuarios.\n- 13 -> Loopback: Interfaz lógica interna que no depende de un puerto físico, útil para pruebas de conectividad y gestión.\n- 14 -> Auto-MDIX: Detecta automáticamente si el cable conectado es directo o cruzado y ajusta los pines de la interfaz.\n- 15 -> PVST: Per-VLAN Spanning Tree, protocolo propietario de Cisco que ejecuta una instancia de STP por cada VLAN con un puente raíz independiente.",
+        "imagen": None
+    },
+    {
+        "pregunta": "12. ITEM 3 (1): ¿Cuál es la diferencia entre un dominio de difusión y un dominio de colisiones, cómo se pueden evitar las colisiones y cómo se reduce el dominio de difusión?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "El dominio de difusión es el alcance donde se propaga una trama broadcast (se segmenta con routers o VLANs); el dominio de colisión es el segmento donde dos tramas pueden colisionar (se aíslan con switches en full-duplex).",
+            "El dominio de difusión ocurre solo en cables coaxiales; las colisiones se evitan con hubs y el dominio de difusión se reduce agregando más switches no administrados.",
+            "El dominio de colisión agrupa todas las VLANs de la red; las colisiones se evitan con cables cruzados y los dominios de difusión se eliminan con puentes pasivos.",
+            "No existe diferencia operativa; ambos términos describen el área de cobertura del protocolo CSMA/CD en redes exclusivamente inalámbricas."
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación:\n- Dominio de colisión: Es el área lógica o física donde las tramas pueden colisionar si dos dispositivos transmiten simultáneamente en un medio compartido (half-duplex). Se eliminan/aíslan utilizando switches donde cada puerto es un dominio de colisión independiente y operando en full-duplex.\n- Dominio de difusión (broadcast): Es el conjunto de todos los dispositivos de la red que reciben cualquier trama de broadcast enviada por cualquiera de ellos. Se reduce o divide utilizando routers (que no reenvían tramas broadcast de capa 2 de forma predeterminada) o mediante la creación de VLANs en los switches.",
+        "imagen": None
+    },
+    {
+        "pregunta": "13. ITEM 3 (2): Explique los tres mecanismos de enrutamiento inter-VLAN. ¿En qué se diferencian?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "1) Heredado (Legacy): una interfaz física de router por cada VLAN. 2) Router-on-a-Stick: una sola interfaz física de router dividida en subinterfaces con enlace troncal 802.1Q. 3) Switch Capa 3: interfaces virtuales de switch (SVIs) enrutadas por hardware dentro del mismo switch.",
+            "1) Estático: conexión por cable de consola serial. 2) Dinámico: intercambio exclusivo con RIPv1 entre estaciones de trabajo. 3) Por difusión: inundación indiscriminada entre puertos de acceso.",
+            "1) Subnetting de capa 1: división eléctrica de señales. 2) Troncal analógico: uso de multiplexores de frecuencia. 3) Router-on-a-Stick: requiere tres routers físicos por switch.",
+            "1) Heredado: utiliza una única subinterfaz para 4096 VLANs. 2) NAT dinámico: traduce direcciones MAC a IPs privadas. 3) Switch Capa 2: conmuta paquetes IP sin configurar gateways."
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación:\n1. Enrutamiento inter-VLAN heredado (Legacy): Cada VLAN requiere una interfaz física separada en el router conectada a un puerto de acceso en el switch. Es poco escalable y agota rápidamente las interfaces del router.\n2. Router-on-a-Stick: Utiliza una sola interfaz física del router conectada mediante un enlace troncal al switch. La interfaz se divide lógicamente en subinterfaces con encapsulación 802.1Q (encapsulation dot1Q). Ahorra puertos físicos pero el enlace único puede ser un cuello de botella con mucho tráfico.\n3. Switch de Capa 3 (Multicapa con SVIs): Las VLANs se enrutan internamente en el switch mediante Interfaces Virtuales de Switch (SVI) a través de hardware especializado (ASICs). Proporciona mayor velocidad, escalabilidad y menor latencia sin requerir un router externo para el tráfico inter-VLAN local.",
+        "imagen": None
+    },
+    {
+        "pregunta": "14. ITEM 3 (3): Ingrese en el recuadro los comandos necesarios para crear la VLAN 10 en el switch S1 y luego asignar la VLAN al puerto Fa0/1 como modo de acceso:",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "S1# configure terminal\nS1(config)# vlan 10\nS1(config-vlan)# exit\nS1(config)# interface fastEthernet 0/1\nS1(config-if)# switchport mode access\nS1(config-if)# switchport access vlan 10\nS1(config-if)# end",
+            "S1# configure terminal\nS1(config)# interface fastEthernet 0/1\nS1(config-if)# switchport mode trunk\nS1(config-if)# switchport trunk allowed vlan 10\nS1(config-if)# end",
+            "S1# configure terminal\nS1(config)# vlan 10\nS1(config-vlan)# ip address 10.0.0.1 255.255.255.0\nS1(config-vlan)# interface fastEthernet 0/1\nS1(config-if)# switchport vlan 10\nS1(config-if)# end",
+            "S1# configure terminal\nS1(config)# interface vlan 10\nS1(config-if)# switchport mode access\nS1(config-if)# assign port fa0/1\nS1(config-if)# end"
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación: La configuración estándar en Cisco IOS para crear una VLAN y asignarla en modo acceso a un puerto es:\n1. 'vlan 10': Crea la VLAN 10 en la base de datos de VLANs.\n2. 'interface fastEthernet 0/1': Ingresa al modo de configuración de la interfaz física.\n3. 'switchport mode access': Establece explícitamente el puerto en modo de acceso (no troncal).\n4. 'switchport access vlan 10': Asigna el puerto a la VLAN 10.",
+        "imagen": None
+    },
+    {
+        "pregunta": "15. ITEM 3 (4): Consulte la ilustración. Los switch A y B se configuraron con el protocolo DTP en los modos que se muestran en las imágenes. Rellene o relacione cada escenario con el tipo de enlace que se generará luego de la negociación:",
+        "tipo": "emparejamiento",
+        "opciones": [
+            "Troncal",
+            "Acceso"
+        ],
+        "objetivos": [
+            "Escenario 1: Switch A (Dynamic auto) <---> Switch B (Dynamic desirable)",
+            "Escenario 2: Switch A (Dynamic auto) <---> Switch B (Dynamic auto)",
+            "Escenario 3: Switch A (Dynamic desirable) <---> Switch B (Dynamic desirable)"
+        ],
+        "respuestas_correctas": {
+            "Escenario 1: Switch A (Dynamic auto) <---> Switch B (Dynamic desirable)": "Troncal",
+            "Escenario 2: Switch A (Dynamic auto) <---> Switch B (Dynamic auto)": "Acceso",
+            "Escenario 3: Switch A (Dynamic desirable) <---> Switch B (Dynamic desirable)": "Troncal"
+        },
+        "explicacion": "Explicación de la negociación DTP (Dynamic Trunking Protocol):\n- Dynamic Auto + Dynamic Desirable: Desirable solicita activamente la conversión a troncal y Auto responde afirmativamente -> Se negocia un enlace TRONCAL.\n- Dynamic Auto + Dynamic Auto: Ambos extremos están en modo pasivo a la espera de que el otro inicie la negociación. Dado que ninguno envía solicitudes -> El enlace queda en modo ACCESO.\n- Dynamic Desirable + Dynamic Desirable: Ambos extremos solicitan activamente la negociación de troncal -> Se negocia un enlace TRONCAL.",
+        "imagen": "dtp_escenarios_todos.png"
+    },
+    {
+        "pregunta": "16. ITEM 3 (5): Considere el siguiente escenario: las VLAN 2 y VLAN 3 están ya configuradas y listas en todos los switches con los enlaces troncales y las interfaces ya asignadas. Para que la PC1 pueda comunicarse con la PC3 se debe configurar inter-VLAN routing en el switch de capa 3 SW-3. Utilice las IPs de la tabla (PC1: 172.30.2.10, GW: 172.30.2.1; PC3: 172.30.3.30, GW: 172.30.3.1; Vlan 2: 172.30.2.1/24; Vlan 3: 172.30.3.1/24). ¿Cuáles son los comandos requeridos en SW-3(config)#?",
+        "tipo": "opcion_multiple",
+        "opciones": [
+            "SW-3(config)# ip routing\nSW-3(config)# interface vlan 2\nSW-3(config-if)# ip address 172.30.2.1 255.255.255.0\nSW-3(config-if)# no shutdown\nSW-3(config-if)# exit\nSW-3(config)# interface vlan 3\nSW-3(config-if)# ip address 172.30.3.1 255.255.255.0\nSW-3(config-if)# no shutdown\nSW-3(config-if)# exit",
+            "SW-3(config)# interface vlan 2\nSW-3(config-if)# ip address 172.30.2.10 255.255.255.0\nSW-3(config-if)# no shutdown\nSW-3(config-if)# exit\nSW-3(config)# interface vlan 3\nSW-3(config-if)# ip address 172.30.3.30 255.255.255.0\nSW-3(config-if)# no shutdown\nSW-3(config-if)# exit",
+            "SW-3(config)# interface gigabitEthernet 1/0/1.2\nSW-3(config-subif)# encapsulation dot1Q 2\nSW-3(config-subif)# ip address 172.30.2.1 255.255.255.0\nSW-3(config)# interface gigabitEthernet 1/0/1.3\nSW-3(config-subif)# encapsulation dot1Q 3\nSW-3(config-subif)# ip address 172.30.3.1 255.255.255.0",
+            "SW-3(config)# router rip\nSW-3(config-router)# network 172.30.0.0\nSW-3(config-router)# switchport inter-vlan enable\nSW-3(config-router)# exit"
+        ],
+        "respuestas_correctas": [
+            0
+        ],
+        "explicacion": "Explicación: Para configurar enrutamiento inter-VLAN en un switch multicapa (Capa 3 como el Cisco Catalyst 3650):\n1. Habilitar la función de enrutamiento IPv4 en el switch con el comando global 'ip routing'.\n2. Crear y configurar la interfaz virtual de switch (SVI) para la VLAN 2 con su dirección IP de gateway (172.30.2.1 255.255.255.0) y habilitarla con 'no shutdown'.\n3. Crear y configurar la SVI para la VLAN 3 con su dirección IP de gateway (172.30.3.1 255.255.255.0) y habilitarla con 'no shutdown'.",
+        "imagen": "topologia_l3_intervlan.png"
+    }
+]
+
+with open('json/ccna2_lab_redes_prueba1.json', 'w', encoding='utf-8') as f:
+    json.dump(questions, f, ensure_ascii=False, indent=2)
+
+print(f"Successfully generated json/ccna2_lab_redes_prueba1.json with {len(questions)} questions.")
