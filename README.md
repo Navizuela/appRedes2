@@ -17,6 +17,7 @@ Aplicación web interactiva desarrollada en Python y Flet para practicar pregunt
 
 ### 📙 CCNA 2: Switching, Routing and Wireless Essentials (SRWE v7)
 - **Módulos 1 - 4:** Conceptos de conmutación, configuración de switches, VLANs, enlaces troncales (802.1Q, DTP) y enrutamiento entre VLAN (*router-on-a-stick*).
+- **Laboratorio de Redes - Prueba 1:** Evaluación práctica de conceptos clave: dominios de colisión/difusión, STP, DTP, asignación de VLANs y enrutamiento inter-VLAN.
 
 ---
 
