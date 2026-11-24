@@ -19,6 +19,7 @@ Aplicación web interactiva desarrollada en Python y Flet para practicar pregunt
 - **Módulos 1 - 4:** Conceptos de conmutación, configuración de switches, VLANs, enlaces troncales (802.1Q, DTP) y enrutamiento entre VLAN (*router-on-a-stick*).
 - **Laboratorio de Redes - Prueba 1:** Evaluación práctica de conceptos clave: dominios de colisión/difusión, STP, DTP, asignación de VLANs y enrutamiento inter-VLAN.
 - **Laboratorio de Redes - Prueba 2:** EtherChannel (PAgP/LACP), DHCPv4 (DORA, Relay Agent), DHCPv6 (Stateless/Stateful), SLAAC, Seguridad en Switches (Port Security, DHCP Snooping) y redundancia de primer salto (HSRP/FHRP).
+- **Laboratorio de Redes - Prueba 2 (Remix):** Banco ampliado de evaluación práctica integral con 76 preguntas sobre topologías, Packet Tracer, CLI de Cisco IOS, STP, EtherChannel y enrutamiento inter-VLAN.
 
 ---
 

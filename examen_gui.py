@@ -151,10 +151,28 @@ async def main(page: ft.Page):
         if not nombre_imagen or not state.get("ruta"):
             return None, None
 
+        # Si nombre_imagen ya incluye una ruta relativa válida dentro de IMAGES_DIR
+        ruta_normalizada = nombre_imagen.replace("/", os.sep).replace("\\", os.sep)
+        ruta_directa = os.path.join(IMAGES_DIR, ruta_normalizada)
+        if os.path.isfile(ruta_directa):
+            ruta_publica = "/" + nombre_imagen.replace("\\", "/").lstrip("/")
+            return ruta_publica, ruta_directa
+
         nombre_examen = os.path.splitext(os.path.basename(state["ruta"]))[0]
         nombre_seguro = os.path.basename(nombre_imagen)
         ruta_relativa = os.path.join(nombre_examen, nombre_seguro)
         ruta_local = os.path.join(IMAGES_DIR, ruta_relativa)
+        if os.path.isfile(ruta_local):
+            ruta_publica = "/" + ruta_relativa.replace(os.sep, "/")
+            return ruta_publica, ruta_local
+
+        # Búsqueda de respaldo en cualquier subdirectorio de IMAGES_DIR
+        for carpeta in os.listdir(IMAGES_DIR):
+            candidato = os.path.join(IMAGES_DIR, carpeta, nombre_seguro)
+            if os.path.isfile(candidato):
+                rel = os.path.join(carpeta, nombre_seguro)
+                return "/" + rel.replace(os.sep, "/"), candidato
+
         ruta_publica = "/" + ruta_relativa.replace(os.sep, "/")
         return ruta_publica, ruta_local
 
@@ -1182,6 +1200,12 @@ async def main(page: ft.Page):
             "titulo": "Laboratorio de Redes - Prueba 2",
             "descripcion": "EtherChannel, DHCPv4/v6, SLAAC, Seguridad de Switch y FHRP",
             "orden": 3,
+        },
+        "ccna2_lab_redes_prueba2_remix": {
+            "curso": "CCNA 2",
+            "titulo": "Laboratorio de Redes - Prueba 2 (Remix)",
+            "descripcion": "Banco extendido: EtherChannel, DHCPv4/v6, STP, SLAAC y Enrutamiento",
+            "orden": 4,
         },
     }
 

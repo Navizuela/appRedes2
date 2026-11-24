@@ -1,0 +1,1152 @@
+[
+  {
+    "pregunta": "1. Consulte la ilustración. El administrador intentó crear un EtherChannel entre el switch S1 y los otros dos switches (S2 y S3) mediante los comandos aplicados en 'interface range fa0/1 - 4' ('channel-group 1 mode on'), pero la configuración falló. ¿Cuál es la causa del problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El tráfico no se puede enviar a dos switches diferentes a través del mismo enlace EtherChannel.",
+      "El tráfico solo puede enviarse si EtherChannel se implementa en interfaces Gigabit Ethernet.",
+      "El tráfico solo puede enviarse si EtherChannel se implementa en switches de capa 3.",
+      "El tráfico no se puede enviar si los enlaces se configuran como troncales dinámicos."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Un enlace EtherChannel agrupa interfaces físicas de manera punto a punto entre exactamente dos dispositivos. No es posible agrupar interfaces en un único canal lógico en S1 que se divida hacia dos switches independientes como S2 y S3.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/etherchannel_tres_switches_modo_on.png"
+  },
+  {
+    "pregunta": "2. ¿Qué afirmación es verdadera con respecto al uso del protocolo PAgP (Port Aggregation Protocol) para crear enlaces EtherChannel?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Aumenta el número de puertos que participan en el árbol Spanning Tree.",
+      "Es un protocolo propietario de Cisco.",
+      "Asigna obligatoriamente un número par de puertos (2, 4, 6) para la agregación.",
+      "Requiere más enlaces físicos que el protocolo LACP."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "PAgP es un protocolo de negociación automática de EtherChannel diseñado por Cisco y propietario de dicha marca. LACP es el estándar equivalente definido por IEEE.",
+    "imagen": null
+  },
+  {
+    "pregunta": "3. ¿Qué mensaje utiliza un host IPv4 para responder cuando recibe un mensaje DHCPOFFER proveniente de un servidor DHCP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DHCPACK",
+      "DHCPDISCOVER",
+      "DHCPREQUEST",
+      "DHCPOFFER"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "En el proceso DORA de DHCP (Discover, Offer, Request, Ack), una vez que el cliente recibe uno o más mensajes DHCPOFFER de los servidores, responde enviando un mensaje DHCPREQUEST de difusión para notificar al servidor seleccionado que acepta su oferta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "4. Consulte la ilustración. Un administrador de red está configurando un enlace EtherChannel entre SW1 y SW2. La salida de 'show running-config' muestra SW1 con 'channel-group 1 mode auto' y SW2 con 'channel-group 1 mode active'. Sin embargo, el enlace EtherChannel no se establece. ¿Qué cambio en la configuración corregiría el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Configurar el modo de SW2 EtherChannel como deseable (desirable).",
+      "Configurar el modo de SW2 EtherChannel como automático (auto).",
+      "Configurar el modo de SW1 EtherChannel como activado (on).",
+      "Configurar el modo de SW2 EtherChannel como activado (on)."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "SW1 está configurado en modo 'auto' (protocolo PAgP), mientras que SW2 está en modo 'active' (protocolo LACP). Al pertenecer a protocolos de agregación diferentes, la negociación falla. Cambiar el modo de SW2 a 'desirable' permite que ambos utilicen PAgP y formen el canal.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/etherchannel_configuracion_sw1_sw2.png"
+  },
+  {
+    "pregunta": "8. Un administrador de red configura un router para enviar mensajes Router Advertisement (RA) con el indicador M en 0 y el indicador O en 1. ¿Cuál de estas afirmaciones describe el efecto de esta configuración cuando una computadora intenta configurar su dirección IPv6?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Debe comunicarse con un servidor de DHCPv6 para obtener el prefijo, la longitud y una ID de interfaz aleatoria.",
+      "Debe usar la información del mensaje RA para su dirección IP (SLAAC) y comunicarse con un servidor de DHCPv6 para obtener información adicional (como servidores DNS).",
+      "Debe usar la información que se incluye en el mensaje RA exclusivamente.",
+      "Debe comunicarse con un servidor de DHCPv6 para obtener toda la información de red que necesita."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Con la combinación M=0 y O=1 se activa DHCPv6 sin estado (Stateless DHCPv6). El cliente autoconfigura su dirección IPv6 mediante SLAAC a partir del prefijo del RA, pero consulta al servidor DHCPv6 para obtener otros parámetros como la dirección del servidor DNS.",
+    "imagen": null
+  },
+  {
+    "pregunta": "9. Consulte la exhibición. Un administrador de red configura un router Cisco con el siguiente bloque de comandos:\n\nR1(config)# ipv6 unicast-routing\nR1(config)# ipv6 dhcp pool ACAD_CLASS\nR1(config-dhcp)# dns-server 2001:db8:acad:a1::10\nR1(config-dhcp)# domain-name netacad.net\nR1(config-dhcp)# exit\nR1(config)# interface gigabitEthernet 0/0\nR1(config-if)# ipv6 address 2001:db8:acad:1::1/64\nR1(config-if)# ipv6 dhcp server ACAD_CLASS\nR1(config-if)# ipv6 nd other-config-flag\n\n¿A qué conclusión se puede llegar en función de los comandos configurados?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El router está configurado para funcionar con DHCPv6 con estado (Stateful).",
+      "El router está configurado para funcionar con DHCPv6 sin estado (Stateless).",
+      "Los clientes configurarán sus direcciones IP directamente del pool a partir de la ID 0010.",
+      "El nombre del servidor DHCPv6 configurado en la interfaz es ACAD_CLASS."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El comando 'ipv6 nd other-config-flag' activa la bandera O=1 dejando M=0 en los mensajes RA. Esto configura al router para DHCPv6 sin estado, donde la dirección IP se asigna por SLAAC y la información complementaria de DNS/dominio se obtiene del pool DHCPv6.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_dhcpv6_sin_estado_flags.png"
+  },
+  {
+    "pregunta": "10. En la topología mostrada, la PC1 intenta obtener una dirección IP desde el servidor DHCP (192.168.11.6), pero sus mensajes DHCP Discover no logran atravesar el router R1. ¿Qué línea de comandos configurada en la interfaz de R1 soluciona este problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1(config-if)# ip helper-address 192.168.11.6",
+      "R1(config-if)# switchport mode trunk",
+      "R1(config-if)# ip dhcp relay enable",
+      "R1(config-if)# ip address dhcp"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El comando 'ip helper-address 192.168.11.6' convierte las peticiones de broadcast DHCP Discover recibidas en la interfaz LAN de R1 en mensajes unicast dirigidos hacia la dirección IP especificada del servidor DHCP.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/topologia_dhcp_relay_r1_servidor.png"
+  },
+  {
+    "pregunta": "11. Observe el siguiente bloque de comandos ejecutado en un switch Cisco:\n\nS1(config)# interface range fa0/1 - 2\nS1(config-if-range)# switchport mode access\nS1(config-if-range)# switchport port-security\nS1(config-if-range)# switchport port-security maximum 2\nS1(config-if-range)# switchport port-security mac-address sticky\nS1(config-if-range)# switchport port-security violation shutdown\n\n¿Cuál es el comportamiento resultante en las interfaces Fa0/1 y Fa0/2?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Activa el puerto en modo acceso, limita el aprendizaje a 2 direcciones MAC aprendidas dinámicamente y guardadas en la configuración ('sticky'), y deshabilita el puerto si ocurre una violación de seguridad.",
+      "Configura las interfaces en modo troncal con un límite de 2 tramas por segundo.",
+      "Aplica el protocolo DHCP Snooping limitando el acceso a un máximo de 2 servidores DHCP.",
+      "Desactiva la seguridad de puerto si se conectan más de dos dispositivos en el mismo dominio de difusión."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Los comandos establecen el modo acceso en Fa0/1 y Fa0/2, habilitan port-security, fijan un tope de 2 direcciones MAC permitidas, graban automáticamente las direcciones aprendidas en la running-config ('sticky') y fuerzan la desactivación del puerto ('shutdown') ante tramas no autorizadas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "12. Según los apuntes de clase sobre Spanning Tree Protocol (STP), ¿cuál es el algoritmo o criterio principal utilizado para elegir el Root Bridge (Puente Raíz) en una red de switches?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Se selecciona el switch que posea el menor Bridge ID (BID).",
+      "Se selecciona el switch con la mayor velocidad de procesamiento en sus enlaces troncales.",
+      "Se selecciona el switch con la menor dirección MAC de origen entre sus puertos de acceso.",
+      "Se selecciona el switch que tenga configuradas más VLANs de forma predeterminada."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El algoritmo de Spanning Tree selecciona como Root Bridge al dispositivo que tenga el menor valor de Bridge ID (BID). El BID está compuesto por la prioridad configurable (por defecto 32768) + ID del sistema extendido (VLAN) + Dirección MAC del switch.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/esquema_stp_root_bridge_seleccion.png"
+  },
+  {
+    "pregunta": "13. ¿De qué manera el proceso EUI-64 genera una ID de interfaz de 64 bits para direccionamiento IPv6 utilizando la dirección MAC Ethernet del dispositivo?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Divide la dirección MAC de 48 bits en dos partes de 24 bits, inserta los dígitos hexadecimales FF-FE en el medio e invierte el séptimo bit (bit U/L).",
+      "Concatena 16 ceros al final de la dirección MAC de 48 bits.",
+      "Calcula un checksum de 64 bits a partir de la dirección IP del gateway predeterminado.",
+      "Reemplaza los primeros 24 bits de la dirección MAC por el prefijo FE80::."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El estándar EUI-64 toma la dirección física MAC de 48 bits, inserta el patrón hexadecimal FF-FE en su punto medio e invierte el bit de administración Universal/Local (el séptimo bit) para formar los 64 bits de la ID de interfaz IPv6.",
+    "imagen": null
+  },
+  {
+    "pregunta": "14. Una PC conectada a una red LAN puede comunicarse con otros dispositivos de la misma red local, pero no puede acceder a dispositivos en redes remotas ni en Internet. ¿Cuál es la causa más probable de este problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La PC tiene una máscara de subred incorrecta.",
+      "La dirección de gateway predeterminado de la PC es incorrecta o no está configurada.",
+      "El cable Ethernet no está conectado a la tarjeta de red.",
+      "La dirección IP de la PC se encuentra duplicada en la red local."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El gateway predeterminado es la dirección de la interfaz del router que conecta la subred local con el resto de la red. Si esta dirección falta o es errónea, la PC puede enviar tramas en su propia LAN pero no puede enrutar paquetes fuera de ella.",
+    "imagen": null
+  },
+  {
+    "pregunta": "15. ¿Cuál de las siguientes afirmaciones describe una característica propia del protocolo IP en la Capa 3 del modelo OSI?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La encapsulación IP se modifica dinámicamente según los medios de red utilizados.",
+      "IP es un protocolo sin conexión que no proporciona control intrínseco de errores ni reordenamiento de paquetes, confiando en protocolos de capa superior como TCP.",
+      "IP utiliza direcciones MAC de capa 2 para el control de flujo de extremo a extremo.",
+      "IP requiere un handshake previo de tres vías antes de transmitir paquetes."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El protocolo IP es 'connectionless' (sin conexión) y 'unreliable' (no confiable). No establece una sesión previa ni gestiona la retransmisión de paquetes perdidos o desordenados, delegando esta función a protocolos de la capa de transporte como TCP.",
+    "imagen": null
+  },
+  {
+    "pregunta": "16. ¿Por qué razón no se requiere implementar NAT (Traducción de Direcciones de Red) en una arquitectura de red IPv6?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Porque la enorme cantidad de direcciones IPv6 públicas disponibles permite que cada host obtenga su propia dirección IPv6 global única.",
+      "Porque el protocolo IPv6 integra cifrado IPSec predeterminado que oculta las IPs privadas sin necesidad de NAT.",
+      "Porque los routers intermediarios no admiten tablas de traducción de puertos en tramas IPv6.",
+      "Porque el encabezado de IPv6 reemplaza el uso de direcciones de origen por identificadores de flujo estáticos."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La enorme disponibilidad de direcciones globales en IPv6 (128 bits) elimina la escasez de direcciones que justificaba el uso de NAT en IPv4, permitiendo restaurar la comunicación transparente de extremo a extremo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "17. Cuando un router dispone de múltiples rutas posibles en su tabla de enrutamiento para alcanzar una misma red de destino, ¿qué parámetro evalúa para seleccionar la mejor ruta?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El valor de métrica más alto asociado a la ruta.",
+      "La dirección IP de gateway más baja.",
+      "La dirección IP de gateway más alta.",
+      "El valor de métrica más bajo asociado a la ruta."
+    ],
+    "respuestas_correctas": [
+      3
+    ],
+    "explicacion": "Cuando existen varias rutas hacia la misma red de destino, el router examina la métrica asociada a cada ruta y selecciona aquella que tenga el menor costo o valor de métrica para ingresarla en la tabla de enrutamiento.",
+    "imagen": null
+  },
+  {
+    "pregunta": "18. ¿Qué sucede cuando un administrador ingresa el comando 'transport input ssh' bajo el modo de configuración de líneas de terminal virtual ('line vty 0 4') en un switch Cisco?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El cliente SSH dentro del switch queda habilitado automáticamente.",
+      "El switch exige autenticación basada en servidores TACACS+ para el puerto de consola.",
+      "Las comunicaciones de acceso remoto hacia el switch quedan cifradas y solo se permiten conexiones entrantes por SSH, bloqueando Telnet.",
+      "Se deshabilita el acceso remoto por cualquier puerto VTY."
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "El comando 'transport input ssh' restringe los protocolos de acceso remoto a través de las líneas VTY permitiendo únicamente sesiones cifradas por SSH y bloqueando protocolos inseguros sin cifrado como Telnet.",
+    "imagen": null
+  },
+  {
+    "pregunta": "19. Consulte la ilustración. Dada la salida de la tabla de enrutamiento del router mostrada, ¿a través de qué interfaz de salida se reenviará un paquete con dirección IP de destino 172.17.6.15?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "FastEthernet0/0",
+      "FastEthernet0/1",
+      "FastEthernet1/0",
+      "FastEthernet1/1",
+      "Serial0/0/0"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "En la tabla de enrutamiento se observa una entrada OSPF hacia la red 172.17.6.0/24 accesible a través de la interfaz FastEthernet0/0. Dado que la IP de destino 172.17.6.15 pertenece a esa subred, el router reenvía el paquete por FastEthernet0/0.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/tabla_enrutamiento_interfaz_salida_p8.png"
+  },
+  {
+    "pregunta": "20. Consulte la ilustración. En la topología mostrada, la PC1 envía una trama Ethernet dirigida a la PC3. Si la dirección MAC de la PC3 no está registrada en la tabla de direcciones MAC del switch, ¿qué acción ejecutará el switch con la trama?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El switch descartará la trama inmediatamente.",
+      "El switch reenviará (inundará) la trama a través de todos los puertos, excepto el puerto por donde la recibió.",
+      "El switch enviará una solicitud ICMP de error a la PC1.",
+      "El switch reenviará la trama únicamente hacia el puerto de consola."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Al no encontrar la dirección MAC de destino en su tabla MAC (unicast desconocida), el switch inunda la trama enviando una copia por cada uno de sus puertos activos, a excepción del puerto de entrada por el que ingresó.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/tabla_mac_switch_reenvio_trama.png"
+  },
+  {
+    "pregunta": "21. Según los apuntes de Spanning Tree Protocol (STP), ¿cómo se calcula el valor del Bridge ID (BID) de un switch para determinar la elección del Root Bridge?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "BID = Prioridad del switch + ID del sistema extendido (VLAN) + Dirección MAC del switch",
+      "BID = Dirección IP de la interfaz VLAN 1 + Máscara de subred + Prioridad",
+      "BID = Cantidad de puertos activos + Velocidad total del enlace troncal",
+      "BID = Prioridad del switch * Número de VLANs configuradas"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El Bridge ID (BID) está compuesto por la suma del valor de Prioridad (configurable en múltiplos de 4096), la ID de la VLAN (sistema extendido, por defecto VLAN 1) y la dirección MAC del switch. El switch con el BID total más bajo es elegido como Root Bridge.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/esquema_stp_calculo_bid.png"
+  },
+  {
+    "pregunta": "22. En el protocolo Spanning Tree (STP), según la tabla de ponderación y costo de enlaces revisada en los apuntes, ¿cuál es el costo de puerto asignado a un enlace Gigabit Ethernet (1 Gbps)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "2",
+      "4",
+      "19",
+      "100"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "En los apuntes sobre el algoritmo Spanning Tree (redes-22-10), la escala de costos/ponderación asigna 2 a enlaces de 10 Gbps, 4 a enlaces de 1 Gbps, 19 a enlaces de 100 Mbps y 100 a enlaces de 10 Mbps.",
+    "imagen": null
+  },
+  {
+    "pregunta": "23. Al analizar las banderas en los mensajes Router Advertisement (RA) en IPv6, ¿qué valores en los indicadores A, M y O configuran una asignación de dirección únicamente por SLAAC (autoconfiguración pura)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "A=1, M=0, O=0",
+      "A=1, M=0, O=1",
+      "A=0, M=1, O=0",
+      "A=0, M=0, O=1"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "SLAAC puro activa la bandera A=1 (autoconfiguración de prefijo) y mantiene deshabilitadas M=0 (Managed Address Configuration) y O=0 (Other Configuration), indicando que el cliente autogenere su IP a partir del prefijo sin consultar un servidor DHCPv6.",
+    "imagen": null
+  },
+  {
+    "pregunta": "24. En los mensajes Router Advertisement (RA) de IPv6, ¿qué combinación de indicadores (flags) se requiere para activar el modo DHCPv6 con estado (Stateful DHCPv6)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "A=1, M=0, O=0",
+      "A=1, M=0, O=1",
+      "A=0, M=1, O=0",
+      "A=1, M=1, O=1"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "En el modo DHCPv6 Stateful, el servidor asigna tanto la dirección IPv6 como todos los parámetros adicionales. Esto se especifica enviando el mensaje RA con A=0 (desactiva SLAAC) y M=1 (fuerza la obtención de dirección IP desde el servidor DHCPv6).",
+    "imagen": null
+  },
+  {
+    "pregunta": "25. Observe el siguiente comando de Cisco IOS ejecutado en un router:\n\nR1(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.10\n\n¿Qué función cumple esta instrucción dentro de la configuración del servicio DHCPv4?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Reserva el rango de direcciones IP de la 192.168.10.1 a la 192.168.10.10 para asignación dinámica exclusiva a clientes DHCP.",
+      "Impide que el servidor DHCP atribuya las direcciones IP comprendidas entre la 192.168.10.1 y la 192.168.10.10 a hosts dinámicos, reservándolas para asignación estática.",
+      "Elimina la subred 192.168.10.0/24 de la tabla de enrutamiento del router.",
+      "Deshabilita el servicio DHCPv4 en la interfaz LAN principal."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El comando 'ip dhcp excluded-address' especifica qué direcciones IP o rangos de direcciones no deben ser arrendadas dinámicamente por el pool de DHCP, protegiendo direcciones asignadas estáticamente a routers, servidores o impresoras.",
+    "imagen": null
+  },
+  {
+    "pregunta": "26. En la CLI de un router Cisco, ¿qué información proporciona el comando 'show ipv6 dhcp binding'?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Muestra únicamente los nombres de los pools de DHCPv6 creados y sus servidores DNS.",
+      "Muestra la lista de direcciones IPv6 asignadas dinámicamente a los clientes junto con sus identificadores de cliente (DUID) y tiempos de arrendamiento.",
+      "Muestra las interfaces que tienen habilitada la función ip helper-address.",
+      "Muestra los mensajes Router Advertisement transmitidos en tiempo real por el router."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El comando 'show ipv6 dhcp binding' exhibe la tabla de enlaces activos de direcciones IPv6 asignadas por un servidor DHCPv6 con estado a los distintos clientes de la red.",
+    "imagen": null
+  },
+  {
+    "pregunta": "27. ¿Qué función cumple el campo 'Time-to-Live' (TTL) presente en el encabezado de un paquete IPv4?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Garantiza el orden secuencial en que la capa de transporte recibe los segmentos de datos.",
+      "Evita que un paquete circule indefinidamente en la red debido a bucles de enrutamiento, reduciéndose en 1 en cada salto de router hasta descartarse al llegar a 0.",
+      "Identifica el puerto de destino de la aplicación de capa superior como HTTP o DNS.",
+      "Calcula la suma de verificación de los datos para corregir tramas corruptas."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El campo TTL (de 8 bits) limita la vida útil de un paquete IPv4. Cada router decrementa este valor en 1; si el campo alcanza el valor cero, el paquete es descartado y se notifica al host emisor mediante un mensaje ICMP Time Exceeded.",
+    "imagen": null
+  },
+  {
+    "pregunta": "28. ¿Qué valor hexadecimal en el campo EtherType (Tipo) de un encabezado de trama Ethernet II indica que los datos transportados corresponden al protocolo ARP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "0x0800",
+      "0x0806",
+      "0x86DD",
+      "0x8035"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El campo EtherType de 2 bytes en la trama Ethernet identifica el protocolo de capa superior encapsulado. El valor 0x0806 indica que el paquete interno es del protocolo ARP (0x0800 identifica IPv4 y 0x86DD identifica IPv6).",
+    "imagen": null
+  },
+  {
+    "pregunta": "29. Al emitir una trama de solicitud ARP (ARP Request) en una LAN Ethernet, ¿qué dirección MAC de destino se utiliza en el encabezado de la trama?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "00-00-00-00-00-00",
+      "FF-FF-FF-FF-FF-FF",
+      "255.255.255.255",
+      "01-00-5E-00-00-01"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Debido a que el dispositivo emisor desconoce la dirección MAC física del host receptor, la solicitud ARP se transmite en formato broadcast de Capa 2 utilizando la dirección MAC de difusión FF-FF-FF-FF-FF-FF.",
+    "imagen": null
+  },
+  {
+    "pregunta": "30. Al ejecutar el comando 'ping 127.0.0.1' en una computadora, ¿qué elemento del sistema de red se está verificando directamente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La conectividad física del cable de red y el puerto del switch.",
+      "El funcionamiento correcto de la pila interna de protocolos TCP/IP y el controlador de la tarjeta de red (NIC) del propio host.",
+      "La capacidad de la puerta de enlace predeterminada para responder peticiones ICMP.",
+      "El estado operativo del servidor DHCP y DNS de la subred local."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "La prueba de loopback (127.0.0.1) valida la integridad interna del stack TCP/IP y la interfaz de red del propio equipo sin enviar paquetes a través de los medios físicos externos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "31. ¿Cuál es el propósito del comando de Cisco IOS 'copy running-config startup-config'?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Copia la configuración activa almacenada en la memoria RAM hacia la memoria no volátil NVRAM para que persista tras un reinicio.",
+      "Copia la imagen del sistema operativo IOS desde la memoria Flash hacia la memoria ROM.",
+      "Restablece todos los parámetros del router a la configuración por defecto de fábrica.",
+      "Descarga la configuración activa del dispositivo en un servidor TFTP remoto."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El comando 'copy running-config startup-config' guarda los parámetros activos (RAM, volátil) en la memoria no volátil NVRAM como la configuración de inicio predeterminada para próximos arranques.",
+    "imagen": null
+  },
+  {
+    "pregunta": "32. Durante la secuencia de arranque de un router Cisco, ¿qué sucede si el dispositivo no encuentra un archivo 'startup-config' en la memoria NVRAM?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El router se apaga automáticamente para evitar daños en la memoria Flash.",
+      "El router inicia el modo de diálogo de configuración inicial (System Configuration Dialog).",
+      "El router genera un error de hardware en la memoria RAM y se reinicia en bucle.",
+      "El router elimina la imagen de Cisco IOS presente en la memoria Flash."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Si el router no localiza el archivo startup-config en la NVRAM durante la tercera fase de arranque, ingresa al asistente interactivo de configuración inicial a través del puerto de consola.",
+    "imagen": null
+  },
+  {
+    "pregunta": "33. En un switch Cisco de capa 2, ¿cuál es el objetivo de configurar el comando 'ip default-gateway 192.168.1.1'?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Habilitar al switch para enrutar tráfico de datos entre diferentes subredes y VLANs.",
+      "Permitir la administración remota del switch (vía SSH o Telnet) desde hosts ubicados en redes distintas a la red local del switch.",
+      "Asignar la dirección IP 192.168.1.1 a la interfaz física FastEthernet0/1.",
+      "Configurar un servicio DHCP interno en el switch para entregar direcciones IP a las PCs."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Aunque un switch de capa 2 no realiza enrutamiento de datos de usuarios, requiere configurar una dirección de gateway predeterminado para poder responder y reenviar paquetes de gestión administrativa dirigidos a subredes remotas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "34. Consulte la ilustración de la salida del comando 'tracert www.cisco.com'. ¿Cuál de las direcciones IP listadas corresponde a la puerta de enlace predeterminada que utiliza la PC para salir de su subred local?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "172.24.2.1",
+      "172.20.0.254",
+      "172.20.1.18",
+      "172.24.255.17"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "En una traza de ruta (tracert), la IP registrada en el salto 1 (hop 1) es la dirección IP de la interfaz del router local que actúa como gateway predeterminado del cliente (172.20.0.254).",
+    "imagen": "ccna2_lab_redes_prueba2_remix/tracert_salida_red_local.png"
+  },
+  {
+    "pregunta": "35. ¿Cuál es la secuencia de comandos adecuada en la CLI de Cisco IOS para proteger la interfaz de consola con contraseña y requerir autenticación al ingresar?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1(config)# line console 0 -> R1(config-line)# password cisco -> R1(config-line)# login",
+      "R1(config)# enable secret cisco -> R1(config)# line vty 0 4 -> R1(config-line)# login",
+      "R1(config)# interface console 0 -> R1(config-if)# ip address 192.168.1.1 -> R1(config-if)# no shutdown",
+      "R1(config)# service password-encryption -> R1(config)# username admin password cisco"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Para asegurar el puerto físico de consola se ingresa al modo de línea ('line console 0'), se define la contraseña ('password <clave>') y se habilita la solicitud de clave al conectarse mediante el comando 'login'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "36. En la CLI de un router Cisco configurado como cliente IPv6, ¿qué comando debe aplicarse en la interfaz para que el router autoconfigure su dirección IPv6 utilizando SLAAC?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1(config-if)# ipv6 address autoconfig",
+      "R1(config-if)# ipv6 address dhcp",
+      "R1(config-if)# ip address dhcp",
+      "R1(config-if)# ipv6 enable"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Tal como indican los apuntes de autoconfiguración IPv6 (Redes19-11), el comando 'ipv6 address autoconfig' instruye a la interfaz a obtener el prefijo de red mediante Router Advertisements (SLAAC) y generar su dirección IP.",
+    "imagen": null
+  },
+  {
+    "pregunta": "37. ¿Qué campo del encabezado de un paquete IPv4 es utilizado por los dispositivos para detectar daños en la estructura del encabezado y descartar el paquete si la validación falla?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Protocol",
+      "Header Checksum",
+      "Differentiated Services",
+      "Version"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El campo Header Checksum (16 bits) almacena la suma de comprobación del encabezado IPv4. Si el valor recalculado en el router receptor no coincide con este campo, el paquete se considera corrupto y se descarta.",
+    "imagen": null
+  },
+  {
+    "pregunta": "38. ¿Qué campo del encabezado IPv6 se utiliza para identificar paquetes que forman parte de la misma conversación en tiempo real (como streaming de audio o video), evitando que los routers los reordenen?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Traffic Class",
+      "Flow Label (Identificador de flujo)",
+      "Next Header",
+      "Hop Limit"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El campo Flow Label (20 bits) en IPv6 permite etiquetar paquetes de una secuencia específica en tiempo real para que los routers intermedios mantengan la misma ruta de reenvío y se reduzca el desorden de paquetes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "39. Observe el siguiente bloque de comandos ejecutado en un dispositivo Cisco:\n\nR1(config)# line vty 0 4\nR1(config-line)# password cisco\nR1(config-line)# login\n\n¿A qué tipo de sesiones de acceso aplica esta configuración de seguridad?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "A conexiones físicas locales mediante el cable de consola.",
+      "A sesiones virtuales de acceso remoto a través de la red (como Telnet o SSH).",
+      "A conexiones analógicas fuera de banda mediante el puerto auxiliar AUX.",
+      "A la validación de peticiones de clientes DHCPv4."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Las líneas VTY (Virtual Teletype) gestionan las terminales virtuales de acceso remoto al dispositivo a través de la red (por ejemplo Telnet o SSH). Los números 0 4 especifican un total de 5 canales de acceso simultáneos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "40. En el protocolo IPv6, ¿qué tipo de mensajes ICMPv6 reemplazan la función del protocolo ARP de IPv4 para la resolución de direcciones físicas en el enlace local?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Router Solicitation (RS) y Router Advertisement (RA)",
+      "Neighbor Solicitation (NS) y Neighbor Advertisement (NA)",
+      "Echo Request y Echo Reply",
+      "DHCPDISCOVER y DHCPOFFER"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "IPv6 no utiliza el protocolo ARP ni mensajes de difusión (broadcast). Para asociar direcciones IPv6 con direcciones MAC locales, ICMPv6 emplea mensajes de Solicitud de Vecino (NS) y Anuncio de Vecino (NA).",
+    "imagen": null
+  },
+  {
+    "pregunta": "41. ¿Cuáles son dos de las funciones o servicios principales proporcionados por la capa de red del modelo OSI? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Detección de colisiones y control de acceso al medio",
+      "Encapsulamiento de PDU de la capa de transporte y enrutamiento (routing) de paquetes hacia el destino",
+      "Colocación directa de bits sobre los medios físicos",
+      "Control de errores de transmisión en tramas Ethernet"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "La capa de red se encarga del direccionamiento lógico, encapsulamiento de datos de la capa de transporte, enrutamiento hacia la red de destino y desencapsulamiento. Las funciones de detección de colisiones y errores en tramas pertenecen a la capa de enlace de datos.",
+    "imagen": null
+  },
+  {
+    "pregunta": "42. ¿Qué campo del encabezado de un paquete IPv4 identifica de forma explícita el protocolo de la capa superior (transporte o control) que se transporta en la carga útil del paquete?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Protocolo (Protocol)",
+      "Servicios diferenciados (DS)",
+      "Identificación",
+      "Versión"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo Protocolo (8 bits) indica al dispositivo receptor qué protocolo de nivel superior debe procesar los datos (por ejemplo, valor 6 para TCP, 17 para UDP o 1 para ICMP).",
+    "imagen": null
+  },
+  {
+    "pregunta": "43. ¿Cuál es el objetivo principal del protocolo ARP (Address Resolution Protocol) en un entorno de red IPv4?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Descubrir la dirección IP pública asignada a un servidor web remoto.",
+      "Descubrir la dirección MAC física correspondiente a una dirección IP de destino dentro de la misma red local.",
+      "Asignar dinámicamente máscaras de subred a las computadoras cliente.",
+      "Convertir nombres de dominio legibles en direcciones IP numéricas."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "ARP se utiliza en IPv4 para resolver la dirección MAC física de un host local cuando el dispositivo emisor únicamente conoce su dirección IP lógica.",
+    "imagen": null
+  },
+  {
+    "pregunta": "44. ¿Cuál es el objetivo de un ataque de suplantación o envenenamiento de ARP (ARP Spoofing / Poisoning)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Asociar direcciones IP legítimas con direcciones MAC falsas o del atacante para interceptar o alterar el tráfico de la red.",
+      "Desactivar de forma permanente los puertos troncales del switch.",
+      "Inundar la tabla de direcciones MAC del switch hasta forzarlo a reiniciar.",
+      "Consumir todo el rango de direcciones IP disponibles en el servidor DHCP."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "En un ataque de suplantación de ARP, el host malicioso envía respuestas ARP falsas para asociar la IP de la víctima o del gateway con su propia MAC física, permitiéndole interceptar o manipular el tráfico (man-in-the-middle).",
+    "imagen": null
+  },
+  {
+    "pregunta": "45. Consulte la ilustración. La PC1 intenta conectarse a Servidor_de_archivos1 (ubicado en una red remota) y envía una solicitud ARP para obtener una dirección MAC de destino. ¿Qué dirección MAC recibe la PC1 en la respuesta ARP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La dirección MAC del Switch S1",
+      "La dirección MAC de la interfaz GigabitEthernet 0/0 del router R1",
+      "La dirección MAC del Switch S2",
+      "La dirección MAC del Servidor_de_archivos1"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "Dado que Servidor_de_archivos1 está en una red remota, PC1 debe entregar la trama a su puerta de enlace local. Por ello, la respuesta ARP proviene del router R1, devolviendo la dirección MAC de su interfaz local G0/0.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/topologia_arp_solicitud_servidor_archivos.png"
+  },
+  {
+    "pregunta": "46. ¿En qué estructura de memoria interna almacena un host de la red las asignaciones temporales entre direcciones IPv4 y direcciones MAC físicas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Caché ARP",
+      "Tabla de direcciones MAC del switch",
+      "Tabla de vecinos IPv6",
+      "Archivo de configuración de inicio (startup-config)"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La Caché ARP guarda localmente los pares (Dirección IP - Dirección MAC) aprendidos dinámicamente para evitar enviar solicitudes de difusión ARP por cada paquete transmitido.",
+    "imagen": null
+  },
+  {
+    "pregunta": "47. ¿Qué campo dentro del encabezado de la trama Ethernet de Capa 2 examina un switch para determinar hacia qué puerto específico debe conmutar y reenviar los datos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Dirección IP de destino",
+      "Dirección MAC de origen",
+      "Dirección MAC de destino",
+      "EtherType"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "Los switches de capa 2 leen la dirección MAC de destino de la trama recibida y la buscan en su tabla de direcciones MAC para enviar la trama únicamente por el puerto físico correspondiente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "48. Observe la asociación entre los comandos de Cisco IOS y sus funciones. ¿Qué comando se utiliza específicamente para configurar un mensaje informativo de advertencia cuando alguien intenta acceder al dispositivo?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Router(config)# hostname CL1",
+      "Router(config-line)# password class",
+      "Router(config)# banner motd #",
+      "Router(config)# enable password Cisco"
+    ],
+    "respuestas_correctas": [
+      2
+    ],
+    "explicacion": "El comando 'banner motd #' (Message of the Day) permite definir un mensaje legal o de advertencia que se muestra al usuario antes de autenticarse en el equipo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "49. En relación a los métodos de administración en dispositivos Cisco, ¿Cuál es la característica principal del método de acceso por puerto de Consola?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Es un método de acceso fuera de banda (out-of-band) preferido para la configuración inicial local sin requerir red.",
+      "Es un método de acceso remoto seguro que cifra todos los datos transmitidos.",
+      "Es una conexión telefónica analógica a través del puerto AUX.",
+      "Es un protocolo no seguro utilizado a través de la red."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El puerto de consola proporciona acceso físico directo fuera de banda (out-of-band), permitiendo configurar el dispositivo aunque las interfaces de red no tengan direcciones IP o estén caídas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "50. Durante el proceso de arranque de un router Cisco, ¿qué función se realiza durante la Fase 1?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Localización y carga del software Cisco IOS.",
+      "Ejecución del examen POST y carga del programa de arranque (bootstrap).",
+      "Localización y carga del archivo de configuración de inicio (startup-config).",
+      "Ingreso automático al modo de configuración global."
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "La Fase 1 de arranque consiste en la ejecución del Power-On Self Test (POST) para verificar el hardware, seguido de la carga del código de arranque inicial (bootstrap) desde la memoria ROM.",
+    "imagen": null
+  },
+  {
+    "pregunta": "51. ¿Cuáles son dos propiedades clave de la memoria no volátil NVRAM en los routers Cisco? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Almacena el archivo de configuración de inicio (startup-config).",
+      "Retiene su contenido de datos aunque se interrumpa el suministro de energía eléctrica.",
+      "Almacena la tabla de enrutamiento activa e instantánea.",
+      "Contiene la imagen principal descomprimida del sistema operativo Cisco IOS.",
+      "Guarda la caché ARP del dispositivo."
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "La NVRAM es no volátil (mantiene la información al apagar el router) y su propósito principal es almacenar el archivo startup-config.",
+    "imagen": null
+  },
+  {
+    "pregunta": "52. ¿En qué modo de la CLI de Cisco se debe ingresar el comando 'copy running-config startup-config'?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Modo EXEC usuario (R1>)",
+      "Modo EXEC privilegiado (R1#)",
+      "Modo de configuración global (R1(config)#)",
+      "Modo de configuración de interfaz (R1(config-if)#)"
+    ],
+    "respuestas_correctas": [
+      1
+    ],
+    "explicacion": "El comando 'copy running-config startup-config' debe ejecutarse desde el modo EXEC privilegiado, indicado por el prompt 'R1#'.",
+    "imagen": null
+  },
+  {
+    "pregunta": "53. ¿Cuáles tres comandos son estrictamente necesarios para configurar la protección con contraseña y requerir autenticación en la interfaz de consola de un router Cisco? (Elija tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "line console 0",
+      "password cisco",
+      "login",
+      "line vty 0 4",
+      "enable secret cisco",
+      "service password-encryption"
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      2
+    ],
+    "explicacion": "Para asegurar el acceso por consola se debe entrar al modo de línea ('line console 0'), establecer la clave ('password cisco') y activar el prompt de inicio de sesión ('login').",
+    "imagen": null
+  },
+  {
+    "pregunta": "54. Consulte la ilustración con la configuración IP de la PC1. ¿Qué representa la dirección de gateway predeterminado (192.168.1.254) mostrada en la captura?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Es la dirección IP de la interfaz del Router1 que conecta directamente a la subred LAN de la PC1.",
+      "Es la dirección IP del Switch1 que conecta los equipos de la red local.",
+      "Es la dirección IP del servidor DNS de la empresa.",
+      "Es la dirección IP pública asignada por el proveedor de servicios de Internet (ISP)."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La puerta de enlace predeterminada en un host representa la interfaz local del router conectado a su segmento LAN, encargada de recibir y encaminar el tráfico hacia redes externas.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_ip_pc1_gateway.png"
+  },
+  {
+    "pregunta": "55. ¿Cuál es el resultado de ejecutar el comando 'copy running-config startup-config' en un router Cisco?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Se actualiza el contenido de la memoria no volátil NVRAM guardando los cambios activos.",
+      "Se borra la memoria Flash y se reinstala la imagen de Cisco IOS.",
+      "Se sobrescribe el contenido de la memoria volátil RAM con los valores de fábrica.",
+      "Se modifica el programa de arranque almacenado en la memoria ROM."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Este comando sobrescribe el archivo startup-config presente en la memoria NVRAM con la configuración activa almacenada en la RAM.",
+    "imagen": null
+  },
+  {
+    "pregunta": "56. ¿Cuáles son dos problemas potenciales de rendimiento o seguridad generados por el funcionamiento normal del protocolo ARP en una red LAN? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "En redes extensas con bajo ancho de banda, la acumulación de mensajes de broadcast ARP puede generar demoras en la transmisión.",
+      "Atacantes en la red pueden enviar mensajes ARP falsificados para manipular tablas IP-MAC e interceptar el tráfico.",
+      "Las respuestas ARP provocan desbordamientos de memoria en la tabla de enrutamiento del router.",
+      "Las solicitudes ARP deshabilitan automáticamente las interfaces Ethernet en modo dúplex."
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "Al basarse en difusiones (broadcast), las peticiones ARP masivas consumen ancho de banda. Asimismo, la falta de autenticación en ARP permite ataques de envenenamiento o suplantación de identidad (ARP poisoning).",
+    "imagen": null
+  },
+  {
+    "pregunta": "57. Consulte la ilustración de la actividad Packet Tracer. Al ejecutar el comando 'show ip interface brief' en los routers R1 y R2, ¿qué interfaces se encuentran activas y operativas (Status 'up' y Protocol 'up') en cada router?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1: G0/0 y S0/0/0 ; R2: G0/1 y S0/0/0",
+      "R1: G0/0 y S0/0/1 ; R2: G0/1 y S0/0/1",
+      "R1: G0/1 y S0/0/0 ; R2: G0/0 y S0/0/0",
+      "R1: G0/0 y G0/1 ; R2: S0/0/0 y S0/0/1"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "En la verificación del estado de interfaces del escenario, R1 tiene operativas la GigabitEthernet0/0 (hacia la LAN) y Serial0/0/0 (enlace WAN), mientras R2 tiene operativas la GigabitEthernet0/1 y Serial0/0/0.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/topologia_packet_tracer_interfaces_r1_r2.png"
+  },
+  {
+    "pregunta": "58. En el encabezado de un paquete IPv4, ¿qué nombre recibe el campo de 4 bits que contiene la secuencia binaria 0100?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Versión (Version)",
+      "Tiempo de duración (TTL)",
+      "Protocolo (Protocol)",
+      "Suma de comprobación del encabezado (Header Checksum)"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo 'Versión' ocupa los primeros 4 bits del encabezado IP. El valor binario 0100 representa el número 4 en decimal, identificando al paquete como IPv4.",
+    "imagen": null
+  },
+  {
+    "pregunta": "59. ¿Qué propiedad del protocolo ARP permite a un host local encapsular tramas dirigidas hacia destinos en redes remotas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El host realiza una solicitud ARP para aprender la dirección MAC física de su gateway predeterminado y la utiliza como dirección de destino de Capa 2.",
+      "El host envía la trama directamente con la dirección MAC del host remoto.",
+      "El protocolo ARP convierte automáticamente la dirección IPv4 remota en IPv6.",
+      "El switch sustituye la dirección MAC de origen por la dirección IP de destino."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Para enviar datos fuera de la subred local, el host debe dirigir la trama a la MAC física de la puerta de enlace predeterminada. Mediante ARP, descubre dicha MAC y puede encapsular la trama adecuadamente.",
+    "imagen": null
+  },
+  {
+    "pregunta": "60. Consulte la exhibición. Un administrador conecta una PC a la 'Store LAN' del router HQ. Dada la configuración CLI mostrada, ¿qué dirección IP debe asignarse como gateway predeterminado en la PC?\n\nHQ(config)# interface gi0/0\nHQ(config-if)# description Connects to the Store LAN\nHQ(config-if)# ip address 172.19.98.230 255.255.255.0",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "172.19.98.230",
+      "172.19.99.99",
+      "10.98.99.254",
+      "209.165.200.120"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La interfaz GigabitEthernet0/0 está configurada con la dirección 172.19.98.230 y conécta a la 'Store LAN'. Por ende, los hosts de esa subred deben utilizar 172.19.98.230 como su gateway predeterminado.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_hq_store_lan.png"
+  },
+  {
+    "pregunta": "61. ¿Cuáles son dos ventajas principales del encabezado simplificado de IPv6 en comparación con el encabezado de IPv4?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Eliminación de la necesidad de procesar sumas de comprobación (checksums) en el encabezado por cada router y mejoramiento del rendimiento de enrutamiento",
+      "Reducción del tamaño global de las direcciones de origen y destino",
+      "Integración obligatoria del protocolo de traducción de direcciones NAT",
+      "Inclusión de campos de control de flujo de tramas de capa 2"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "IPv6 elimina el campo Header Checksum (delegando la verificación a las capas 2 y 4) y utiliza una estructura de encabezado de tamaño fijo que optimiza el procesamiento y la escalabilidad en los routers.",
+    "imagen": null
+  },
+  {
+    "pregunta": "62. ¿En cuáles dos situaciones un switch Ethernet inunda (flooding) una trama por todos sus puertos activos excepto el puerto de recepción? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Cuando la dirección de destino de la trama es una dirección de difusión (broadcast FF-FF-FF-FF-FF-FF).",
+      "Cuando la dirección MAC de destino no se encuentra registrada en la tabla de direcciones MAC del switch (unicast desconocida).",
+      "Cuando la trama contiene un paquete con dirección IP de loopback 127.0.0.1.",
+      "Cuando el puerto de entrada está configurado en modo troncal estático."
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "El inundado (flooding) se produce cuando la trama es explícitamente de broadcast o cuando el switch desconoce el puerto de salida para una dirección MAC de destino (unicast desconocida).",
+    "imagen": null
+  },
+  {
+    "pregunta": "63. ¿De qué manera procesan las tarjetas de interfaz de red (NIC) de una LAN local las solicitudes ARP recibidas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Al ser tramas de difusión de Capa 2, todas las NIC de la red local reciben y procesan la solicitud ARP.",
+      "Solo la interfaz del router enruta la solicitud ARP hacia otras redes.",
+      "Las NIC descartan la solicitud a menos que tengan activada la seguridad de puerto.",
+      "Únicamente el servidor DHCP procesa e interpreta los mensajes ARP."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Las solicitudes ARP se envían a la dirección MAC de difusión FF-FF-FF-FF-FF-FF. Por norma, todas las NIC dentro de ese mismo dominio de difusión la reciben y la pasan a su sistema operativo para ser procesada.",
+    "imagen": null
+  },
+  {
+    "pregunta": "64. Un administrador de red acaba de configurar un mensaje de advertencia 'banner motd'. ¿Cuál es la forma más rápida de verificar que el banner se muestre correctamente?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Salir del modo EXEC privilegiado ('exit') y presionar Enter para volver a la pantalla de bienvenida.",
+      "Reiniciar el dispositivo apagando el interruptor de energía.",
+      "Ingresar el comando 'copy running-config startup-config' tres veces consecutivas.",
+      "Eliminar la contraseña del puerto de consola."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Salir del modo privilegiado mediante 'exit' hace que la sesión de terminal se cierre y se despliegue inmediatamente el mensaje del banner de inicio sin necesidad de reiniciar el equipo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "65. ¿Cuáles son las dos funciones principales que realiza un router dentro de una infraestructura de red? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Selección de la mejor ruta (Path selection)",
+      "Reenvío de paquetes (Packet forwarding)",
+      "Resolución de nombres de dominio DNS",
+      "Asignación dinámica de direcciones MAC"
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "Un router realiza dos tareas esenciales en Capa 3: determinar la ruta óptima para alcanzar una red de destino mediante protocolos o rutas estáticas (Path selection) y conmutar/reenviar los paquetes por la interfaz correspondiente (Packet forwarding).",
+    "imagen": null
+  },
+  {
+    "pregunta": "66. ¿Qué indica la presencia del valor 0x0806 en el campo EtherType del encabezado de una trama Ethernet?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Indica que los datos contenidos en la trama deben ser entregados al proceso del protocolo ARP.",
+      "Indica que el paquete interno pertenece al protocolo IPv6.",
+      "Indica que la trama transporta un segmento TCP de control de flujo.",
+      "Indica que la trama debe ser descartada por error de verificación."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo EtherType igual a 0x0806 señala que la carga útil de la trama Ethernet corresponde a un mensaje del protocolo de resolución de direcciones (ARP).",
+    "imagen": null
+  },
+  {
+    "pregunta": "67. Consulte la exhibición. Un técnico instala un host en la 'Medical LAN' del router BldgA. Según la salida mostrada, ¿qué IP debe configurarse como puerta de enlace predeterminada en el nuevo host?\n\nBldgA(config)# interface gi0/1\nBldgA(config-if)# description Connects to the Medical LAN\nBldgA(config-if)# ip address 192.168.201.200 255.255.255.0",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.201.200",
+      "192.168.200.80",
+      "10.200.201.254",
+      "203.0.113.222"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La interfaz gi0/1 del router se conecta a la Medical LAN con la IP 192.168.201.200. Esta IP actúa como la puerta de enlace predeterminada para todos los dispositivos pertenecientes a esa subred.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_bldga_medical_lan.png"
+  },
+  {
+    "pregunta": "68. En una tabla de enrutamiento de Cisco IOS, ¿qué característica distingue a las rutas remotas en comparación con las rutas directamente conectadas?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Las rutas remotas incluyen explícitamente la dirección IP del siguiente salto (next-hop) y la interfaz de salida.",
+      "Las rutas remotas no requieren una métrica asociada.",
+      "Las rutas remotas se eliminan al apagar el switch de capa 2.",
+      "Las rutas remotas solo aceptan tramas de broadcast."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "A diferencia de las rutas locales o conectadas que no requieren saltos intermediarios, las entradas de rutas remotas registran la IP del router de siguiente salto hacia el cual se deben encaminar los paquetes.",
+    "imagen": null
+  },
+  {
+    "pregunta": "69. ¿Cómo garantizan los hosts de una red que los paquetes se transmitan a la subred adecuada?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Consultando su propia tabla de enrutamiento local que contiene rutas hacia la interfaz loopback, la red local y el gateway predeterminado.",
+      "Solicitando una consulta broadcast al switch en cada paquete enviado.",
+      "Delegando la dirección MAC de origen al servidor DNS.",
+      "Enviando todos los paquetes sin encapsular a través del puerto de consola."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Los hosts mantienen una tabla de enrutamiento interna en la que determinan si la IP de destino es local o si debe enviarse a la puerta de enlace predeterminada.",
+    "imagen": null
+  },
+  {
+    "pregunta": "70. ¿Cuál es el resultado directo de ejecutar el comando 'arp -d *' en el símbolo de sistema (CMD) de una computadora con sistema operativo Windows?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Se borran de forma inmediata todas las entradas almacenadas en la Caché ARP local.",
+      "Se deshabilita la tarjeta de interfaz de red física.",
+      "Se envía un ping continuo a todas las direcciones de la subred.",
+      "Se muestran los nombres de dominio asociados a las direcciones IP."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El comando 'arp -d *' vacía o purga el contenido de la tabla Caché ARP del host, forzando al equipo a enviar nuevas solicitudes ARP la próxima vez que intente comunicarse.",
+    "imagen": null
+  },
+  {
+    "pregunta": "71. ¿Qué información especifica el campo 'Dirección IPv4 de destino' en el encabezado de un paquete IP de Capa 3?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La dirección lógica de 32 bits del host o grupo receptor (unidifusión, multidifusión o difusión).",
+      "La dirección física MAC del puerto de consola.",
+      "La versión del protocolo de transporte utilizada por la aplicación.",
+      "La suma de verificación de la carga útil del paquete."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo Destination IP Address contiene los 32 bits que identifican al destinatario final o grupo receptor del paquete, guíando a los routers durante el proceso de conmutación.",
+    "imagen": null
+  },
+  {
+    "pregunta": "72. ¿De qué manera aprovecha un dispositivo receptor la dirección MAC de origen presente en la trama de una solicitud ARP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Utiliza esa dirección MAC de origen para enviar la respuesta ARP en formato unicast directamente al emisor de la consulta.",
+      "La utiliza para registrar la dirección IP del servidor DNS.",
+      "Inunda la trama por los puertos asignados a la VLAN nativa.",
+      "La reenvía al gateway de último recurso."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Aunque la solicitud ARP se difunde por broadcast, incluye la MAC física del solicitante. El host que responde utiliza esa dirección MAC de origen para emitir su respuesta de forma directa (unicast).",
+    "imagen": null
+  },
+  {
+    "pregunta": "73. Consulte la exhibición. Un administrador de red conecta una PC a la 'Payroll LAN' del router RTR1. Según la configuración mostrada, ¿qué IP debe configurarse como puerta de enlace predeterminada?\n\nRTR1(config)# interface gi0/0\nRTR1(config-if)# description Connects to the Payroll LAN\nRTR1(config-if)# ip address 10.27.14.148 255.255.255.0",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "10.27.14.148",
+      "10.27.15.17",
+      "10.14.15.254",
+      "203.0.113.39"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La interfaz GigabitEthernet0/0 con la dirección IP 10.27.14.148 es la interfaz conectada a la subred Payroll LAN, por lo que constituye la puerta de enlace predeterminada.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_rtr1_payroll_lan.png"
+  },
+  {
+    "pregunta": "74. Consulte la exhibición. En el router Main, la interfaz GigabitEthernet0/1 está configurada con la IP 192.168.167.166 y la descripción 'Connects to the Service LAN'. ¿Qué IP actuará como gateway predeterminado para los hosts de dicha LAN?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.167.166",
+      "192.168.166.46",
+      "10.166.167.254",
+      "198.51.100.189"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Los clientes de la Service LAN deben apuntar su gateway predeterminado a la IP 192.168.167.166 configurada en la interfaz gi0/1 del router local.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_main_service_lan.png"
+  },
+  {
+    "pregunta": "75. ¿Qué información almacena el campo 'Dirección IPv4 de origen' en el encabezado de un paquete de Capa 3?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "La dirección lógica binaria de 32 bits de la interfaz del host emisor del paquete.",
+      "La dirección MAC de la interfaz de salida del router.",
+      "El número de puerto de origen asignado por la aplicación TCP.",
+      "La clave de cifrado utilizada por el protocolo SSH."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo Source IP Address guarda los 32 bits de la IP del host creador del paquete, permitiendo al destino saber a dónde enviar las respuestas.",
+    "imagen": null
+  },
+  {
+    "pregunta": "76. ¿Qué ventaja ofrece la configuración de entradas estáticas en la tabla Caché ARP para servidores o dispositivos críticos de la red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Fija la asociación IP-MAC de forma permanente en la memoria, evitando que expire por temporizadores o sea manipulada por respuestas ARP falsas.",
+      "Informa al switch que debe duplicar las tramas en todos los puertos FastEthernet.",
+      "Evita que el router decremente el valor del TTL en el paquete.",
+      "Deshabilita automáticamente la VLAN nativa en el switch."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Las entradas estáticas de ARP no caducan con el tiempo ni se borran dinámicamente, lo que reduce el tráfico de solicitudes broadcast y protege a los servidores contra ataques de ARP Spoofing.",
+    "imagen": null
+  },
+  {
+    "pregunta": "77. Consulte la exhibición. Un administrador conecta una PC a la 'Manager LAN' del router Floor. Dada la configuración:\n\nFloor(config)# interface gi0/0\nFloor(config-if)# description Connects to the Manager LAN\nFloor(config-if)# ip address 10.118.62.196 255.255.255.0\n\n¿Qué dirección IP debe configurarse como puerta de enlace predeterminada?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "10.118.62.196",
+      "10.118.63.65",
+      "10.62.63.254",
+      "209.165.200.87"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La dirección IP 10.118.62.196 configurada en la interfaz gi0/0 servirá como gateway predeterminado para la subred Manager LAN.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_floor_manager_lan.png"
+  },
+  {
+    "pregunta": "78. Consulte la exhibición. Un administrador conecta un nuevo host a la 'Registrar LAN' en el router Piso. La interfaz gi0/1 tiene la IP 192.168.235.234 y la descripción 'Se conecta al Registrador LAN'. ¿Qué IP debe asignarse como gateway predeterminado en el host?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "192.168.235.234",
+      "192.168.234.114",
+      "10.234.235.254",
+      "203.0.113.3"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "La dirección IP 192.168.235.234 corresponde a la interfaz gi0/1 conectada a la subred Registrador LAN, actuando como su puerta de enlace predeterminada.",
+    "imagen": "ccna2_lab_redes_prueba2_remix/configuracion_interfaces_router_piso_registrar_lan.png"
+  },
+  {
+    "pregunta": "79. ¿Qué campo de 8 bits en el encabezado IPv4 se utiliza para clasificar el tráfico y asignarle prioridad de Calidad de Servicio (QoS)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Servicios diferenciados (Differentiated Services / DS)",
+      "Tiempo de duración (TTL)",
+      "Protocolo (Protocol)",
+      "Header Checksum"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "El campo Servicios Diferenciados (DS) permite priorizar paquetes sensibles al retardo (como voz sobre IP o streaming) frente a datos convencionales.",
+    "imagen": null
+  }
+]
