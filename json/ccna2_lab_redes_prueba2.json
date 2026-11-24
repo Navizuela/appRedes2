@@ -1,0 +1,306 @@
+[
+  {
+    "pregunta": "1. Consulte la ilustración. El administrador quiso crear un EtherChannel entre el S1 y los otros dos switches mediante los comandos que se muestran, pero falló. ¿Cuál es el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El tráfico no se puede enviar a dos switches diferentes a través del mismo enlace EtherChannel.",
+      "El tráfico no se puede enviar a dos switches diferentes, sino únicamente a dos diferentes dispositivos como un servidor de con habilitación y un switch.",
+      "El tráfico puede enviarse sólo a dos switches diferentes si EtherChannel se implementa en interfaces Gigabit Ethernet.",
+      "El tráfico puede enviarse sólo a dos switches diferentes si EtherChannel se implementa en los switches de capa 3."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: Un enlace lógico EtherChannel solo puede agrupar enlaces físicos entre dos dispositivos switch específicos. No es posible agrupar interfaces que conecten hacia switches diferentes (como S2 y S3 simultáneamente) dentro del mismo channel-group, a menos que se utilicen tecnologías multichasis avanzadas (como VSS, StackWise o vPC).",
+    "imagen": "pregunta_1.png"
+  },
+  {
+    "pregunta": "2. ¿Qué afirmación es verdadera con respecto al uso de PAgP para crear EtherChannels?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Es propiedad de Cisco.",
+      "Aumenta el número de puertos que están participando en el árbol de expansión.",
+      "Asigna que se realice un número par de puertos (2, 4, 6, etc.) para agregación de forma obligatoria.",
+      "Requiere que más links físicos que el LACP hace.",
+      "Requiere dúplex completo de forma obligatoria en enlaces individuales."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: PAgP (Port Aggregation Protocol) es un protocolo propietario de Cisco diseñado para facilitar la creación automática de enlaces EtherChannel. A diferencia de LACP (estándar abierto IEEE 802.3ad), PAgP solo opera entre dispositivos Cisco.",
+    "imagen": null
+  },
+  {
+    "pregunta": "3. ¿Qué mensaje utiliza un host IPv4 para responder cuando recibe un mensaje DHCPOFFER de un servidor de DHCP?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DHCPREQUEST",
+      "DHCPACK",
+      "DHCPDISCOVER",
+      "DHCPOFFER"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: El proceso de arrendamiento DHCPv4 sigue la secuencia DORA: 1) DHCPDISCOVER (difusión del cliente buscando servidores), 2) DHCPOFFER (oferta de dirección enviada por el servidor), 3) DHCPREQUEST (difusión del cliente aceptando la oferta y solicitando el arriendo), 4) DHCPACK (confirmación formal del servidor). Por lo tanto, el cliente responde a un DHCPOFFER mediante un DHCPREQUEST.",
+    "imagen": null
+  },
+  {
+    "pregunta": "4. Consulte la ilustración. Un administrador de red está configurando un enlace EtherChannel entre dos switches, SW1 y SW2. Sin embargo, el enlace EtherChannel no se puede establecer. ¿Qué cambio en la configuración corregiría el problema?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Configure el modo SW1 EtherChannel en activado (mode active).",
+      "Configure el modo SW2 EtherChannel como deseable (mode desirable).",
+      "Configure el modo SW2 EtherChannel en automático (mode auto).",
+      "Configure el modo SW2 EtherChannel en pasivo (mode passive)."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: En la ilustración, SW1 está configurado con 'channel-group 1 mode auto' (protocolo PAgP de Cisco) mientras que SW2 está configurado con 'channel-group 1 mode active' (protocolo LACP estándar IEEE 802.3ad). Dado que PAgP y LACP son protocolos incompatibles entre sí, el canal no se puede establecer. Para formar el EtherChannel bajo el estándar LACP, se debe configurar SW1 en modo activo ('mode active'), logrando así una negociación LACP activa exitosa entre ambos switches.",
+    "imagen": "pregunta_4.png"
+  },
+  {
+    "pregunta": "5. ¿Qué componente de control de acceso, implementación o protocolo audita las acciones de los usuarios que se realizan en la red?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Registro (Accounting)",
+      "Autorización (Authorization)",
+      "Autenticación (Authentication)",
+      "802.1X"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: En el modelo de seguridad AAA: 1) Autenticación (Authentication) comprueba quién es el usuario; 2) Autorización (Authorization) determina a qué recursos tiene permiso de acceder; 3) Registro o Contabilidad (Accounting) registra y audita detalladamente qué comandos o acciones realiza el usuario y durante cuánto tiempo.",
+    "imagen": null
+  },
+  {
+    "pregunta": "6. ¿Qué dos soluciones de Cisco ayudan a prevenir los ataques de inanición de DHCP (DHCP Starvation)? (Elija dos opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Detección DHCP (DHCP Snooping)",
+      "Seguridad de puertos (Port Security)",
+      "Web Security Appliance",
+      "Protección de la IP de origen (IP Source Guard)",
+      "Inspección dinámica de ARP (DAI)"
+    ],
+    "respuestas_correctas": [
+      0,
+      1
+    ],
+    "explicacion": "Explicación: Un ataque de inanición de DHCP (DHCP Starvation) satura el servidor DHCP solicitando todas las direcciones IP disponibles usando direcciones MAC falsificadas. Se previene combinando: 1) Port Security, que restringe la cantidad de direcciones MAC permitidas en un puerto de switch; y 2) DHCP Snooping, que inspecciona y valida que la dirección MAC del cliente coincida con la solicitud y filtra mensajes no autorizados en puertos no confiables.",
+    "imagen": null
+  },
+  {
+    "pregunta": "7. ¿Cuáles son tres técnicas de mitigación de ataques de VLAN (como VLAN Hopping)? (Elija tres opciones).",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Configurar la VLAN nativa en una VLAN sin usar.",
+      "Desactivar el protocolo DTP (Dynamic Trunking Protocol).",
+      "Habilitar manualmente los enlaces troncales.",
+      "Habilitar la protección BPDU (BPDU Guard).",
+      "Habilitar la protección de origen (IP Source Guard).",
+      "Usar VLAN privadas exclusivamente."
+    ],
+    "respuestas_correctas": [
+      0,
+      1,
+      2
+    ],
+    "explicacion": "Explicación: Las principales medidas recomendadas por Cisco para mitigar los ataques de salto de VLAN (VLAN Hopping) son:\n1) Desactivar la autonegociación DTP en todos los puertos ('switchport nonegotiate').\n2) Configurar explícitamente y de forma manual los enlaces como troncales ('switchport mode trunk').\n3) Cambiar la VLAN nativa predeterminada (VLAN 1) asignando una VLAN sin usar (por ejemplo, VLAN 999) como nativa ('switchport trunk native vlan 999').\n4) Mantener apagados los puertos en desuso y asignados a una VLAN de descarte.",
+    "imagen": null
+  },
+  {
+    "pregunta": "8. Un administrador de red configura un router para enviar mensajes RA con el indicador M como 0 y el indicador O como 1. ¿Cuál de estas afirmaciones describe el efecto de esta configuración cuando una computadora intenta configurar su dirección IPv6?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "Debe usar la información que se incluye en el mensaje RA y comunicarse con un servidor de DHCPv6 para obtener información adicional.",
+      "Debe comunicarse con un servidor de DHCPv6 para obtener el prefijo, la información de longitud de prefijo y una ID de interfaz que sea aleatoria y única.",
+      "Debe usar la información que se incluye en el mensaje RA exclusivamente.",
+      "Debe comunicarse con un servidor de DHCPv6 para obtener toda la información que necesita."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: En IPv6:\n- M=0, O=0: SLAAC puro (el cliente usa únicamente el mensaje RA para generar su dirección y gateway).\n- M=0, O=1: DHCPv6 sin estado (Stateless DHCPv6). El cliente genera su dirección IPv6 mediante SLAAC a partir del mensaje RA y se comunica con un servidor DHCPv6 para obtener parámetros de red adicionales (como servidores DNS y nombre de dominio).\n- M=1: DHCPv6 con estado (Stateful DHCPv6), donde el servidor asigna toda la información de direccionamiento.",
+    "imagen": null
+  },
+  {
+    "pregunta": "9. Consulte la exhibición. Un administrador de red configura un router para que funcione con DHCPv6. ¿A qué conclusión se puede llegar en función de los comandos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "El router está configurado para funcionar con DHCPv6 sin estado.",
+      "El router está configurado para funcionar con DHCPv6 con estado, pero la configuración del pool de DHCP está incompleta.",
+      "Los clientes configurarían las ID de interfaz después de 0010.",
+      "El nombre del servidor de DHCPv6 es ACAD_CLASS."
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: El comando 'ipv6 nd other-config-flag' configura el indicador O en 1 (manteniendo M en 0 por defecto). Esto le indica a los hosts clientes que utilicen SLAAC para crear su dirección IPv6 global unicast y que contacten al servidor DHCPv6 para obtener parámetros adicionales (en este caso el servidor DNS y nombre de dominio definidos en el pool ACAD_CLASS). Por ende, el router está configurado para DHCPv6 sin estado (Stateless DHCPv6).",
+    "imagen": "pregunta_9.png"
+  },
+  {
+    "pregunta": "10. Consulte la exhibición. Sobre la base del resultado que se muestra, ¿qué clase de direccionamiento IPv6 se está configurando?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "DHCPv6 sin estado",
+      "DHCPv6 con estado",
+      "SLAAC",
+      "Link-local estático"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: En la salida del comando show running-config, se observa 'ipv6 nd other-config-flag' en la interfaz FastEthernet0/0 y un pool DHCPv6 que solo define 'dns-server' y 'domain-name' (sin rangos ni prefijos de direcciones IP). Esto demuestra que el router opera como servidor DHCPv6 sin estado (Stateless DHCPv6).",
+    "imagen": "pregunta_10.png"
+  },
+  {
+    "pregunta": "11. ITEM 2: Términos pareados. Una cada definición de la Columna A con su concepto correspondiente de la Columna B.",
+    "tipo": "emparejamiento",
+    "opciones": [
+      "Aprendizaje",
+      "DAI",
+      "Desirable-Auto",
+      "Dhcpack",
+      "Dhcpdiscover",
+      "Dhcpoffer",
+      "Dhcprequest",
+      "Eui-64",
+      "FE80::1",
+      "FHRP",
+      "Hablar",
+      "HSRP",
+      "Lacp",
+      "Pagp",
+      "Pasive-Active",
+      "RA",
+      "RS",
+      "Shutdown",
+      "SLAAC",
+      "VPN"
+    ],
+    "objetivos": [
+      "1- Router advertisement",
+      "2- protocolo de routing de reserva activa",
+      "3- es el modo de violación predeterminado",
+      "4- el router envia mensajes de saludo periódicos y participa en la elección del router activo-pasivo",
+      "5- solicitud de DHCP",
+      "6- virtual private network",
+      "7- dirección link local",
+      "8- protocolo de agregación de enlaces IEEE",
+      "9- el router aun no ha establecido la ip virtual y aun no le llegan mensajes de saludo",
+      "10- estados del protocolo Pagp",
+      "11- acuse de recibo DHCP",
+      "12- configuracion automática de direcciones sin estado",
+      "13- estados para el protocolo Lacp",
+      "14- protocolo de agregación de enlaces de cisco",
+      "15- oferta de DHCP",
+      "16- algoritmo para generar una ipv6 en base a la mac",
+      "17- deteccion de DHCP",
+      "18- protocolo de redundancia del primer salto",
+      "19- Router solicit",
+      "20- inspeccion de ARP dinamica"
+    ],
+    "respuestas_correctas": {
+      "1- Router advertisement": "RA",
+      "2- protocolo de routing de reserva activa": "HSRP",
+      "3- es el modo de violación predeterminado": "Shutdown",
+      "4- el router envia mensajes de saludo periódicos y participa en la elección del router activo-pasivo": "Hablar",
+      "5- solicitud de DHCP": "Dhcprequest",
+      "6- virtual private network": "VPN",
+      "7- dirección link local": "FE80::1",
+      "8- protocolo de agregación de enlaces IEEE": "Lacp",
+      "9- el router aun no ha establecido la ip virtual y aun no le llegan mensajes de saludo": "Aprendizaje",
+      "10- estados del protocolo Pagp": "Desirable-Auto",
+      "11- acuse de recibo DHCP": "Dhcpack",
+      "12- configuracion automática de direcciones sin estado": "SLAAC",
+      "13- estados para el protocolo Lacp": "Pasive-Active",
+      "14- protocolo de agregación de enlaces de cisco": "Pagp",
+      "15- oferta de DHCP": "Dhcpoffer",
+      "16- algoritmo para generar una ipv6 en base a la mac": "Eui-64",
+      "17- deteccion de DHCP": "Dhcpdiscover",
+      "18- protocolo de redundancia del primer salto": "FHRP",
+      "19- Router solicit": "RS",
+      "20- inspeccion de ARP dinamica": "DAI"
+    },
+    "explicacion": "Explicación:\n- 1 -> RA: Router Advertisement (mensaje ICMPv6 de anuncio emitido por routers).\n- 2 -> HSRP: Hot Standby Router Protocol (protocolo de reserva activa para redundancia de primer salto de Cisco).\n- 3 -> Shutdown: Modo de violación por defecto en Port Security que inhabilita y apaga la interfaz (err-disabled).\n- 4 -> Hablar (Speak): Estado de HSRP donde el router envía mensajes Hello y participa en la elección del rol activo o standby.\n- 5 -> DHCPREQUEST: Mensaje en el que el cliente formaliza la solicitud de arriendo de la dirección IP.\n- 6 -> VPN: Virtual Private Network (red privada virtual segura).\n- 7 -> FE80::1: Dirección IPv6 de enlace local (Link-Local, prefijo FE80::/10).\n- 8 -> LACP: Link Aggregation Control Protocol (estándar abierto IEEE 802.3ad).\n- 9 -> Aprendizaje (Learning): Estado de HSRP donde el router espera paquetes Hello para aprender la IP virtual.\n- 10 -> Desirable-Auto: Modos de negociación del protocolo PAgP de Cisco.\n- 11 -> DHCPACK: Mensaje de confirmación final emitido por el servidor DHCP con los parámetros aprobados.\n- 12 -> SLAAC: Stateless Address Autoconfiguration (configuración automática sin estado en IPv6).\n- 13 -> Passive-Active: Modos de negociación del protocolo estándar LACP.\n- 14 -> PAgP: Port Aggregation Protocol (protocolo de agregación de enlaces propietario de Cisco).\n- 15 -> DHCPOFFER: Mensaje del servidor DHCP ofreciendo una IP disponible al cliente.\n- 16 -> EUI-64: Algoritmo que calcula el ID de interfaz de 64 bits a partir de la dirección MAC de 48 bits.\n- 17 -> DHCPDISCOVER: Mensaje inicial de difusión del cliente para detectar servidores DHCP en la red local.\n- 18 -> FHRP: First Hop Redundancy Protocol (familia de protocolos de redundancia del gateway predeterminado).\n- 19 -> RS: Router Solicitation (mensaje ICMPv6 que envía un host solicitando un anuncio de router).\n- 20 -> DAI: Dynamic ARP Inspection (inspección dinámica de paquetes ARP para evitar envenenamiento ARP).",
+    "imagen": null
+  },
+  {
+    "pregunta": "12. ITEM 3 (1): Consulte la ilustración. El host PC0 quiere arrendar una dirección IP del servidor DHCP. ¿Cuál es el orden cronológico exacto de los mensajes intercambiados entre el cliente y el servidor en el proceso DHCPv4 (DORA)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "1. DHCPDISCOVER (PC0 -> Server0), 2. DHCPOFFER (Server0 -> PC0), 3. DHCPREQUEST (PC0 -> Server0), 4. DHCPACK (Server0 -> PC0)",
+      "1. DHCPREQUEST (PC0 -> Server0), 2. DHCPACK (Server0 -> PC0), 3. DHCPDISCOVER (PC0 -> Server0), 4. DHCPOFFER (Server0 -> PC0)",
+      "1. DHCPOFFER (Server0 -> PC0), 2. DHCPDISCOVER (PC0 -> Server0), 3. DHCPACK (Server0 -> PC0), 4. DHCPREQUEST (PC0 -> Server0)",
+      "1. DHCPDISCOVER (PC0 -> Server0), 2. DHCPREQUEST (Server0 -> PC0), 3. DHCPOFFER (PC0 -> Server0), 4. DHCPACK (Server0 -> PC0)"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: El proceso de arrendamiento de direcciones DHCPv4 se representa por el acrónimo DORA:\n1. DHCPDISCOVER: El cliente transmite un paquete broadcast para localizar servidores DHCP en la red.\n2. DHCPOFFER: El servidor DHCP responde con un mensaje unicast o broadcast ofreciendo una dirección IP libre.\n3. DHCPREQUEST: El cliente responde con un broadcast aceptando la oferta y solicitando formalmente el arrendamiento.\n4. DHCPACK: El servidor confirma la concesión mediante un acuse de recibo y el cliente configura sus parámetros de red.",
+    "imagen": "item3_pregunta1.png"
+  },
+  {
+    "pregunta": "13. ITEM 3 (2): Consulte la ilustración. La PC1 intenta obtener una dirección IP desde el servidor DHCP (192.168.11.6), pero sus mensajes DHCPDISCOVER no llegan al servidor ya que el router R1 bloquea las difusiones por defecto. ¿Qué comandos deben ingresarse en R1 para resolver el problema configurándolo como agente de retransmisión DHCP (DHCP Relay Agent)?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# ip helper-address 192.168.11.6\nR1(config-if)# exit",
+      "R1(config)# interface gigabitEthernet 0/0/1\nR1(config-if)# ip helper-address 192.168.11.6\nR1(config-if)# exit",
+      "R1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# switchport mode trunk\nR1(config-if)# ip dhcp forward 192.168.11.6",
+      "R1(config)# ip dhcp relay server 192.168.11.6\nR1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# no shutdown"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación: Dado que los routers no propagan difusiones (broadcasts) entre subredes, el mensaje DHCPDISCOVER de PC1 se descarta al llegar a la interfaz Gig0/0/0 de R1. Para solucionar esto, se debe habilitar un agente de retransmisión (DHCP Relay Agent) en la interfaz del router que recibe los mensajes broadcast de los clientes (Gig0/0/0) mediante el comando 'ip helper-address 192.168.11.6'. El router transformará las solicitudes broadcast en paquetes unicast dirigidos directamente a la IP del servidor DHCP.",
+    "imagen": "item3_pregunta2.png"
+  },
+  {
+    "pregunta": "14. ITEM 3 (3): Consulte la exhibición. En el switch S1 se configuraron los puertos Fa0/1 y Fa0/2 en modo 'channel-group 1 mode auto' junto con un troncal que permite las VLANs 10 y 20, con VLAN nativa 999. ¿Qué comandos se deben ingresar en S2 para que el enlace EtherChannel se establezca con éxito mediante el protocolo PAgP y mantenga los parámetros troncales idénticos?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "S2(config)# interface range fa0/1 - 2\nS2(config-if-range)# channel-group 1 mode desirable\nS2(config-if-range)# exit\nS2(config)# interface port-channel 1\nS2(config-if)# switchport mode trunk\nS2(config-if)# switchport trunk allowed vlan 10,20\nS2(config-if)# switchport trunk native vlan 999\nS2(config-if)# exit",
+      "S2(config)# interface range fa0/1 - 2\nS2(config-if-range)# channel-group 1 mode auto\nS2(config-if-range)# exit\nS2(config)# interface port-channel 1\nS2(config-if)# switchport mode trunk\nS2(config-if)# switchport trunk allowed vlan 10,20\nS2(config-if)# switchport trunk native vlan 999\nS2(config-if)# exit",
+      "S2(config)# interface range fa0/1 - 2\nS2(config-if-range)# channel-group 1 mode active\nS2(config-if-range)# exit\nS2(config)# interface port-channel 1\nS2(config-if)# switchport mode trunk",
+      "S2(config)# interface port-channel 1\nS2(config-if)# channel-group 1 mode on\nS2(config-if)# switchport trunk allowed vlan 10,20"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación:\n1. Negociación PAgP: Como S1 se configuró en modo 'auto' (pasivo, no inicia negociación), S2 DEBE configurarse obligatoriamente en modo 'desirable' (activo, inicia negociación). Si se configurara en auto, ambos extremos esperarían al otro y el canal nunca se formaría.\n2. Consistencia en Capa 2: Todas las características troncales (modo troncal, rango de VLANs permitidas '10,20' y la VLAN nativa '999') deben ser idénticas en el port-channel de ambos switches para evitar inconsistencias que suspendan los puertos en el árbol de expansión (STP).",
+    "imagen": "item3_pregunta3.png"
+  },
+  {
+    "pregunta": "15. ITEM 3 (4): Consulte la ilustración. Se requiere configurar SLAAC puro en el router R1 con los indicadores de anuncios de router (RA) establecidos en A=1, O=0 y M=0 en la interfaz Gig0/0/0. ¿Qué comandos aseguran esta configuración en R1?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "R1(config)# ipv6 unicast-routing\nR1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# no ipv6 nd other-config-flag\nR1(config-if)# no ipv6 nd managed-config-flag\nR1(config-if)# exit",
+      "R1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# ipv6 nd other-config-flag\nR1(config-if)# ipv6 nd managed-config-flag\nR1(config-if)# exit",
+      "R1(config)# ipv6 dhcp pool SLAAC_POOL\nR1(config-dhcp)# prefix-delegation 2001:db8::/64\nR1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# ipv6 dhcp server SLAAC_POOL",
+      "R1(config)# interface gigabitEthernet 0/0/0\nR1(config-if)# ipv6 address autoconfig\nR1(config-if)# switchport mode access"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación:\n1. 'ipv6 unicast-routing': Comando en modo de configuración global indispensable para que el router habilite el enrutamiento IPv6 y comience a enviar mensajes periódicos de Router Advertisement (RA).\n2. Indicadores en SLAAC puro: A=1 indica que el cliente utiliza SLAAC; O=0 ('no ipv6 nd other-config-flag') indica que no se solicita información adicional a DHCPv6; y M=0 ('no ipv6 nd managed-config-flag') asegura que no se utilice DHCPv6 con estado.",
+    "imagen": "item3_pregunta4.png"
+  },
+  {
+    "pregunta": "16. ITEM 3 (5): Consulte la ilustración. Se requiere implementar la política de seguridad en los switches S1 y S2:\n- Desactivar puertos en desuso (Fa0/3-24 y Gig0/2).\n- En puertos de acceso activos (Fa0/1-2): habilitar port-security con un máximo de 2 direcciones MAC dinámicas aprendidas ('sticky') y modo de violación 'shutdown'.\n- En S2: habilitar DHCP Snooping globalmente y en la VLAN 1, configurar el puerto hacia el servidor R2 (Gig0/1) como confiable (trust), y en los puertos hacia las PCs (Fa0/1-2) aplicar un límite de tasa (limit rate) de 3 pps.\n¿Cuál es la configuración correcta requerida en S1 y S2?",
+    "tipo": "opcion_multiple",
+    "opciones": [
+      "S1 & S2 (Puertos no usados):\ninterface range fa0/3-24, gig0/2\n shutdown\n\nS1 & S2 (Port Security):\ninterface range fa0/1-2\n switchport mode access\n switchport port-security\n switchport port-security maximum 2\n switchport port-security mac-address sticky\n switchport port-security violation shutdown\n\nS2 (DHCP Snooping):\nip dhcp snooping\nip dhcp snooping vlan 1\ninterface gig0/1\n ip dhcp snooping trust\ninterface range fa0/1-2\n ip dhcp snooping limit rate 3",
+      "S1 & S2 (Puertos no usados):\ninterface range fa0/1-24\n shutdown\n\nS1 & S2 (Port Security):\ninterface range fa0/1-2\n switchport mode trunk\n switchport port-security maximum 1\n\nS2 (DHCP Snooping):\nip dhcp snooping trust gig0/1",
+      "S1 & S2:\ninterface range fa0/3-24\n switchport access vlan 999\ninterface range fa0/1-2\n switchport port-security violation protect\n\nS2:\nip dhcp snooping limit rate 3 on gig0/1",
+      "S1 & S2:\ninterface range gig0/1-2\n shutdown\ninterface range fa0/1-2\n switchport port-security mac-address dynamic 2\n\nS2:\nip dhcp relay 192.168.1.1"
+    ],
+    "respuestas_correctas": [
+      0
+    ],
+    "explicacion": "Explicación de la solución completa:\n1) Desactivar puertos sin usar: 'interface range fa0/3-24, gig0/2' -> 'shutdown'.\n2) Seguridad de puertos (Port Security): Definir el modo de acceso ('switchport mode access'), habilitar el servicio ('switchport port-security'), limitar la cantidad de MACs a 2 ('switchport port-security maximum 2'), aprender dinámicamente las MACs agregándolas a la configuración en ejecución ('switchport port-security mac-address sticky'), y apagar el puerto ante violaciones ('switchport port-security violation shutdown').\n3) DHCP Snooping en S2: Habilitar de manera global ('ip dhcp snooping') y en la VLAN 1 ('ip dhcp snooping vlan 1'); definir la interfaz conectada al servidor DHCP como de confianza ('interface gig0/1' -> 'ip dhcp snooping trust'); y limitar la tasa de solicitudes de los clientes para evitar inanición de DHCP ('interface range fa0/1-2' -> 'ip dhcp snooping limit rate 3').",
+    "imagen": "item3_pregunta5.png"
+  }
+]

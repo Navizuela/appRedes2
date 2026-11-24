@@ -1177,6 +1177,12 @@ async def main(page: ft.Page):
             "descripcion": "Switching, VLANs, STP, DTP y Enrutamiento Inter-VLAN",
             "orden": 2,
         },
+        "ccna2_lab_redes_prueba2": {
+            "curso": "CCNA 2",
+            "titulo": "Laboratorio de Redes - Prueba 2",
+            "descripcion": "EtherChannel, DHCPv4/v6, SLAAC, Seguridad de Switch y FHRP",
+            "orden": 3,
+        },
     }
 
     def crear_tarjeta_modulo(archivo, ruta):
